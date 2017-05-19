@@ -22,20 +22,60 @@
         <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="data-api" />
       </profile>
       <profile default="false" name="Annotation profile for data" enabled="true">
         <sourceOutputDir name="target\generated-sources\annotations" />
         <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="data" />
+      </profile>
+      <profile default="false" name="Annotation profile for zdat-job" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="zdat-job" />
+      </profile>
+      <profile default="false" name="Annotation profile for mq-client" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="mq-client" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="trace" />
+      </profile>
+      <profile default="false" name="Annotation profile for message" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="message" />
+      </profile>
+      <profile default="false" name="Annotation profile for message-api" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="message-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="data" target="1.7" />
-      <module name="Data" target="1.7" />
+      <module name="Data" target="1.5" />
       <module name="data-api" target="1.7" />
+      <module name="data-parent" target="1.7" />
+      <module name="message" target="1.7" />
+      <module name="message-api" target="1.7" />
+      <module name="message-parent" target="1.7" />
+      <module name="mq-client" target="1.7" />
+      <module name="trace" target="1.5" />
+      <module name="zdat-job" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

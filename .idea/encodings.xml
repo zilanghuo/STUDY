@@ -4,6 +4,15 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/data" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/data-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-data" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-data/data" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-data/data-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-job" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-message" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-message/message" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-message/message-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-mq-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mouse-trace" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

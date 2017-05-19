@@ -3,8 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Data.iml" filepath="$PROJECT_DIR$/.idea/Data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/data-api/data-api.iml" filepath="$PROJECT_DIR$/data-api/data-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-data/data/data.iml" filepath="$PROJECT_DIR$/mouse-data/data/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-data/data-api/data-api.iml" filepath="$PROJECT_DIR$/mouse-data/data-api/data-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-data/data-parent.iml" filepath="$PROJECT_DIR$/mouse-data/data-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-message/message/message.iml" filepath="$PROJECT_DIR$/mouse-message/message/message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-message/message-api/message-api.iml" filepath="$PROJECT_DIR$/mouse-message/message-api/message-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-message/message-parent.iml" filepath="$PROJECT_DIR$/mouse-message/message-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-mq-client/mq-client.iml" filepath="$PROJECT_DIR$/mouse-mq-client/mq-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-trace/trace.iml" filepath="$PROJECT_DIR$/mouse-trace/trace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mouse-job/zdat-job.iml" filepath="$PROJECT_DIR$/mouse-job/zdat-job.iml" />
     </modules>
   </component>
 </project>

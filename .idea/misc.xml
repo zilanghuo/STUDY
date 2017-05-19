@@ -5,6 +5,8 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/data" />
+    <file type="web" url="file://$PROJECT_DIR$/mouse-data/data" />
+    <file type="web" url="file://$PROJECT_DIR$/mouse-message/message" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
