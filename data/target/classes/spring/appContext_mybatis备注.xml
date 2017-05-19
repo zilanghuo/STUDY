@@ -1,0 +1,109 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="globalRollbackOnParticipationFailure" value="false"/>
+    </bean>
+
+    <bean id="mysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" >
+        <property name="filters" value="config,wall,stat" />
+        <property name="url" value="${mysql.jdbc.url}" />
+        <property name="username" value="${mysql.jdbc.username}" />
+        <property name="password" value="${mysql.jdbc.password}" />
+        <!-- 连接池最大使用连接数 -->
+        <property name="maxActive" value="${mysql.maxActive}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${mysql.initialSize}"/>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${mysql.maxWait}" />
+        <!-- 连接池最小空闲 -->
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${mysql.minIdle}" />
+        <!-- 自动清除无用连接 -->
+        <property name="removeAbandoned" value="${mysql.removeAbandoned}"/>
+        <!-- 清除无用连接的等待时间 -->
+        <property name="removeAbandonedTimeout" value="${mysql.removeAbandonedTimeout}" />
+        <!-- 连接属性 -->
+        <property name="connectionProperties" value="${mysql.connectionProperties}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="testWhileIdle" value="true" />
+        <!--在进行borrowObject进行处理时，对拿到的connection进行validateObject校验-->
+        <property name="testOnBorrow" value="true" />
+        <!--returnObject对返回的connection进行validateObject校验，个人觉得对数据库连接池的管理意义不大-->
+        <property name="testOnReturn" value="true" />
+    </bean>
+
+    <bean id="oracleDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${oracle.jdbc.url}" />
+        <property name="username" value="${oracle.jdbc.username}" />
+        <property name="password" value="${oracle.jdbc.password}" />
+        <!-- 连接池最大使用连接数 -->
+        <property name="maxActive" value="${oracle.maxActive}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${oracle.initialSize}"/>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${oracle.maxWait}"/>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${oracle.minIdle}" />
+        <!-- 自动清除无用连接 -->
+        <property name="removeAbandoned" value="${oracle.removeAbandoned}"/>
+        <!-- 清除无用连接的等待时间 -->
+        <property name="removeAbandonedTimeout" value="${oracle.removeAbandonedTimeout}" />
+        <!-- 连接属性 -->
+        <property name="connectionProperties" value="${oracle.connectionProperties}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+        <property name="filters" value="stat" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:/mapper/**/*.xml</value>
+            </list>
+        </property>
+        <property name="plugins">
+            <list>
+                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.PageInterceptor"/>
+                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.SortListInterceptor"/>
+                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.RowBoundsInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置自定义的SqlSessionTemplate模板，注入相关配置 -->
+    <bean id="dataSource" class="com.zdmoney.data.common.config.MultipleDataSource">
+        <property name="defaultTargetDataSource" ref="mysqlDataSource" />
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="1" value-ref="mysqlDataSource"/>
+                <entry key="2" value-ref="oracleDataSource"/>
+                <!-- 这里还可以加多个dataSource -->
+            </map>
+        </property>
+    </bean>
+
+    <!-- mybatis mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+        <property name="basePackage" value="com.zdmoney.data.dao"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>
