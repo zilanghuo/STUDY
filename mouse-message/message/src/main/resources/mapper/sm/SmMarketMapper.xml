@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdmoney.message.sm.dao.SmMarketDAO">
+    <resultMap type="com.zdmoney.message.sm.model.SmMarket" id="getMap">
+
+    </resultMap>
+
+    <select id="getListBySmReqDto" resultMap="getMap">
+        SELECT * FROM T_SM_MARKET
+        <![CDATA[WHERE MOBILE IN ]]>
+        <foreach collection="mobiles" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND SEND_STATUS = 0
+        AND BATCH_NO = #{batchNo}
+    </select>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO T_SM_MARKET (BATCH_NO, MOBILE, IS_INSTANT, SEND_TIME, SEND_MSG, SEND_STATUS, RET_MSG,
+        SM_CHANNEL_TYPE,SEND_SM_TYPE,CREATE_TIME, MODIFY_TIME, OPERATOR,SM_SOURCE) VALUES
+        <foreach collection="list" item="sm" index="index" separator=",">
+            (#{sm.batchNo}, #{sm.mobile}, #{sm.isInstant},
+            #{sm.sendTime}, #{sm.sendMsg},#{sm.sendStatus},#{sm.retMsg},#{sm.smChannelType},
+            #{sm.sendSmType},#{sm.createTime}, #{sm.modifyTime}, #{sm.operator},#{sm.smSource})
+        </foreach>
+    </insert>
+
+    <update id="batchUpdateRetMsg" parameterType="java.util.Map">
+        UPDATE T_SM_MARKET SET SEND_STATUS = #{sendStatus}, RET_MSG = #{retMsg}, MODIFY_TIME = sysdate(), SM_CHANNEL_TYPE = #{smChannelType}
+        WHERE SEND_STATUS=0 AND IS_INSTANT=#{isInstant} AND BATCH_NO = #{batchNo} AND MOBILE IN
+        <foreach collection="mobiles" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="batchUpdate">
+        UPDATE T_SM_MARKET SET SEND_STATUS=0 AND MODIFY_TIME = sysdate() WHERE SEND_STATUS=9 AND IS_INSTANT=0 AND SEND_TIME &lt;= #{date}
+    </update>
+
+    <select id="getWaitSendSms" resultMap="getMap" parameterType="java.util.Date">
+        SELECT * FROM T_SM_MARKET WHERE SEND_STATUS =0 AND IS_INSTANT=0 AND SEND_TIME &lt;= #{date}
+    </select>
+
+    <select id="statSmMarket" resultType="com.zdmoney.message.sm.model.StatRecord" parameterType="java.util.Map">
+        SELECT SM_CHANNEL_TYPE,SEND_STATUS,COUNT(SEND_STATUS) AS SEND_NUM FROM T_SM_MARKET WHERE (SEND_STATUS=1 OR SEND_STATUS=2) AND MODIFY_TIME &gt;= #{startTime} AND MODIFY_TIME &lt;= #{endTime} GROUP BY SM_CHANNEL_TYPE, SEND_STATUS ;
+    </select>
+
+    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM T_SM_MARKET WHERE id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item.id}
+        </foreach>
+    </delete>
+
+</mapper>

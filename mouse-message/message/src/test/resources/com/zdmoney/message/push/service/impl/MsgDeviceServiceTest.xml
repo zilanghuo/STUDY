@@ -1,0 +1,73 @@
+<dataset>
+    <table name="T_MSG_DEVICE">
+        <column>ID</column>
+        <column>DEVICE_ID</column>
+        <column>DEVICE_TYPE</column>
+        <column>CELLPHONE_NUM</column>
+        <column>CREATE_TIME</column>
+        <column>MODIFY_TIME</column>
+        <column>OPERATOR</column>
+        <column>APP_TYPE</column>
+        <row>
+            <value>0</value>
+            <value>ed828d216b7d020891a123816272ac9c</value>
+            <value>1</value>
+            <value>18650309360</value>
+            <value>2016-08-11 10:20:00</value>
+            <value>2015-08-11 10:20:00</value>
+            <value>SYS</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>1</value>
+            <value>ed828d216b7d020891a123816272ac9d</value>
+            <value>2</value>
+            <value>18650309361</value>
+            <value>2016-08-12 10:20:00</value>
+            <value>2015-08-10 10:20:00</value>
+            <value>SYS</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>8a61039d09b8cbb61f7ac86bd5043fa3</value>
+            <value>1</value>
+            <value>18121133990</value>
+            <value>2016-08-12 10:20:00</value>
+            <value>2015-08-10 10:20:00</value>
+            <value>SYS</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>8341732f7b42383cb7c2a0436f8938bb</value>
+            <value>1</value>
+            <value>15121125673</value>
+            <value>2016-08-12 10:20:00</value>
+            <value>2015-08-10 10:20:00</value>
+            <value>SYS</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>7fceef18c82b2ccafb2da6643ba3fea4</value>
+            <value>1</value>
+            <value>13585652946</value>
+            <value>2016-08-12 10:20:00</value>
+            <value>2015-08-10 10:20:00</value>
+            <value>SYS</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>1a8d10e87a0dad352734f1bb63252a7f</value>
+            <value>1</value>
+            <value>13032926611</value>
+            <value>2016-08-12 10:20:00</value>
+            <value>2015-08-10 10:20:00</value>
+            <value>SYS</value>
+            <value>1</value>
+        </row>
+    </table>
+
+</dataset>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="lazyLoadingEnabled" value="false"/>
+	</settings>
+
+	<typeHandlers>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.push.enums.DeviceType"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.push.enums.PushStatus"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.message.MsgMessageStatus"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.message.MsgMessageType"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.sm.SmSendStatus"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.sm.SendSmType"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.sm.SmChannelType"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.sm.SmChannelStatus"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.sm.SmSource"/>
+		<typeHandler handler="com.zdmoney.message.common.base.EnumValueHandler" javaType="com.zdmoney.message.api.dto.log.LogDataConfigStatus"/>
+	</typeHandlers>
+
+</configuration>

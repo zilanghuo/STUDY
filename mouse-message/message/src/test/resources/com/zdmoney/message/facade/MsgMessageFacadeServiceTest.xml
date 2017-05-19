@@ -1,0 +1,114 @@
+<dataset>
+    <table name="T_MSG_MESSAGE">
+        <column>ID</column>
+        <column>MERCHANT_SERIAL_NO</column>
+        <column>USER_NO</column>
+        <column>USER_ID</column>
+        <column>USER_NAME</column>
+        <column>USER_PHONE</column>
+        <column>TITLE</column>
+        <column>SUMMARY</column>
+        <column>CONTENT</column>
+        <column>TYPE</column>
+        <column>STATUS</column>
+        <column>CREATE_TIME</column>
+        <column>MODIFY_TIME</column>
+        <column>OPERATOR</column>
+        <row>
+            <value>1</value>
+            <value>100</value>
+            <value>200</value>
+            <value>200</value>
+            <value>xiaoming</value>
+            <value>18652523625</value>
+            <value>题目1</value>
+            <value>摘要1</value>
+            <value>内容1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>102</value>
+            <value>200</value>
+            <value>200</value>
+            <value>xiaoming2</value>
+            <value>18652523622</value>
+            <value>题目2</value>
+            <value>摘要2</value>
+            <value>内容2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2016-07-10 10:20:00</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>100</value>
+            <value>200</value>
+            <value>200</value>
+            <value>xiaoming</value>
+            <value>18652523625</value>
+            <value>题目1</value>
+            <value>摘要1</value>
+            <value>内容1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>102</value>
+            <value>202</value>
+            <value>200</value>
+            <value>xiaoming2</value>
+            <value>18652523622</value>
+            <value>题目2</value>
+            <value>摘要2</value>
+            <value>内容2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2016-07-10 10:20:00</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>103</value>
+            <value>200</value>
+            <value>200</value>
+            <value>xiaoming3</value>
+            <value>18652523623</value>
+            <value>题目3</value>
+            <value>摘要3</value>
+            <value>内容3</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2016-08-10 10:20:00</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+        <row>
+            <value>15</value>
+            <value>103</value>
+            <value>200</value>
+            <value>202</value>
+            <value>xiaoming3</value>
+            <value>18652523623</value>
+            <value>题目3</value>
+            <value>摘要3</value>
+            <value>内容3</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2016-08-10 10:20:00</value>
+            <value>2015-07-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+    </table>
+</dataset>

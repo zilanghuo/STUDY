@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="zdHessianProxyFactory" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactory">
+        <property name="channel" value="message"/>
+    </bean>
+
+
+    <bean id="msgDeviceFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgDeviceFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgDeviceFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="msgPushFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgPushFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgPushFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="msgBatchFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgBatchFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgBatchFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="msgPhoneFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgPhoneFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgPhoneFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="msgTaskFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgTaskFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgTaskFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="msgMessageFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgMessageFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgMessageFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="msgMqFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/msgMqFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgMqFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="smFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/smFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.ISmFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+    <bean id="logFacadeService" class="com.zdmoney.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${message.remote.url}/logFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.ILogFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+</beans>

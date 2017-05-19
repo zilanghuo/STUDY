@@ -1,0 +1,104 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" abstract="true">
+        <!-- 连接池最大使用连接数 -->
+        <property name="maxActive" value="${maxActive}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"/>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"/>
+        <!-- 连接池最小空闲 -->
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"/>
+        <!-- 自动清除无用连接 -->
+        <property name="removeAbandoned" value="${removeAbandoned}"/>
+        <!-- 清除无用连接的等待时间 -->
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"/>
+        <!-- 连接属性 -->
+        <property name="connectionProperties" value="${connectionProperties}"/>
+        <property name="filters" value="config,wall,stat"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="testWhileIdle" value="true"/>
+        <!--在进行borrowObject进行处理时，对拿到的connection进行validateObject校验-->
+        <property name="testOnBorrow" value="true"/>
+        <!--returnObject对返回的connection进行validateObject校验，个人觉得对数据库连接池的管理意义不大-->
+        <property name="testOnReturn" value="true"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="globalRollbackOnParticipationFailure" value="false"/>
+    </bean>
+
+    <bean id="mysqlDataSource" parent="parentDataSource">
+        <property name="url" value="${mysql.jdbc.url}"/>
+        <property name="username" value="${mysql.jdbc.username}"/>
+        <property name="password" value="${mysql.jdbc.password}"/>
+    </bean>
+
+    <bean id="oracleDataSource" parent="parentDataSource">
+        <property name="url" value="${oracle.jdbc.url}"/>
+        <property name="username" value="${oracle.jdbc.username}"/>
+        <property name="password" value="${oracle.jdbc.password}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="com.zdmoney.zdqd.dao.impl.mybatis.session.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:/mapper/**/*.xml</value>
+            </list>
+        </property>
+        <property name="plugins">
+            <list>
+                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.PageInterceptor"/>
+                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.SortListInterceptor"/>
+                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.RowBoundsInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置自定义的SqlSessionTemplate模板，注入相关配置 -->
+    <bean id="dataSource" class="com.zdmoney.data.common.config.MultipleDataSource">
+        <property name="defaultTargetDataSource" ref="mysqlDataSource"/>
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="mysql" value-ref="mysqlDataSource"/>
+                <entry key="oracle" value-ref="oracleDataSource"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <!--自动切换数据库-->
+    <bean id="dataSourceIntercepter" class="com.zdmoney.data.common.config.DataSourceIntercepter"/>
+
+    <aop:config>
+        <aop:pointcut id="dsOracle" expression="execution(* com.zdmoney.data.dao.oracle.*.*(..))"/>
+        <aop:pointcut id="dsMysql" expression="execution(* com.zdmoney.data.dao.mysql.*.*(..))"/>
+        <aop:aspect id="dataSourceAspect" ref="dataSourceIntercepter">
+            <aop:before method="setdataSourceMysql" pointcut-ref="dsMysql"/>
+            <aop:before method="setdataSourceOracle" pointcut-ref="dsOracle"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- mybatis mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.zdmoney.data.dao"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

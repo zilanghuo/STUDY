@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       		http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+    <bean id="mqConfig" class="com.zdmoney.mq.client.config.MqConfig">
+        <property name="address" value="${msg.mq.serverAddress}"/>
+    </bean>
+
+    <!--消息 start-->
+    <bean id="msgMessageMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MESSAGE"/>
+        <property name="topic" value="MESSAGE_MESSAGE"/>
+        <property name="tag" value="message"/>
+    </bean>
+    <bean id="msgMessageMqMessageLister"
+          class="com.zdmoney.message.message.service.listener.MsgMessageMqMessageLister"/>
+    <bean id="msgMessageMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MESSAGE"/>
+        <property name="topic" value="MESSAGE_MESSAGE"/>
+        <property name="tag" value="message"/>
+        <property name="mqMessageListener" ref="msgMessageMqMessageLister"/>
+    </bean>
+    <!--消息 end -->
+
+    <!--消息 添加回调 start-->
+    <bean id="msgAddNotifyMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MESSAGET_INSERT_NOTIFY"/>
+        <property name="topic" value="MESSAGE_MESSAGE"/>
+        <property name="tag" value="message_insert_notify"/>
+    </bean>
+    <bean id="msgAddNotifyMqMessageLister"
+          class="com.zdmoney.message.message.service.listener.MsgAddNotifyMqMessageLister"/>
+    <bean id="msgAddNotifyMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MESSAGET_INSERT_NOTIFY"/>
+        <property name="topic" value="MESSAGE_MESSAGE"/>
+        <property name="tag" value="message_insert_notify"/>
+        <property name="mqMessageListener" ref="msgAddNotifyMqMessageLister"/>
+    </bean>
+    <!--消息 end -->
+
+    <!--消息 读消息回调 start-->
+    <bean id="msgReadNotifyMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MESSAGET_READ_NOTIFY"/>
+        <property name="topic" value="MESSAGE_MESSAGE"/>
+        <property name="tag" value="message_read_notify"/>
+    </bean>
+    <bean id="msgReadNotifyMqMessageLister"
+          class="com.zdmoney.message.message.service.listener.MsgReadNotifyMqMessageLister"/>
+    <bean id="msgReadNotifyMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="group" value="MESSAGE_MESSAGET_READ_NOTIFY"/>
+        <property name="topic" value="MESSAGE_MESSAGE"/>
+        <property name="tag" value="message_read_notify"/>
+        <property name="mqMessageListener" ref="msgReadNotifyMqMessageLister"/>
+    </bean>
+    <!--消息 end -->
+
+    <!--推送 start -->
+    <bean id="msgPushMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_PUSH"/>
+        <property name="topic" value="MESSAGE_PUSH"/>
+        <property name="tag" value="push"/>
+    </bean>
+
+    <bean id="msgPushMqMessageListener"
+          class="com.zdmoney.message.push.service.listener.MsgPushMqMessageListener"/>
+    <bean id="msgPushMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_PUSH"/>
+        <property name="topic" value="MESSAGE_PUSH"/>
+        <property name="tag" value="push"/>
+        <property name="mqMessageListener" ref="msgPushMqMessageListener"/>
+    </bean>
+    <!--推送 end-->
+
+    <!--通知短信 start-->
+    <bean id="notifySmMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_NOTIFY_SM"/>
+        <property name="topic" value="MESSAGE_NOTIFY_SM"/>
+        <property name="tag" value="notify_sm"/>
+    </bean>
+    <bean id="notifySmMqMessageListener"
+          class="com.zdmoney.message.sm.mq.listener.NotifySmMqMessageListener"/>
+    <bean id="notifySmMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_NOTIFY_SM"/>
+        <property name="topic" value="MESSAGE_NOTIFY_SM"/>
+        <property name="tag" value="notify_sm"/>
+        <property name="mqMessageListener" ref="notifySmMqMessageListener"/>
+    </bean>
+
+    <!--验证码短信 start-->
+    <bean id="verifyMsgMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_VERIFY_SM"/>
+        <property name="topic" value="MESSAGE_VERIFY_SM"/>
+        <property name="tag" value="verify_sm"/>
+    </bean>
+    <bean id="verifySmMqMessageListener"
+          class="com.zdmoney.message.sm.mq.listener.VerifySmMqMessageListener"/>
+    <bean id="verifySmMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_VERIFY_SM"/>
+        <property name="topic" value="MESSAGE_VERIFY_SM"/>
+        <property name="tag" value="verify_sm"/>
+        <property name="mqMessageListener" ref="verifySmMqMessageListener"/>
+    </bean>
+
+    <!--营销短信短信 start-->
+    <bean id="marketSmMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MARKET_SM"/>
+        <property name="topic" value="MESSAGE_MARKET_SM"/>
+        <property name="tag" value="market_sm"/>
+    </bean>
+    <bean id="marketSmMqMessageListener"
+          class="com.zdmoney.message.sm.mq.listener.MarketSmMqMessageListener"/>
+    <bean id="marketSmMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_MARKET_SM"/>
+        <property name="topic" value="MESSAGE_MARKET_SM"/>
+        <property name="tag" value="market_sm"/>
+        <property name="mqMessageListener" ref="marketSmMqMessageListener"/>
+    </bean>
+
+    <!--更新发送短信结果 start-->
+    <bean id="updateSmMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_UPDATE_SM"/>
+        <property name="topic" value="MESSAGE_UPDATE_SM"/>
+        <property name="tag" value="update_sm"/>
+    </bean>
+    <bean id="updateSmMqMessageListener"
+          class="com.zdmoney.message.sm.mq.listener.UpdateSmProducerListener"/>
+    <bean id="updateSmMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="MESSAGE_UPDATE_SM"/>
+        <property name="topic" value="MESSAGE_UPDATE_SM"/>
+        <property name="tag" value="update_sm"/>
+        <property name="mqMessageListener" ref="updateSmMqMessageListener"/>
+    </bean>
+    <!--短信 end -->
+
+
+    <!--日志记录-->
+    <bean id="logDataMqProducer" class="com.zdmoney.mq.client.producer.MqProducer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="LOG_DATA"/>
+        <property name="topic" value="LOG_DATA"/>
+        <property name="tag" value="log_data"/>
+    </bean>
+    <bean id="logDataMqMessageListener"
+          class="com.zdmoney.message.log.mq.listener.LogDataMqMessageListener"/>
+    <bean id="logDataMqConsumer" class="com.zdmoney.mq.client.consumer.MqConsumer">
+        <property name="mqConfig" ref="mqConfig"/>
+        <property name="group" value="LOG_DATA"/>
+        <property name="topic" value="LOG_DATA"/>
+        <property name="tag" value="log_data"/>
+        <property name="mqMessageListener" ref="logDataMqMessageListener"/>
+    </bean>
+</beans>

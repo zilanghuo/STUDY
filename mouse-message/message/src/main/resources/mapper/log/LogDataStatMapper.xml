@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdmoney.message.log.dao.LogDataStatDAO">
+    <resultMap type="com.zdmoney.message.log.model.LogDataStat" id="getMap">
+    </resultMap>
+
+    <insert id="insertLogStat" parameterType="java.util.List">
+        INSERT INTO T_LOG_STAT (SYSTEM_NAME,METHOD_NAME,AVG_SPEND_TIME,AMOUNT,STAT_DATE,CREATE_TIME, MODIFY_TIME, OPERATOR) VALUES
+        <foreach collection="list" item="log" index="index" separator=",">
+            (#{log.systemName}, #{log.methodName},#{log.avgSpendTime},#{log.amount},#{log.statDate},#{log.createTime}, #{log.modifyTime}, #{log.operator})
+        </foreach>
+    </insert>
+
+    <select id="getStatLogData" resultType="com.zdmoney.message.log.model.LogStatWrapRecord"
+            parameterType="java.util.Map">
+        SELECT SYSTEM_NAME,METHOD_NAME,AVG(SPEND_TIME) as avgSpendTime,COUNT(*) AS amount,CREATE_TIME as statDate
+         FROM T_LOG_DATA WHERE CREATE_TIME &gt;=#{startTime} AND CREATE_TIME &lt;=#{endTime} GROUP BY SYSTEM_NAME,METHOD_NAME;
+    </select>
+
+</mapper>
+

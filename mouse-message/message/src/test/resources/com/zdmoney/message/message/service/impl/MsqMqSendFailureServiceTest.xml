@@ -1,0 +1,18 @@
+<dataset>
+    <table name="T_MSG_DEVICE">
+        <column>DEVICE_ID</column>
+        <column>DEVICE_TYPE</column>
+        <column>CELLPHONE_NUM</column>
+        <column>CREATE_TIME</column>
+        <column>MODIFY_TIME</column>
+        <column>OPERATOR</column>
+        <row>
+            <value>sdg34uyg43uy4gr4455438755e333r3f</value>
+            <value>2</value>
+            <value>13366669999</value>
+            <value>2015-08-15 10:20:00</value>
+            <value>2015-08-10 10:20:00</value>
+            <value>SYS</value>
+        </row>
+    </table>
+</dataset>

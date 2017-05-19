@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="/msgDeviceFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgDeviceFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgDeviceFacadeService"/>
+    </bean>
+    <bean name="/msgPushFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgPushFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgPushFacadeService"/>
+    </bean>
+   <bean name="/msgBatchFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgBatchFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgBatchFacadeService"/>
+    </bean>
+
+    <bean name="/msgPhoneFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgPhoneFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgPhoneFacadeService"/>
+    </bean>
+
+   <bean name="/msgTaskFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgTaskFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgTaskFacadeService"/>
+    </bean>
+
+    <bean name="/msgMessageFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgMessageFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgMessageFacadeService"/>
+    </bean>
+
+    <bean name="/msgMqFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="msgMqFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.IMsgMqFacadeService"/>
+    </bean>
+
+    <bean name="/smFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="smFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.ISmFacadeService"/>
+    </bean>
+
+    <bean name="/logFacadeService" class="com.zdmoney.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="logFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.message.api.facade.ILogFacadeService"/>
+    </bean>
+
+</beans>

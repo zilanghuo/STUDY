@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdmoney.message.push.dao.MsgTaskDAO">
+    <resultMap type="com.zdmoney.message.push.model.MsgTask" id="getMap">
+    </resultMap>
+
+    <select id="getNeedPushTasks" resultMap="getMap" parameterType="java.util.Date">
+        SELECT * FROM T_MSG_TASK WHERE STATUS =9 AND PUSH_TIME &lt;= #{pushTime}
+    </select>
+
+    <select id="getPushedBatchNos" resultType="java.lang.String" parameterType="java.util.Date">
+        SELECT BATCH_NO FROM T_MSG_TASK WHERE STATUS =1 AND THIRD_TASK_NO IS NOT NULL
+        AND (PUSH_NUM &gt; 1 OR PUSH_NUM IS NULL)
+        AND PUSH_TIME &lt;= #{pushTime} GROUP BY BATCH_NO
+    </select>
+</mapper>

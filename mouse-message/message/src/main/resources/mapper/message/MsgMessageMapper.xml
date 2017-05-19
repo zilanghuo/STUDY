@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdmoney.message.message.dao.MsgMessageDAO">
+    <resultMap type="com.zdmoney.message.message.model.MsgMessage" id="getMap">
+        <result property="id" column="ID"/>
+        <result property="merchantSerialNo" column="MERCHANT_SERIAL_NO"/>
+        <result property="userNo" column="USER_NO"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="userPhone" column="USER_PHONE"/>
+        <result property="title" column="TITLE"/>
+        <result property="summary" column="SUMMARY"/>
+        <result property="content" column="CONTENT"/>
+        <result property="type" column="TYPE"/>
+        <result property="status" column="STATUS"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="modifyTime" column="MODIFY_TIME"/>
+        <result property="operator" column="OPERATOR"/>
+    </resultMap>
+
+    <!-- 健康检查 -->
+    <select id="checkHealth" resultType="java.lang.Integer">
+        SELECT 1 FROM DUAL
+    </select>
+
+    <select id="getByIds" resultType="com.zdmoney.message.message.model.MsgMessage">
+        SELECT * FROM T_MSG_MESSAGE
+        <![CDATA[WHERE ID IN ]]>
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="unReadCounts" resultType="com.zdmoney.message.message.model.UnReadRecord">
+        SELECT USER_ID as cKey,COUNT(*) as cValue FROM T_MSG_MESSAGE
+        WHERE STATUS=1 AND USER_ID IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY USER_ID
+    </select>
+
+    <insert id="inserts" parameterType="java.util.List">
+        insert into T_MSG_MESSAGE (MERCHANT_SERIAL_NO,USER_NO,
+        USER_ID,USER_NAME,USER_PHONE,TITLE,
+        SUMMARY,CONTENT,TYPE,STATUS,CREATE_TIME,MODIFY_TIME,OPERATOR)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.merchantSerialNo}, #{item.userNo},#{item.userId},
+            #{item.userName},#{item.userPhone}, #{item.title},
+            #{item.summary},#{item.content}, #{item.type},
+            #{item.status},#{item.createTime}, #{item.modifyTime},
+            #{item.operator})
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="java.util.Map">
+        UPDATE T_MSG_MESSAGE SET STATUS = #{status},MODIFY_TIME = #{modifyTime}
+        WHERE ID IN
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

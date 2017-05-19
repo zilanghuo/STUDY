@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="zdHessianProxyFactory" class="com.zdmoney.data.api.common.client.ZDHessianProxyFactory">
+        <property name="channel" value="data"/>
+    </bean>
+
+    <bean id="mqlFacadeService" class="com.zdmoney.data.api.common.client.ZDHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${data.remote.url}/mqlFacadeService"/>
+        <property name="serviceInterface" value="com.zdmoney.data.api.facade.IMqlFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>
+
+
+</beans>
