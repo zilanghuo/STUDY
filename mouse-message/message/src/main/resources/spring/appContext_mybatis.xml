@@ -47,11 +47,10 @@
     </bean>
 
 
-
     <!-- mybatis mapper -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.zdmoney.message.push.dao,com.zdmoney.message.message.dao,com.zdmoney.message.sm.dao,com.zdmoney.message.log.dao"/>
-    </bean>
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+      &lt;!&ndash;  <property name="basePackage" value="com.zdmoney.message.push.dao,com.zdmoney.message.message.dao,com.zdmoney.message.sm.dao,com.zdmoney.message.log.dao"/>&ndash;&gt;
+    </bean>-->
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
