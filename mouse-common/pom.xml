@@ -144,9 +144,7 @@
             <version>${slf4j.version}</version>
         </dependency>
 
-
     </dependencies>
-
 
     <build>
 
@@ -162,7 +160,6 @@
         </resources>
 
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
