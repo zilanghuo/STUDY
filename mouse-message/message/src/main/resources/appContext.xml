@@ -25,28 +25,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <context:component-scan base-package="com.zdmoney.zdqd"></context:component-scan>
-    <bean id="SpringContextHelper" class="com.zdmoney.message.utils.SpringContextHelper"/>
-
-    <bean id="mpAccount" class="io.github.elkan1788.mpsdk4j.vo.MPAccount">
-        <property name="mpId" value="${msg.wechat.mpId}"/>
-        <property name="appId" value="${msg.wechat.appId}"/>
-        <property name="appSecret" value="${msg.wechat.appSecret}"/>
-        <property name="token" value="${msg.wechat.token}"/>
-        <property name="AESKey" value="${msg.wechat.aesKey}"/>
-    </bean>
-
-    <bean id="wechatAPI" class="io.github.elkan1788.mpsdk4j.api.WechatAPIImpl" factory-method="create">
-        <constructor-arg ref="mpAccount"/>
-    </bean>
+    <context:component-scan base-package="com.zdmoney.message"></context:component-scan>
 
     <!--mybatis-->
     <import resource="spring/appContext_mybatis.xml"/>
-    <!--定时任务-->
-    <import resource="spring/appContext_task.xml"/>
-    <!--消息队列-->
-    <import resource="spring/appContext_mq.xml"/>
-    <!--redis-->
-    <import resource="spring/appContext_redis.xml"/>
 
 </beans>

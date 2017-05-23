@@ -11,7 +11,7 @@
         <module>mouse-mq-client</module>
         <module>mouse-job</module>
         <module>mouse-data</module>
-        <module>mouse-trace</module>
+        <module>mouse-common</module>
     </modules>
 
     <reporting>
