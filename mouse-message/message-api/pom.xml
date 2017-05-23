@@ -4,52 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>message-parent</artifactId>
-        <groupId>com.zdmoney</groupId>
-        <version>1.0.4-SNAPSHOT</version>
+        <groupId>com.mouse</groupId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zdmoney</groupId>
+    <groupId>com.mouse</groupId>
     <artifactId>message-api</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>trace</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>zdqd-core</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.collections</groupId>
-                    <artifactId>google-collections</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-log4j12</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>mq-client</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>

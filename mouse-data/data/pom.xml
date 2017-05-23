@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zdmoney</groupId>
+    <groupId>com.mouse</groupId>
     <artifactId>data</artifactId>
     <name>data</name>
     <packaging>war</packaging>

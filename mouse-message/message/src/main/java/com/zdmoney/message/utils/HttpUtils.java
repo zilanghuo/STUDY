@@ -1,8 +1,6 @@
 package com.zdmoney.message.utils;
 
 
-import com.zdmoney.trace.common.Constant;
-import com.zdmoney.trace.utils.TraceGenerator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -23,7 +21,6 @@ public class HttpUtils {
         String content = getContentURL(map);
         URL url = new URL(strUrl);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestProperty(Constant.TRACE_ID, TraceGenerator.generatorId());
         con.setDoInput(true);
         con.setDoOutput(true);
         con.setAllowUserInteraction(false);

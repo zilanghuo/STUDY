@@ -4,100 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>message-parent</artifactId>
-        <groupId>com.zdmoney</groupId>
-        <version>1.0.4-SNAPSHOT</version>
+        <groupId>com.mouse</groupId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zdmoney</groupId>
+    <groupId>com.mouse</groupId>
     <artifactId>message</artifactId>
     <name>message</name>
     <packaging>war</packaging>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <springloaded.version>1.2.0.RELEASE</springloaded.version>
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>trace</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>mq-client</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>zdat-job</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>message-api</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zdmoney</groupId>
-            <artifactId>zdqd-core</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.collections</groupId>
-                    <artifactId>google-collections</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-log4j12</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -165,11 +87,11 @@
             <version>0.1.4</version>
         </dependency>
         <!--DB-->
-        <dependency>
+<!--        <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc14</artifactId>
             <version>10.2.0.3.0</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -196,6 +118,12 @@
             <version>4.0.38</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
 
         <!--servlet-->
         <dependency>
@@ -341,6 +269,14 @@
             <version>2.6.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -365,60 +301,10 @@
             <version>1.4.5.RELEASE</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.squareup.okhttp</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>2.7.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.squareup.okhttp</groupId>
-            <artifactId>okhttp-urlconnection</artifactId>
-            <version>2.7.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.squareup.okhttp</groupId>
-            <artifactId>mockwebserver</artifactId>
-            <version>2.7.4</version>
-        </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.35</version>
-        </dependency>
-        <!--getui-->
-        <dependency>
-            <groupId>com.gexin.platform</groupId>
-            <artifactId>gexin-rp-sdk-http</artifactId>
-            <version>4.0.1.2</version>
-        </dependency>
-        <!--mpsdk4j for weChat-->
-        <dependency>
-            <groupId>io.github.elkan1788</groupId>
-            <artifactId>mpsdk4j</artifactId>
-            <version>2.b.1</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>bcloud</groupId>
-            <artifactId>bcloud</artifactId>
-            <version>jdk-1.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>bsthttp</groupId>
-            <artifactId>bsthttp</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <!--DH3T jar-->
-        <dependency>
-            <groupId>ctcsms</groupId>
-            <artifactId>ctcsms</artifactId>
-            <version>1.0</version>
         </dependency>
 
         <dependency>
@@ -605,43 +491,12 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>${springloaded.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
         </plugins>
     </build>
 
+
     <repositories>
-        <repository>
-            <id>getui-nexus</id>
-            <url>http://mvn.gt.igexin.com/nexus/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>zd_repo</id>
-            <name>zd_repo</name>
-            <url>http://nexus.laocaibao.local/content/groups/public</url>
-        </repository>
+
     </repositories>
-
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://nexus.laocaibao.local/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://nexus.laocaibao.local/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 
 </project>
