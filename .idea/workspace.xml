@@ -1,102 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73cfee1e-5691-4bbf-b4bc-ef849fd01f3f" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\Data.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\artifacts\data_war.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\artifacts\data_war_exploded.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__bsthttp_bsthttp_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__c3p0_c3p0_0_9_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__cglib_cglib_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__ch_qos_logback_logback_classic_1_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__ch_qos_logback_logback_core_1_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_alibaba_druid_1_0_25.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_alibaba_fastjson_1_1_37.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_caucho_hessian_4_0_38.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_fasterxml_classmate_1_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_fasterxml_jackson_core_jackson_annotations_2_6_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_fasterxml_jackson_core_jackson_core_2_6_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_fasterxml_jackson_core_jackson_databind_2_6_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_6_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_6_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_github_jsqlparser_jsqlparser_0_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_google_code_findbugs_jsr305_3_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_google_code_gson_gson_2_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_google_code_gson_gson_2_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_h2database_h2_1_3_176.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_oracle_ojdbc14_10_2_0_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_rabbitmq_amqp_client_3_5_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_zdmoney_zdqd_core_1_0_5_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__com_zdmoney_zdqd_util_1_0_5_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_beanutils_commons_beanutils_1_9_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_codec_commons_codec_1_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_collections_commons_collections_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_collections_commons_collections_3_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_fileupload_commons_fileupload_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_httpclient_commons_httpclient_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_io_commons_io_2_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_lang_commons_lang_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_lang_commons_lang_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_logging_commons_logging_1_0_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__commons_logging_commons_logging_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__javax_servlet_servlet_api_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__javax_validation_validation_api_1_1_0_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__joda_time_joda_time_2_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__junit_addons_junit_addons_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__junit_junit_4_11.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__log4j_log4j_1_2_17.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__mysql_mysql_connector_java_5_1_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__net_sf_json_lib_json_lib_jdk15_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_apache_commons_commons_lang3_3_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_apache_httpcomponents_httpclient_4_5_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_apache_httpcomponents_httpcore_4_4_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_apache_httpcomponents_httpmime_4_5_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_apache_tomcat_tomcat_servlet_api_8_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_aspectj_aspectjtools_1_7_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_aspectj_aspectjweaver_1_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_codehaus_woodstox_stax2_api_3_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_dbunit_dbunit_2_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_hibernate_hibernate_validator_5_2_3_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_hibernate_javax_persistence_hibernate_jpa_2_1_api_1_0_0_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_jboss_logging_jboss_logging_3_2_1_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_logback_extensions_logback_ext_spring_0_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_mockito_mockito_all_1_9_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_mybatis_mybatis_3_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_mybatis_mybatis_spring_1_2_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_ow2_asm_asm_4_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_projectlombok_lombok_1_12_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_quartz_scheduler_quartz_2_2_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_slf4j_jcl_over_slf4j_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_slf4j_slf4j_api_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_amqp_spring_amqp_1_4_5_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_amqp_spring_rabbit_1_4_5_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_retry_spring_retry_1_1_2_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_aop_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_beans_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_context_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_context_support_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_core_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_expression_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_jdbc_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_messaging_4_1_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_test_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_tx_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_web_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__org_springframework_spring_webmvc_4_2_0_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__poi_poi_2_5_1_final_20040804.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__xerces_xercesImpl_2_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\libraries\Maven__xerces_xmlParserAPIs_2_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\vcs.xml" afterPath="" />
+    <list default="true" id="73cfee1e-5691-4bbf-b4bc-ef849fd01f3f" name="Default" comment="去除idea 配置相关">
       <change type="DELETED" beforePath="E:\dev\github\STUDY\.idea\workspace.xml" afterPath="" />
     </list>
     <list id="a396605f-7e6f-49be-91d9-4575768e9ccb" name="donot" comment="">
@@ -121,7 +26,6 @@
     <ignored path="$PROJECT_DIR$/mouse-mq-client/target/" />
     <ignored path="$PROJECT_DIR$/mouse-data/data-api/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -921,7 +825,7 @@
       <workItem from="1491896422429" duration="8891000" />
       <workItem from="1493278578502" duration="65000" />
       <workItem from="1495186281900" duration="696000" />
-      <workItem from="1495508724022" duration="4346000" />
+      <workItem from="1495508724022" duration="4421000" />
     </task>
     <task id="LOCAL-00001" summary="去除message">
       <created>1495518253588</created>
@@ -929,11 +833,17 @@
       <option name="project" value="LOCAL" />
       <updated>1495518253588</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="去除idea 配置相关">
+      <created>1495518397019</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1495518397019</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16274000" />
+    <option name="totallyTimeSpent" value="16349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -974,7 +884,8 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <MESSAGE value="去除message" />
-    <option name="LAST_COMMIT_MESSAGE" value="去除message" />
+    <MESSAGE value="去除idea 配置相关" />
+    <option name="LAST_COMMIT_MESSAGE" value="去除idea 配置相关" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
