@@ -2,64 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cfee1e-5691-4bbf-b4bc-ef849fd01f3f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mouse-common/src/main/java/com/mouse/core/dao/impl/mybatis/BaseSQLProvider.java" afterPath="$PROJECT_DIR$/mouse-common/src/main/java/com/mouse/core/dao/impl/mybatis/BaseSQLProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\.gitignore" afterPath="$PROJECT_DIR$/mouse-study/.gitignore" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\custom_checkstyle.xml" afterPath="$PROJECT_DIR$/mouse-study/custom_checkstyle.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\deploy\schema\schema_20161009_MessageSendFailure.sql" afterPath="$PROJECT_DIR$/mouse-study/deploy/schema/schema_20161009_MessageSendFailure.sql" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\deploy\test\message.sql" afterPath="$PROJECT_DIR$/mouse-study/deploy/test/message.sql" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\filters\dev.properties" afterPath="$PROJECT_DIR$/mouse-study/study-api/filters/dev.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\filters\production.properties" afterPath="$PROJECT_DIR$/mouse-study/study-api/filters/production.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\filters\test.properties" afterPath="$PROJECT_DIR$/mouse-study/study-api/filters/test.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\filters\uat.properties" afterPath="$PROJECT_DIR$/mouse-study/study-api/filters/uat.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\pom.xml" afterPath="$PROJECT_DIR$/mouse-study/study-api/pom.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\base\BaseDto.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/base/BaseDto.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\common\dto\MessageOperator.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageOperator.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\common\dto\MessagePageResultDto.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessagePageResultDto.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\common\dto\MessagePageSearchDto.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessagePageSearchDto.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\common\dto\MessageResultDto.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageResultDto.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\common\dto\MessageSortDto.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageSortDto.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\common\validation\MessageValid.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/validation/MessageValid.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\dto\TestDto.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/dto/TestDto.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\facade\ITestFacadeService.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/facade/ITestFacadeService.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\utils\BeanUtil.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/BeanUtil.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\utils\DateUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/DateUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\utils\JsonUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/JsonUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\utils\LocalUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/LocalUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\utils\PropertiesUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/PropertiesUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\java\com\mouse\message\api\utils\SmHelperUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/SmHelperUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message-api\src\main\resources\appContext_message_api.xml" afterPath="$PROJECT_DIR$/mouse-study/study-api/src/main/resources/appContext_message_api.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\filters\test.properties" afterPath="$PROJECT_DIR$/mouse-study/study/filters/test.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\pom.xml" afterPath="$PROJECT_DIR$/mouse-study/study/pom.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\common\MessageDirection.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/common/MessageDirection.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\controller\HealthController.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/controller/HealthController.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\dao\HealthDao.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/dao/HealthDao.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\model\MsgMessage.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/model/MsgMessage.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\service\IHealthService.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/service/IHealthService.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\service\impl\HealthServiceImpl.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/service/impl/HealthServiceImpl.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\CommonUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/CommonUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\HttpUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/HttpUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\JackJsonUtil.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/JackJsonUtil.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\Md5Algorithm.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/Md5Algorithm.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\SmConfig.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/SmConfig.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\SmUtils.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/SmUtils.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\java\com\mouse\message\utils\SpringContextHelper.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/utils/SpringContextHelper.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\appContext.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/appContext.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\config\logback.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/config/logback.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\config\message.properties" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/config/message.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\mapper\HealthMapper.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/mapper/HealthMapper.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\mybatis\mybatis-config.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/mybatis/mybatis-config.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\spring\appContext_dispatcher.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_dispatcher.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\resources\spring\appContext_mybatis.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_mybatis.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\webapp\WEB-INF\web.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\main\webapp\index.jsp" afterPath="$PROJECT_DIR$/mouse-study/study/src/main/webapp/index.jsp" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\test\java\com\mouse\message\InitDBTestEnvironment.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/test/java/com/mouse/study/InitDBTestEnvironment.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\test\java\com\mouse\message\InitH2TestEnvironment.java" afterPath="$PROJECT_DIR$/mouse-study/study/src/test/java/com/mouse/study/InitH2TestEnvironment.java" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\test\resources\config\message.properties" afterPath="$PROJECT_DIR$/mouse-study/study/src/test/resources/config/message.properties" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\test\resources\schema\schema.sql" afterPath="$PROJECT_DIR$/mouse-study/study/src/test/resources/schema/schema.sql" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\message\src\test\resources\testAppApplication-h2.xml" afterPath="$PROJECT_DIR$/mouse-study/study/src/test/resources/testAppApplication-h2.xml" />
-      <change type="MOVED" beforePath="E:\dev\github\STUDY\mouse-message\pom.xml" afterPath="$PROJECT_DIR$/mouse-study/pom.xml" />
     </list>
     <list id="a396605f-7e6f-49be-91d9-4575768e9ccb" name="donot" comment="" />
     <ignored path="Data.iws" />
@@ -98,66 +42,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BeanUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/BeanUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DateUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/DateUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JsonUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/JsonUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/LocalUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="18" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PropertiesUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/PropertiesUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SmHelperUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/utils/SmHelperUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MessagePageResultDto.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessagePageResultDto.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -197,11 +81,73 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageSortDto.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MessageSortDto.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageSortDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7760532">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/controller/HealthController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/webapp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.4117646">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.49748743">
+              <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appContext_dispatcher.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_dispatcher.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.066667">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mybatis-config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/mybatis/mybatis-config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appContext.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/appContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -272,7 +218,6 @@
         <option value="$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_dispatcher.xml" />
         <option value="$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_mybatis.xml" />
         <option value="$PROJECT_DIR$/mouse-study/study/src/main/resources/appContext.xml" />
-        <option value="$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/mouse-study/study/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/base/BaseDto.java" />
         <option value="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageOperator.java" />
@@ -285,6 +230,7 @@
         <option value="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessagePageResultDto.java" />
         <option value="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessagePageSearchDto.java" />
         <option value="$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageSortDto.java" />
+        <option value="$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml" />
       </list>
     </option>
   </component>
@@ -402,532 +348,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="facade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="validation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study-api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="STUDY" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mouse-study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -966,7 +386,7 @@
       <recent name="com.mouse.data.common.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.message">
+  <component name="RunManager" selected="Tomcat Server.study">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
       <server-settings />
@@ -1323,19 +743,20 @@
         </option>
       </method>
     </configuration>
-    <configuration default="false" name="message" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.63" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
+    <configuration default="false" name="study" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.63" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8081/study/" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dintegral.logs.path=E:/conf/0906/study/logs/" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
-        <artifact name="message:war exploded">
+        <artifact name="study:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/message" />
+            <option name="CONTEXT_PATH" value="/study" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_Data_2" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_STUDY" />
         <option name="HTTP_PORT" value="8081" />
         <option name="JNDI_PORT" value="1091" />
       </server-settings>
@@ -1346,7 +767,7 @@
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="60262" />
+        <option name="DEBUG_PORT" value="53386" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -1395,13 +816,13 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="message:war exploded" />
+          <artifact name="study:war exploded" />
         </option>
       </method>
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.data" />
-      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.message" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.study" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -1420,7 +841,7 @@
       <workItem from="1495186281900" duration="696000" />
       <workItem from="1495508724022" duration="4421000" />
       <workItem from="1495518938442" duration="14081000" />
-      <workItem from="1495595226339" duration="1609000" />
+      <workItem from="1495595226339" duration="2724000" />
     </task>
     <task id="LOCAL-00001" summary="去除message">
       <created>1495518253588</created>
@@ -1464,11 +885,17 @@
       <option name="project" value="LOCAL" />
       <updated>1495533426355</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="message 重命名为study">
+      <created>1495596872630</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1495596872630</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32039000" />
+    <option name="totallyTimeSpent" value="33154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
@@ -1482,8 +909,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16945876" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32398316" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30014026" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20336606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39831698" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21713917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1515,7 +942,8 @@
     <MESSAGE value="message增加controller：健康检查" />
     <MESSAGE value="增加messagemodel" />
     <MESSAGE value="通过本地添加文件，引入common" />
-    <option name="LAST_COMMIT_MESSAGE" value="通过本地添加文件，引入common" />
+    <MESSAGE value="message 重命名为study" />
+    <option name="LAST_COMMIT_MESSAGE" value="message 重命名为study" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1731,16 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/controller/HealthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/common/MessageDirection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1799,50 +1217,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/mybatis/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_dispatcher.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2666667">
-          <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="59" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/appContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4117646">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1970,8 +1348,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mouse-study/study-api/src/main/java/com/mouse/study/api/common/dto/MessageSortDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7760532">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/java/com/mouse/study/controller/HealthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/mybatis/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/appContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/resources/spring/appContext_dispatcher.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.066667">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4117646">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mouse-study/study/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49748743">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding />
         </state>
       </provider>
