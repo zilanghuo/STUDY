@@ -2,22 +2,22 @@
 <configuration>
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} message-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
+            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} study-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
     </appender>
     <appender name="D" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${logger.logback.logpath}/message_debug.log</File>
+        <File>${global.logs.path}/study_debug.log</File>
         <encoder>
-            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} message-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
+            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} study-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logger.logback.logpath}/message_debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${global.logs.path}/study_debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>512MB</maxFileSize>
@@ -25,15 +25,15 @@
         </rollingPolicy>
     </appender>
     <appender name="I" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${logger.logback.logpath}/message_info.log</File>
+        <File>${global.logs.path}/study_info.log</File>
         <encoder>
-            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} message-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
+            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} study-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logger.logback.logpath}/message_info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${global.logs.path}/study_info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>512MB</maxFileSize>
@@ -41,15 +41,15 @@
         </rollingPolicy>
     </appender>
     <appender name="E" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${logger.logback.logpath}/message_error.log</File>
+        <File>${global.logs.path}/study_error.log</File>
         <encoder>
-            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} message-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
+            <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} study-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logger.logback.logpath}/message_error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${global.logs.path}/study_error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>512MB</maxFileSize>
