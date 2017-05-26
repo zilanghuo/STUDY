@@ -6,4 +6,8 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
         <setting name="lazyLoadingEnabled" value="false"/>
 	</settings>
+	
+	<plugins>
+		<plugin interceptor="com.mouse.study.common.interceptor.mybatis.LanguageInterceptor"></plugin>
+	</plugins>
 </configuration>

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lwf on 2017/5/23.
@@ -26,7 +28,11 @@ public class HealthController {
     @ResponseBody
     public String checkHealth() throws IOException {
         try {
-            healthService.checkHealth();
+            Map map = new HashMap() ;
+            map.put("tableName","dual");
+            healthService.checkHealth(map);
+            map.put("tableName","t_msg_message");
+            healthService.checkHealth(map);
             log.info("健康检查-----------------------------------");
             log.info("最大可用内存:" + Runtime.getRuntime().maxMemory() / 1024  / 1024 + "M\t");
             log.info("当前JVM空闲内存:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M\t");
