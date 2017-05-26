@@ -1,5 +1,7 @@
 package com.mouse.study.service;
 
+import com.mouse.study.model.MsgMessage;
+
 import java.util.Map;
 
 /**
@@ -12,4 +14,9 @@ public interface IHealthService {
      * @return
      */
     Integer checkHealth(Map map);
+
+    /**
+     * 插入
+     */
+    void insert(MsgMessage msgMessage);
 }

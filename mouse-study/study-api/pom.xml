@@ -219,54 +219,5 @@
         </plugins>
     </build>
 
-  <!--  <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <filters>
-                    <filter>filters/dev.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>test</id>
-            <build>
-                <filters>
-                    <filter>filters/test.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>uat</id>
-            <build>
-                <filters>
-                    <filter>filters/uat.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>production</id>
-            <build>
-                <filters>
-                    <filter>filters/production.properties</filter>
-                </filters>
-            </build>
-        </profile>
-    </profiles>-->
-
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://nexus.laocaibao.local/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://nexus.laocaibao.local/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>

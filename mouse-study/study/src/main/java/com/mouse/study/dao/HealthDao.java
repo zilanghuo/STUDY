@@ -1,5 +1,7 @@
 package com.mouse.study.dao;
 
+import com.mouse.study.model.MsgMessage;
+
 import java.util.Map;
 
 /**
@@ -8,4 +10,6 @@ import java.util.Map;
 public interface HealthDao {
 
     Integer checkHealth(Map map);
+
+    void insert(MsgMessage msgMessage);
 }

@@ -22,11 +22,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.mouse</groupId>  <!--自定义-->
-            <artifactId>common</artifactId>    <!--自定义-->
-            <version>1.0</version> <!--自定义-->
-            <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
-            <systemPath>E:/dev/software/maven/repo/com/mouse/common/1.0.0-SNAPSHOT/common-1.0.0-SNAPSHOT.jar</systemPath> <!--项目根目录下的lib文件夹下-->
+            <groupId>com.mouse</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -327,45 +325,6 @@
         </dependency>
 
     </dependencies>
-
-    <!--<profiles>
-        <profile>
-            <id>test</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <filters>
-                    <filter>filters/test.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <build>
-                <filters>
-                    <filter>filters/dev.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>uat</id>
-            <build>
-                <filters>
-                    <filter>filters/uat.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>production</id>
-            <build>
-                <filters>
-                    <filter>filters/production.properties</filter>
-                </filters>
-            </build>
-        </profile>
-    </profiles>-->
-
 
     <build>
         <resources>

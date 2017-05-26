@@ -1,6 +1,7 @@
 package com.mouse.study.service.impl;
 
 import com.mouse.study.dao.HealthDao;
+import com.mouse.study.model.MsgMessage;
 import com.mouse.study.service.IHealthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,10 @@ public class HealthServiceImpl implements IHealthService {
     @Override
     public Integer checkHealth(Map map) {
         return healthDao.checkHealth(map);
+    }
+
+    @Override
+    public void insert(MsgMessage msgMessage) {
+        healthDao.insert(msgMessage);
     }
 }

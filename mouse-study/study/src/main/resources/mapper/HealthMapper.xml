@@ -6,4 +6,7 @@
         select count(1) countSize FROM ${tableName}
     </select>
 
+    <!-- 插入信息 -->
+
+
 </mapper>

@@ -188,24 +188,5 @@
         </plugins>
     </reporting>
 
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://nexus.laocaibao.local/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://nexus.laocaibao.local/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>zd_repo</id>
-            <name>zd_repo</name>
-            <url>http://nexus.laocaibao.local/content/groups/public</url>
-        </repository>
-    </repositories>
-
 
 </project>

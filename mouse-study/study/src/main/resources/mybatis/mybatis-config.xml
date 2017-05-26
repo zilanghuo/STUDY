@@ -8,6 +8,6 @@
 	</settings>
 	
 	<plugins>
-		<plugin interceptor="com.mouse.study.common.interceptor.mybatis.LanguageInterceptor"></plugin>
+		<plugin interceptor="com.mouse.study.common.interceptor.mybatis.QueryInterceptor"></plugin>
 	</plugins>
 </configuration>
