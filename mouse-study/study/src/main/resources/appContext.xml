@@ -25,7 +25,7 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <context:component-scan base-package="com.mouse.study"></context:component-scan>
+    <context:component-scan base-package="com.mouse.study" />
 
     <!--mybatis-->
     <import resource="spring/appContext_mybatis.xml"/>

@@ -1,6 +1,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <display-name>study</display-name>
 
@@ -9,10 +10,30 @@
         <param-value>study</param-value>
     </context-param>
 
+    <!-- 日志格式-->
     <context-param>
         <param-name>logbackConfigLocation</param-name>
         <param-value>classpath:config/logback.xml</param-value>
     </context-param>
+
+    <!-- Spring字符集过滤器 -->
+    <filter>
+        <filter-name>SpringEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SpringEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <listener>
         <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
     </listener>
@@ -27,7 +48,7 @@
     </listener>
 
     <servlet>
-        <servlet-name>SpringMVC</servlet-name>
+        <servlet-name>study</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -37,11 +58,21 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>SpringMVC</servlet-name>
+        <servlet-name>study</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/errorPage/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/errorPage/404.jsp</location>
+    </error-page>
 </web-app>
