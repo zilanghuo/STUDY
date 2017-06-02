@@ -1,0 +1,85 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd">
+    <!--配置作业注册中心 -->
+    <reg:zookeeper id="studyJobCenter" server-lists="${msg.job.serverLists}"
+                   namespace="message-job"
+                   base-sleep-time-milliseconds="1000"
+                   max-sleep-time-milliseconds="3000"
+                   max-retries="3"/>
+
+    <!--消息推送定时任务配置   start-->
+    <!-- 配置作业msgPushJob-->
+    <job:simple id="msgPushJob" class="com.zdmoney.message.push.job.PushMsgJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.msgPushJob.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+
+    <!-- 配置作业statPushResultJob-->
+    <job:simple id="statPushResultJob" class="com.zdmoney.message.push.job.StatPushResultJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.statPushResultJob.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+    <!--消息推送定时任务配置   end-->
+
+    <!--短信定时任务配置   start-->
+    <!-- 配置作业sendSmJob-->
+    <job:simple id="sendSmJob" class="com.zdmoney.message.sm.job.impl.SendSmJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.sendSmJob.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+    <!-- 配置作业moveSmHistoryJob-->
+    <job:simple id="moveSmHistoryJob" class="com.zdmoney.message.sm.job.impl.MoveSmHistoryJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.moveSmHistoryJob.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+
+    <!-- 配置作业start253StopBstJob-->
+    <job:simple id="start253StopBstJob" class="com.zdmoney.message.sm.job.impl.Start253StopBstJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.start253StopBstJob.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+
+    <!-- 配置作业statSmChannelJob-->
+    <job:simple id="StatSmChannelJob" class="com.zdmoney.message.sm.job.impl.StatSmChannelJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.statSmChannelJob.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+    <!--短信定时任务配置   end-->
+
+    <!-- 日志耗时logDataJob-->
+    <job:simple id="logDataDayJob" class="com.zdmoney.message.log.job.LogDataDayJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.logDataStatJob.day.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+
+    <job:simple id="logDataHourJob" class="com.zdmoney.message.log.job.LogDataHourJob"
+                registry-center-ref="messageJobRegCenter"
+                cron="${msg.job.logDataStatJob.hour.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
+                overwrite="true"/>
+
+    <!-- 消息队列发送重试  start-->
+    <job:simple id="msgMqFirstReSendJob" class="com.zdmoney.message.message.job.MsgMqFirstReSendJob"
+                registry-center-ref="messageJobRegCenter" cron="0 0/1 * * * ?" sharding-total-count="1"
+                sharding-item-parameters="0=A" overwrite="true"/>
+    <job:simple id="msgMqSecondReSendJob" class="com.zdmoney.message.message.job.MsgMqSecondReSendJob"
+                registry-center-ref="messageJobRegCenter" cron="0 0/2 * * * ?" sharding-total-count="1"
+                sharding-item-parameters="0=A" overwrite="true"/>
+    <job:simple id="msgMqThirdReSendJob" class="com.zdmoney.message.message.job.MsgMqThirdReSendJob"
+                registry-center-ref="messageJobRegCenter" cron="0 0/3 * * * ?" sharding-total-count="1"
+                sharding-item-parameters="0=A" overwrite="true"/>
+    <job:simple id="msgMqFourthReSendJob" class="com.zdmoney.message.message.job.MsgMqFourthReSendJob"
+                registry-center-ref="messageJobRegCenter" cron="0 0/4 * * * ?" sharding-total-count="1"
+                sharding-item-parameters="0=A" overwrite="true"/>
+    <job:simple id="msgMqFifthReSendJob" class="com.zdmoney.message.message.job.MsgMqFifthReSendJob"
+                registry-center-ref="messageJobRegCenter" cron="0 0/5 * * * ?" sharding-total-count="1"
+                sharding-item-parameters="0=A" overwrite="true"/>
+    <!-- 消息队列发送重试  end-->
+</beans>
