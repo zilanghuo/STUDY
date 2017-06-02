@@ -5,7 +5,7 @@
             <pattern>%date{[yyyy-MM-dd] HH:mm:ss.SSS} study-%X{traceId} [%thread]-[%file:%line]-[%level] %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
+            <level>INFO</level>
         </filter>
     </appender>
     <appender name="D" class="ch.qos.logback.core.rolling.RollingFileAppender">
