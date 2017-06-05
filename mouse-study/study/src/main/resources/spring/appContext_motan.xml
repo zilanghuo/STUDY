@@ -2,10 +2,28 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:motan="http://api.weibo.com/schema/motan"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans.xsd http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
 
+    <!-- 协议配置。为防止多个业务配置冲突，推荐使用id表示具体协议。-->
+    <motan:protocol id="studyMotan" default="true" name="motan"
+                    maxServerConnection="80000" maxContentLength="1048576"
+                    maxWorkerThread="800" minWorkerThread="20"/>
 
-    <motan:registry regProtocol="zookeeper" name="my_zookeeper" address="${zookeeper.list}"/>
+    <motan:registry regProtocol="${motan.registry.protocol}" name="zookeeper"
+                    address="${zookeeper.list}"
+                    connectTimeout="3000" requestTimeout="3000"/>
 
+    <!-- 通用配置，多个rpc服务使用相同的基础配置. group和module定义具体的服务池。export格式为“protocol id:提供服务的端口”-->
+    <motan:basicService id="serviceBasicConfig" export="studyMotan:8001"
+                        group="motan-study-rpc" accessLog="true" shareChannel="true" module="motan-study-rpc"
+                        application="studyMotan" registry="${motan.registry.protocol}" />
+
+    <bean id="healthService" class="com.mouse.study.service.impl.HealthServiceImpl" />
+
+    <!-- 具体rpc服务配置，声明实现的接口类。-->
+    <motan:service interface="com.mouse.study.service.IHealthService"
+                   ref="healthService" export="studyMotan:8001" basicService="serviceBasicConfig">
+    </motan:service>
 
 </beans>

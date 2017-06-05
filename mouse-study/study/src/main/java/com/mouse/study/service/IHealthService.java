@@ -19,4 +19,9 @@ public interface IHealthService {
      * 插入
      */
     void insert(MsgMessage msgMessage);
+
+    /**
+     * 测试motan方法
+     */
+    void testMotan();
 }

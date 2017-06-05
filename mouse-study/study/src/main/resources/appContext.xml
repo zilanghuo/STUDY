@@ -31,5 +31,7 @@
     <import resource="spring/appContext_mybatis.xml"/>
     <!-- task-->
     <import resource="spring/appContext_task.xml"/>
+    <!-- motan -->
+    <import resource="spring/appContext_motan.xml"/>
 
 </beans>
