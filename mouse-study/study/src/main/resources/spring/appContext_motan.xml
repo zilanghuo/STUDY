@@ -19,11 +19,11 @@
                         group="motan-study-rpc" accessLog="true" shareChannel="true" module="motan-study-rpc"
                         application="studyMotan" registry="${motan.registry.protocol}" />
 
-    <bean id="healthService" class="com.mouse.study.service.impl.HealthServiceImpl" />
+    <bean id="testFacadeService" class="com.mouse.study.facade.TestFacadeService" />
 
     <!-- 具体rpc服务配置，声明实现的接口类。-->
-    <motan:service interface="com.mouse.study.service.IHealthService"
-                   ref="healthService" export="studyMotan:8001" basicService="serviceBasicConfig">
+    <motan:service interface="com.mouse.study.api.facade.ITestFacadeService"
+                   ref="testFacadeService" export="studyMotan:8001" basicService="serviceBasicConfig">
     </motan:service>
 
 </beans>

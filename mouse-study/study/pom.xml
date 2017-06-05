@@ -22,6 +22,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.mouse</groupId>
+            <artifactId>study-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.weibo</groupId>
             <artifactId>motan-core</artifactId>
             <version>RELEASE</version>
