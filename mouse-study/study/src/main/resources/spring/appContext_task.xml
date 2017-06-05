@@ -15,11 +15,17 @@
                    max-sleep-time-milliseconds="3000"
                    max-retries="3"/>
 
-    <!--消息推送定时任务配置   start-->
+    <!--数据源-->
+    <bean id="dataSourceForDd" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${job.jdbc.url}" />
+        <property name="username" value="${job.jdbc.username}" />
+        <property name="password" value="${job.jdbc.password}" />
+    </bean>
+
     <!-- 配置作业msgPushJob-->
     <job:simple id="testJob" class="com.mouse.study.service.job.TestJob"
                 registry-center-ref="studyJobCenter"
                 cron="${test.cron}" sharding-total-count="1" sharding-item-parameters="0=A"
-                overwrite="true"/>
+                overwrite="true" description="测试定时任务" event-trace-rdb-data-source="dataSourceForDd" />
 
 </beans>
