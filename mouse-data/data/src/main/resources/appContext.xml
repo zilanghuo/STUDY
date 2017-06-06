@@ -9,8 +9,9 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--读取配置文件-product-->
-    <context:property-placeholder location="file:${global.config.path}/data.properties"/>
-
+    <!--<context:property-placeholder location="file:${global.config.path}/data.properties"/>-->
+    <!--读取配置文件-local-->
+    <context:property-placeholder location="classpath:config/data.properties"/>
     <!--通过注解自动获取配置值-->
     <context:annotation-config/>
 
