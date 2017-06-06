@@ -29,7 +29,6 @@ public class QueryInterceptor implements Interceptor {
         RowBounds rowBounds = (RowBounds) metaStatementHandler.getValue("delegate.rowBounds");
         String sql = (String) metaStatementHandler.getValue("delegate.boundSql.sql");
 
-
         log.debug(sql);
         log.debug("SQL : " + boundSql.getSql());
         return invocation.proceed();

@@ -53,25 +53,18 @@
         <property name="password" value="${oracle.jdbc.password}"/>
     </bean>
 
-    <bean id="sqlSessionFactory" class="com.zdmoney.zdqd.dao.impl.mybatis.session.SqlSessionFactoryBean">
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
-        <property name="mapperLocations">
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+       <!-- <property name="mapperLocations">
             <list>
-                <value>classpath:/mapper/**/*.xml</value>
+                <value>classpath:/mapper/*.xml</value>
             </list>
-        </property>
-        <property name="plugins">
-            <list>
-                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.PageInterceptor"/>
-                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.SortListInterceptor"/>
-                <bean class="com.zdmoney.zdqd.dao.impl.mybatis.interceptor.RowBoundsInterceptor"/>
-            </list>
-        </property>
+        </property>-->
     </bean>
 
     <!-- 配置自定义的SqlSessionTemplate模板，注入相关配置 -->
-    <bean id="dataSource" class="com.zdmoney.data.common.config.MultipleDataSource">
+    <bean id="dataSource" class="com.mouse.data.common.config.MultipleDataSource">
         <property name="defaultTargetDataSource" ref="mysqlDataSource"/>
         <property name="targetDataSources">
             <map key-type="java.lang.String">
@@ -81,23 +74,22 @@
         </property>
     </bean>
 
-
     <!--自动切换数据库-->
-    <bean id="dataSourceIntercepter" class="com.zdmoney.data.common.config.DataSourceIntercepter"/>
+    <bean id="dataSourceIntercepter" class="com.mouse.data.common.config.DataSourceIntercepter"/>
 
-    <aop:config>
+    <!--<aop:config>
         <aop:pointcut id="dsOracle" expression="execution(* com.zdmoney.data.dao.oracle.*.*(..))"/>
         <aop:pointcut id="dsMysql" expression="execution(* com.zdmoney.data.dao.mysql.*.*(..))"/>
         <aop:aspect id="dataSourceAspect" ref="dataSourceIntercepter">
             <aop:before method="setdataSourceMysql" pointcut-ref="dsMysql"/>
             <aop:before method="setdataSourceOracle" pointcut-ref="dsOracle"/>
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
 
     <!-- mybatis mapper -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.zdmoney.data.dao"/>
-    </bean>
+   <!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mouse.data.dao"/>
+    </bean>-->
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

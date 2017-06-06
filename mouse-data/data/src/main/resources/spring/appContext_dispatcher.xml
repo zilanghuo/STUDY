@@ -11,17 +11,17 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="com.zdmoney.data">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    <context:component-scan base-package="com.mouse.data" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
+        <property name="order" value="1" />
     </bean>
 
-    <!--hessian -->
-    <import resource="appContext_provider.xml"/>
+    <mvc:default-servlet-handler />
 
 </beans>
