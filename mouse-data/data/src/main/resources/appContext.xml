@@ -26,4 +26,7 @@
     <!--mybatis-->
     <import resource="spring/appContext_mybatis.xml"/>
 
+    <!-- motan client-->
+    <import resource="spring/appContext_motan_client.xml"/>
+
 </beans>
