@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ <!--   <bean id="zdHessianProxyFactory" class="com.mouse.trace.hessian.client.common.TraceHessianProxyFactory">
+        <property name="channel" value="study"/>
+    </bean>
+
+    <bean id="testFacadeService" class="com.mouse.trace.hessian.client.common.TraceHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${study.remote.url}/testFacadeService"/>
+        <property name="serviceInterface" value="com.mouse.study.api.facade.ITestFacadeService"/>
+        <property name="proxyFactory" ref="zdHessianProxyFactory"/>
+    </bean>-->
+
+</beans>

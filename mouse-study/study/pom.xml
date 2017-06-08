@@ -25,6 +25,12 @@
             <groupId>com.mouse</groupId>
             <artifactId>study-api</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -338,9 +344,5 @@
         </plugins>
     </build>
 
-
-    <repositories>
-
-    </repositories>
 
 </project>
