@@ -3,9 +3,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="/testFacadeService" class="com.mouse.trace.hessian.service.common.TraceHessianServiceExporter">
-        <property name="service" ref="testFacadeService"/>
-        <property name="serviceInterface" value="com.mouse.study.api.facade.ITestFacadeService"/>
+    <bean name="/hessianFacadeService" class="com.mouse.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="hessianFacadeService"/>
+        <property name="serviceInterface" value="com.mouse.study.api.facade.IHessianFacadeService"/>
     </bean>
 
 </beans>
