@@ -1,0 +1,11 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="/testFacadeService" class="com.mouse.trace.hessian.service.common.TraceHessianServiceExporter">
+        <property name="service" ref="testFacadeService"/>
+        <property name="serviceInterface" value="com.mouse.study.api.facade.ITestFacadeService"/>
+    </bean>
+
+</beans>

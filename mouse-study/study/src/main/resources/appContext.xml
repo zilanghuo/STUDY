@@ -33,5 +33,7 @@
     <import resource="spring/appContext_task.xml"/>
     <!-- motan -->
     <import resource="spring/appContext_motan.xml"/>
+    <!-- hessian-->
+    <import resource="spring/appContext_hessian_provider.xml"/>
 
 </beans>
