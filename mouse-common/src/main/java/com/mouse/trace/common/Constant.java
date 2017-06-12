@@ -5,5 +5,5 @@ package com.mouse.trace.common;
  */
 public class Constant {
     
-    public final static String TRACE_ID ="traceId";
+    public final static String TRACE_ID ="trceId";
 }

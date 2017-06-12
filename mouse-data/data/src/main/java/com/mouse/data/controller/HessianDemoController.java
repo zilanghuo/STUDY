@@ -3,6 +3,7 @@ package com.mouse.data.controller;
 import com.mouse.study.api.facade.IHessianFacadeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Slf4j
 @Controller
+@Scope("singleton")
 @RequestMapping("/hessian")
 public class HessianDemoController {
 
@@ -23,4 +25,5 @@ public class HessianDemoController {
         hessianFacadeService.test();
         return "OK";
     }
+
 }

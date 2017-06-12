@@ -18,6 +18,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.weibo</groupId>
             <artifactId>motan-core</artifactId>
             <version>RELEASE</version>
@@ -320,6 +326,7 @@
             <name>Team Nexus Repository</name>
             <url>http://47.93.227.137:8081/nexus/content/groups/public</url>
         </repository>
+
     </repositories>
 
 </project>

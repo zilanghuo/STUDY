@@ -2,7 +2,7 @@ package com.mouse.trace.hessian.service.common;
 
 import com.mouse.trace.common.Constant;
 import com.mouse.trace.utils.TraceGenerator;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.util.NestedServletException;
@@ -15,14 +15,13 @@ import java.io.IOException;
 /**
  * Created by rui on 15/8/21.
  */
+@Slf4j
 public class TraceHessianServiceExporter extends TraceHessianExporter implements HttpRequestHandler {
-
-
-    protected final transient org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        log.info(this.getClass().getName()+" handleRequest ");
         TraceGenerator.initTrackId(request.getHeader(Constant.TRACE_ID));
         if (!"POST".equals(request.getMethod())) {
             throw new HttpRequestMethodNotSupportedException(request.getMethod(),
