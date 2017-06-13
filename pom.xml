@@ -30,6 +30,7 @@
             <name>Team Nexus Repository</name>
             <url>http://47.93.227.137:8081/nexus/content/groups/public</url>
         </repository>
+
     </repositories>
 
     <distributionManagement>

@@ -1,6 +1,7 @@
 package com.mouse.data.controller;
 
 import com.mouse.study.api.facade.IHessianFacadeService;
+import com.mouse.vesta.client.VestaClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,6 +24,13 @@ public class HessianDemoController {
     public String test() {
         log.info("enter HessianDemoController test");
         hessianFacadeService.test();
+        return "OK";
+    }
+
+    @RequestMapping(value = "/generator")
+    public String generator() {
+        String id = VestaClient.generatorId();
+        log.info("vestaId:{}", id);
         return "OK";
     }
 
