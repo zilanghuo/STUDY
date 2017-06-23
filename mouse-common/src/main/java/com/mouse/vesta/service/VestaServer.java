@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class VestaServer {
 
     @org.junit.Test
-    public static   void initServer() {
+    public static void initServer() {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "vestaServer/vesta-server-main.xml");

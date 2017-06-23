@@ -26,13 +26,13 @@ public class HealthController {
     @RequestMapping(value = "/check")
     public String checkHealth() throws IOException {
         try {
-            Map map = new HashMap() ;
-            map.put("tableName","dual");
+            Map map = new HashMap();
+            map.put("tableName", "dual");
             healthService.checkHealth(map);
-            map.put("tableName","t_msg_message");
+            map.put("tableName", "t_msg_message");
             healthService.checkHealth(map);
             log.info("健康检查-----------------------------------");
-            log.info("最大可用内存:" + Runtime.getRuntime().maxMemory() / 1024  / 1024 + "M\t");
+            log.info("最大可用内存:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM空闲内存:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM占用的内存总数:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M\t");
             log.info("-----------------------------------");
@@ -41,5 +41,13 @@ public class HealthController {
             log.error("checkHealth error", e);
             return "FAIL";
         }
+    }
+
+
+    @RequestMapping(value = "/vesteId")
+    public String vesteId() throws IOException {
+
+
+        return null;
     }
 }
