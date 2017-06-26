@@ -33,4 +33,7 @@
     <!-- hessian client -->
     <import resource="spring/appContext_study_api.xml"/>
 
+    <!-- OAUth-->
+    <import resource="outh/spring-ehcache.xml"/>
+
 </beans>
