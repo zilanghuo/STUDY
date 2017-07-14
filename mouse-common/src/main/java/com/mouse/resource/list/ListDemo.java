@@ -45,6 +45,7 @@ public class ListDemo {
         System.out.println(str.length() >10?str.substring(0,10):str);
 
 
+
     }
 
 }
