@@ -4,6 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="myTestBean" class="com.mouse.study.test.MyTestBean"/>
+    <bean id="getBeanTest" class="com.mouse.study.test.lookup.GetBeanTest">
+        <lookup-method name="getBean" bean="teacher"/>
+    </bean>
+    <bean id="teacher" class="com.mouse.study.test.lookup.Teacher"/>
 
 </beans>

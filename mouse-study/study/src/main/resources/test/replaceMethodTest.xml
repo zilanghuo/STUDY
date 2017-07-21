@@ -4,6 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="myTestBean" class="com.mouse.study.test.MyTestBean"/>
+    <bean id="testChangeMethod" class="com.mouse.study.test.replacedmethod.TestChangeMethod">
+        <replaced-method name="changeMe" replacer="replacer"/>
+    </bean>
+
+    <bean id="replacer" class="com.mouse.study.test.replacedmethod.TestMethodReplacer"/>
 
 </beans>
