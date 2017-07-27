@@ -1,7 +1,8 @@
 package com.mouse.study.test.rocketMq;
 
+import com.mouse.study.utils.FileUtils;
+import com.mouse.study.utils.JackJsonUtil;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.rocketmq.client.producer.MQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
@@ -17,14 +18,15 @@ import java.util.List;
 public class OrderedProducer {
 
     public static void main(String[] args) throws Exception {
-        MQProducer producer = new DefaultMQProducer("example_group_name");
-
+        DefaultMQProducer producer = new DefaultMQProducer("OrderedProducer_group");
+        producer.setNamesrvAddr("172.17.34.136:9876");
+        producer.setInstanceName("OrderedProducer-test");
 
         producer.start();
         String[] tags = new String[] {"TagA", "TagB", "TagC", "TagD", "TagE"};
         for (int i = 0; i < 2; i++) {
             int orderId = i % 10;
-            Message msg = new Message("TopicTestjjj", tags[i % tags.length], "KEY" + i,
+            Message msg = new Message("OrderedProducer_topic", tags[i % tags.length], "KEY" + i,
                     ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
                 @Override
@@ -35,6 +37,7 @@ public class OrderedProducer {
                 }
             }, orderId);
             System.out.printf("%s%n", sendResult);
+            FileUtils.put(JackJsonUtil.objToStr(sendResult));
         }
         producer.shutdown();
     }
