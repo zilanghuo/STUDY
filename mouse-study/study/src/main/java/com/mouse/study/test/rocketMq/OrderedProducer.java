@@ -24,10 +24,10 @@ public class OrderedProducer {
 
         producer.start();
         String[] tags = new String[] {"TagA", "TagB", "TagC", "TagD", "TagE"};
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             int orderId = i % 10;
             Message msg = new Message("OrderedProducer_topic", tags[i % tags.length], "KEY" + i,
-                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+                    ("OrderedProducer_topic:Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
                 @Override
                 public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {

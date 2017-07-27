@@ -1,0 +1,66 @@
+package com.mouse.study.test.rocketMq;
+
+import com.mouse.study.utils.FileUtils;
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
+import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
+import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
+import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.message.MessageExt;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+
+/**
+ * Created by lwf on 2017/7/27.
+ * use to do:订阅消息示例代码
+ */
+public class OrderedConsumer {
+
+    public static void main(String[] args) throws Exception {
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("OrderedProducer_group");
+        consumer.setNamesrvAddr("172.17.34.136:9876");
+        consumer.setInstanceName("OrderedProducer-test");
+
+        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+
+        consumer.subscribe("OrderedProducer_topic", "TagA || TagC || TagD");
+
+        consumer.registerMessageListener(new MessageListenerOrderly() {
+
+            AtomicLong consumeTimes = new AtomicLong(0);
+
+            @Override
+            public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs,
+                                                       ConsumeOrderlyContext context) {
+                context.setAutoCommit(false);
+                StringBuilder msg = new StringBuilder();
+                for (int i = 0; i < msgs.size(); i++) {
+                    msg = msg.append(msgs.get(i) + new String(msgs.get(i).getBody()));
+                }
+
+                String str = Thread.currentThread().getName() + " Receive New Messages: " + msg + "%n";
+                System.out.printf(str);
+                FileUtils.put(str);
+
+                this.consumeTimes.incrementAndGet();
+                if ((this.consumeTimes.get() % 2) == 0) {
+                    return ConsumeOrderlyStatus.SUCCESS;
+                } else if ((this.consumeTimes.get() % 3) == 0) {
+                    return ConsumeOrderlyStatus.ROLLBACK;
+                } else if ((this.consumeTimes.get() % 4) == 0) {
+                    return ConsumeOrderlyStatus.COMMIT;
+                } else if ((this.consumeTimes.get() % 5) == 0) {
+                    context.setSuspendCurrentQueueTimeMillis(3000);
+                    return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
+                }
+                return ConsumeOrderlyStatus.SUCCESS;
+
+            }
+        });
+
+        consumer.start();
+        System.out.printf("Consumer Started.%n");
+        Thread.sleep(5000);
+    }
+}
