@@ -25,8 +25,7 @@ public class BroadcastConsumer {
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
 
         //set to broadcast mode
-        consumer.setMessageModel(MessageModel.BROADCASTING);
-
+         consumer.setMessageModel(MessageModel.BROADCASTING);
         consumer.subscribe("BroadcastProducer_topic", "BroadcastProducer_tag");
 
         consumer.registerMessageListener(new MessageListenerConcurrently() {
