@@ -28,7 +28,7 @@ public class OrderedConsumer {
 
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
 
-        consumer.subscribe("OrderedProducer_topic", "TagA || TagC || TagD");
+        consumer.subscribe("OrderedProducer_topic", "TagD");
 
         consumer.registerMessageListener(new MessageListenerOrderly() {
 
@@ -65,8 +65,8 @@ public class OrderedConsumer {
                     context.setSuspendCurrentQueueTimeMillis(3000);
                     return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
                 }*/
-                if (this.consumeTimes.get() == 10) {
-                    return ConsumeOrderlyStatus.SUCCESS;
+                if (this.consumeTimes.get() < 10) {
+                    return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
                 } else {
                     return ConsumeOrderlyStatus.SUCCESS;
                 }

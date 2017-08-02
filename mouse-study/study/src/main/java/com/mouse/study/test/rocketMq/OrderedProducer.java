@@ -23,9 +23,9 @@ public class OrderedProducer {
         producer.setInstanceName("OrderedProducer-test");
 
         producer.start();
-        String[] tags = new String[]{"TagA", "TagB", "TagC", "TagD", "TagE"};
+        String[] tags = new String[]{"TagD"};
         Message msg = new Message("OrderedProducer_topic", tags[0], "KEY" + 0,
-                ("OrderedProducer_topic:testUnConsume-- ").getBytes(RemotingHelper.DEFAULT_CHARSET));
+                ("OrderedProducer_topic:testUnConsume-1 ").getBytes(RemotingHelper.DEFAULT_CHARSET));
         SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
             @Override
             public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
