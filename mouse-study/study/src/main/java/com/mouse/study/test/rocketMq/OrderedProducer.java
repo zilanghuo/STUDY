@@ -23,22 +23,19 @@ public class OrderedProducer {
         producer.setInstanceName("OrderedProducer-test");
 
         producer.start();
-        String[] tags = new String[] {"TagA", "TagB", "TagC", "TagD", "TagE"};
-        for (int i = 0; i < 1; i++) {
-            int orderId = i % 10;
-            Message msg = new Message("OrderedProducer_topic", tags[i % tags.length], "KEY" + i,
-                    ("OrderedProducer_topic:Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-            SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
-                @Override
-                public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
-                    Integer id = (Integer) arg;
-                    int index = id % mqs.size();
-                    return mqs.get(index);
-                }
-            }, orderId);
-            System.out.printf("%s%n", sendResult);
-            FileUtils.put(JackJsonUtil.objToStr(sendResult));
-        }
+        String[] tags = new String[]{"TagA", "TagB", "TagC", "TagD", "TagE"};
+        Message msg = new Message("OrderedProducer_topic", tags[0], "KEY" + 0,
+                ("OrderedProducer_topic:testUnConsume-- ").getBytes(RemotingHelper.DEFAULT_CHARSET));
+        SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
+            @Override
+            public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+                Integer id = (Integer) arg;
+                int index = id % mqs.size();
+                return mqs.get(index);
+            }
+        }, 0);
+        System.out.printf("%s%n", sendResult);
+        FileUtils.put(JackJsonUtil.objToStr(sendResult));
         producer.shutdown();
     }
 }
