@@ -5,6 +5,7 @@ import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfigChangeListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +17,8 @@ public class AppConfigListener {
 
     private static final Logger logger = LoggerFactory.getLogger(AppConfigListener.class);
 
+    @Autowired
+    private ConfigBean configBean;
 
     @ApolloConfigChangeListener
     public void onChange(ConfigChangeEvent changeEvent) {
@@ -25,9 +28,18 @@ public class AppConfigListener {
             logger.info("Change - key: {}, oldValue: {}, newValue: {}, changeType: {}",
                     change.getPropertyName(), change.getOldValue(), change.getNewValue(),
                     change.getChangeType());
+            if (key.equals("test_two")){
+                configBean.setTestTwo(change.getNewValue());
+            }
+
+
+         //   logger.info("---------------"+configBean.getTestTwo());
+
+          /*  logger.info("before refresh {}", configBean.toString());
+            //could also call refreshScope.refreshAll();
+            refreshScope.refresh("configBean");
+            logger.info("after refresh {}", configBean.toString());*/
         }
-        //logger.info("before refresh {}", sampleRedisConfig.toString());
-        //refreshScope.refresh("sampleRedisConfig");
-        //logger.info("after refresh {}", sampleRedisConfig.toString());
+
     }
 }
