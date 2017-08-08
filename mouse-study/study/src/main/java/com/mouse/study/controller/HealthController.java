@@ -1,6 +1,7 @@
 package com.mouse.study.controller;
 
 import com.mouse.study.service.IHealthService;
+import com.mouse.study.test.apollo.SimpleApolloConfigDemo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -36,6 +37,9 @@ public class HealthController {
             log.info("当前JVM空闲内存:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM占用的内存总数:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M\t");
             log.info("-----------------------------------");
+
+            SimpleApolloConfigDemo demo = new SimpleApolloConfigDemo();
+            demo.testOne();
             return "health";
         } catch (Exception e) {
             log.error("checkHealth error", e);
