@@ -9,7 +9,7 @@ import java.net.InetAddress;
 
 /**
  * Created by lwf on 2017/8/9.
- * use to do:
+ * use to do:如何设置编码
  */
 public class ConfigService {
 
@@ -20,6 +20,7 @@ public class ConfigService {
 
         TransportClient client = new PreBuiltTransportClient(settings)
                 .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("172.17.34.121"), 9300));
+
         return client;
     }
 

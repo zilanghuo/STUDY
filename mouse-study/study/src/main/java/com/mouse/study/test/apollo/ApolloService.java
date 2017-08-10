@@ -17,8 +17,8 @@ public class ApolloService {
     public static void test() {
         //Config config = ConfigService.getAppConfig(); //config instance is singleton for each namespace and is never null
         try {
-            Config config = ConfigService.getConfig("assets");
-            String someKey = "jdbc.url";
+            Config config = ConfigService.getConfig("application");
+            String someKey = "test_two";
             String someDefaultValue = "------";
             String value = config.getProperty(someKey, someDefaultValue);
             System.out.println("----------------------"+value);
