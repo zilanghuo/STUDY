@@ -32,14 +32,14 @@ public class HealthController {
         try {
             Map map = new HashMap();
             map.put("tableName", "dual");
-            healthService.checkHealth(map);
+            log.info("dual size:{}",healthService.checkHealth(map));
             map.put("tableName", "t_msg_message");
             healthService.checkHealth(map);
+            log.info("t_msg_message size:{}",healthService.checkHealth(map));
             log.info("健康检查-----------------------------------");
             log.info("最大可用内存:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM空闲内存:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM占用的内存总数:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M\t");
-            log.info("-----------------------------------");
             System.out.println("---------------------"+configBean.getTestTwo());
             return "health";
         } catch (Exception e) {

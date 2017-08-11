@@ -28,8 +28,8 @@ public class AppConfigListener {
             logger.info("Change - key: {}, oldValue: {}, newValue: {}, changeType: {}",
                     change.getPropertyName(), change.getOldValue(), change.getNewValue(),
                     change.getChangeType());
-            if (key.equals("test_two")){
-                configBean.setTestTwo(change.getNewValue());
+            if (key.equals("initialSize")){
+                configBean.setTest(change.getNewValue());
             }
 
 

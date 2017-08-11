@@ -24,4 +24,6 @@ public interface IHealthService {
      * 测试motan方法
      */
     void testMotan();
+
+    MsgMessage get();
 }

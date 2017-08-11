@@ -12,4 +12,6 @@ public interface HealthDao {
     Integer checkHealth(Map map);
 
     void insert(MsgMessage msgMessage);
+
+    //MsgMessage get();
 }

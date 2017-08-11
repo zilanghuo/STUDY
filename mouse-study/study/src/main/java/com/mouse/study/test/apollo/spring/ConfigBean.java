@@ -1,7 +1,7 @@
 package com.mouse.study.test.apollo.spring;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
-import lombok.Getter;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,20 +17,15 @@ import javax.annotation.PostConstruct;
 @Configuration
 @EnableApolloConfig(value = "application",order = 11)
 @Component
+@Data
 public class ConfigBean {
+
     private static final Logger logger = LoggerFactory.getLogger(ConfigBean.class);
 
-
-    @Value("${test:200}")
+    @Value("${initialSize}")
     private String test;
 
-    @Getter
     private String testTwo;
-
-    @Value("${test_two:100}")
-    public void setTestTwo(String testTwo) {
-        this.testTwo = testTwo;
-    }
 
     @PostConstruct
     void initialize() {
