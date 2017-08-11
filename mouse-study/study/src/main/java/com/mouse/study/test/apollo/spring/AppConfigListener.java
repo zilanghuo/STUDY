@@ -15,12 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppConfigListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(AppConfigListener.class);
-
+    /*   @Autowired
+       private RefreshScope refreshScope;
+   */
     @Autowired
     private ConfigBean configBean;
 
-    @ApolloConfigChangeListener
+    private static final Logger logger = LoggerFactory.getLogger(AppConfigListener.class);
+
+    @ApolloConfigChangeListener("application")
     public void onChange(ConfigChangeEvent changeEvent) {
         logger.info("Changes for namespace {}", changeEvent.getNamespace());
         for (String key : changeEvent.changedKeys()) {
@@ -28,18 +31,10 @@ public class AppConfigListener {
             logger.info("Change - key: {}, oldValue: {}, newValue: {}, changeType: {}",
                     change.getPropertyName(), change.getOldValue(), change.getNewValue(),
                     change.getChangeType());
-            if (key.equals("initialSize")){
-                configBean.setTest(change.getNewValue());
-            }
-
-
-         //   logger.info("---------------"+configBean.getTestTwo());
-
-          /*  logger.info("before refresh {}", configBean.toString());
-            //could also call refreshScope.refreshAll();
-            refreshScope.refresh("configBean");
-            logger.info("after refresh {}", configBean.toString());*/
+            configBean.setTest(change.getNewValue());
+            // refreshScope.refresh("configBean");
         }
-
     }
+
+
 }

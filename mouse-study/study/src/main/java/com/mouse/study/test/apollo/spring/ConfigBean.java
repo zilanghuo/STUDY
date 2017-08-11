@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 @EnableApolloConfig(value = "application",order = 11)
-@Component
+@Component("configBean")
 @Data
 public class ConfigBean {
 
@@ -25,12 +25,9 @@ public class ConfigBean {
     @Value("${initialSize}")
     private String test;
 
-    private String testTwo;
-
     @PostConstruct
     void initialize() {
         logger.info("test is initialized as {}", test);
-        logger.info("testTwo is initialized as {}", testTwo);
     }
 
 }

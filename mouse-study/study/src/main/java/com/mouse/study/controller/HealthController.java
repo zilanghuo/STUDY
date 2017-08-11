@@ -40,19 +40,13 @@ public class HealthController {
             log.info("最大可用内存:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM空闲内存:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M\t");
             log.info("当前JVM占用的内存总数:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M\t");
-            System.out.println("---------------------"+configBean.getTestTwo());
+            System.out.println("---------------------"+configBean.getTest());
+
+
             return "health";
         } catch (Exception e) {
             log.error("checkHealth error", e);
             return "FAIL";
         }
-    }
-
-
-    @RequestMapping(value = "/vesteId")
-    public String vesteId() throws IOException {
-
-
-        return null;
     }
 }
