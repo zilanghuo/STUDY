@@ -3,6 +3,7 @@ package com.mouse.study.test.es.indecesAdmin;
 import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -17,6 +18,22 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception{
+        testCreateIndex();
+    }
+
+    private static void testStatIndex() throws Exception {
+
+
+    }
+
+    private static void testCreateIndex() throws Exception{
+        TransportClient client = ConfigService.getClient();
+        CreateIndexRequest request = new CreateIndexRequest("test01");
+        client.admin().indices().create(request);
+
+    }
+
+    private static void testOne() throws Exception {
         XContentBuilder builder = jsonBuilder()
                 .startObject()
                 .field("test", "test")
@@ -34,6 +51,5 @@ public class AddApiDemo {
                         "}")
                 .get();
         log.info(JackJsonUtil.objToStr(response));
-
     }
 }

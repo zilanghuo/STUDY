@@ -19,37 +19,45 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception {
+        testOne();
+    }
 
+    private static void testNo() throws Exception {
         for (int i = 0; i < 50; i++) {
             Product product = new Product();
-            product.setProductNo("000"+i);
-            product.setProductName("产品000"+i);
+            product.setProductName("name000" + i);
+            if (i % 6 == 0) {
+                product.setProductNo("0001");
+            } else if (i % 7 == 0) {
+                product.setProductNo("0002");
+            } else
+                product.setProductNo("0003");
+
             product.setUser("system");
             product.setCreateTime(new Date());
             product.setModifyTime(new Date());
             TransportClient client = ConfigService.getClient();
             String str = JackJsonUtil.objToStr(product);
-            IndexResponse response = client.prepareIndex("twitter", "dev").setSource(str).get();
-            log.info("response【{}】",JackJsonUtil.objToStr(response));
+            IndexResponse response = client.prepareIndex("test01", "product").setSource(str).get();
+            log.info("response【{}】", JackJsonUtil.objToStr(response));
         }
+    }
 
-
+    private static void testSendByMapping() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        client.admin().indices();
     }
 
     private static void testOne() throws Exception {
         XContentBuilder builder = jsonBuilder()
-                 .startObject()
-                 .field("user", "four")
-                 // .field("postDate", DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"))
-                 .field("testDate", "2017-04-12 02:02:03.919")
-                 .field("message", "three")
-                 .endObject();
+                .startObject()
+                // .field("postDate", DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"))
+                .field("endTime", "2017-04-12 02:02:03.919")
+                .endObject();
 
         TransportClient client = ConfigService.getClient();
-        for (int i = 0; i < 10; i++) {
-            IndexResponse response = client.prepareIndex("twitter", "dev")
-                    .setSource(builder).get();
-            System.out.println(JackJsonUtil.objToStr(response.getResult()));
-        }
+        IndexResponse response = client.prepareIndex("test01", "dateTest")
+                .setSource(builder).get();
+        System.out.println(JackJsonUtil.objToStr(response.getResult()));
     }
 }
