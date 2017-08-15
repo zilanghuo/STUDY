@@ -1,14 +1,19 @@
 package com.mouse.study.test.es.aggregation;
 
 import com.mouse.study.test.es.ConfigService;
+import com.mouse.study.test.es.model.ProductTest02;
+import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.range.Range;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
+import org.joda.time.DateTime;
 
 /**
  * Created by lwf on 2017/8/15.
@@ -18,9 +23,40 @@ import org.elasticsearch.search.aggregations.metrics.avg.Avg;
 public class ProductAggDemo {
 
     public static void main(String[] args) throws Exception {
-        testFour();
+        testFive();
     }
 
+
+    /**
+     * 时间范围排序
+     *
+     * @throws Exception
+     */
+    private static void testFive() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        SearchResponse sr = client.prepareSearch()
+                .setIndices("test02")
+                .setTypes("product")
+                .setQuery(QueryBuilders.matchAllQuery())
+                .addAggregation(
+                        AggregationBuilders.dateRange("rang_price").field("createTime")
+                                .format("yyyy")
+                                .addUnboundedTo("2016")
+                                .addRange("2017", "2018")
+                                .addUnboundedFrom("2018")
+                )
+                .setSize(100)
+                .execute().actionGet();
+        Range agg = sr.getAggregations().get("rang_price");
+        for (Range.Bucket entry : agg.getBuckets()) {
+            String key = entry.getKeyAsString();                // Date range as key
+            DateTime fromAsDate = (DateTime) entry.getFrom();   // Date bucket from as a Date
+            DateTime toAsDate = (DateTime) entry.getTo();       // Date bucket to as a Date
+            long docCount = entry.getDocCount();                // Doc count
+            log.info("key [{}], from [{}], to [{}], doc_count [{}]", key, fromAsDate, toAsDate, docCount);
+        }
+
+    }
 
     /**
      * 先对价格进行范围筛选，然后对颜色进行分组，最后求价格平均值
@@ -148,5 +184,26 @@ public class ProductAggDemo {
 
     }
 
+    /**
+     * 查询数据
+     *
+     * @throws Exception
+     */
+    private static void testSearch() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        SearchResponse sr = client.prepareSearch()
+                .setIndices("test02")
+                .setTypes("product")
+                .setSearchType(SearchType.QUERY_THEN_FETCH)
+                .setQuery(QueryBuilders.matchAllQuery())
+                .setSize(5)
+                .execute().actionGet();
+        SearchHit[] hits = sr.getHits().getHits();
+        for (SearchHit searchHit : hits) {
+            log.info(JackJsonUtil.objToStr(searchHit.getSource()));
+            ProductTest02 tset = (ProductTest02)JackJsonUtil.strToObj(searchHit.getSourceAsString(), ProductTest02.class);
+            log.info(tset.getCreateTime());
+        }
+    }
 
 }
