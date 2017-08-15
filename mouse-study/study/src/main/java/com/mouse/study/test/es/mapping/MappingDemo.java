@@ -30,8 +30,8 @@ public class MappingDemo {
         for (int i = 0; i < 10; i++) {
             People people = new People();
             people.setPeopleIdOne(i);
-            people.setAgeOne(i + 10);
-            people.setNameOne("hello" + i);
+            people.setAgeOne(i + 20);
+            people.setNameOne("tes" + i);
             people.setStartTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
             people.setEndTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
             people.setUseOne("true");

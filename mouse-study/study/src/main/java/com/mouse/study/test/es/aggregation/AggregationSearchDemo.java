@@ -18,9 +18,11 @@ import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInter
 import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
 import org.elasticsearch.search.aggregations.bucket.histogram.InternalDateHistogram;
 import org.elasticsearch.search.aggregations.bucket.terms.InternalTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.geobounds.GeoBounds;
 import org.elasticsearch.search.aggregations.metrics.percentiles.Percentile;
 import org.elasticsearch.search.aggregations.metrics.percentiles.Percentiles;
+import org.elasticsearch.search.aggregations.metrics.tophits.TopHits;
 
 /**
  * Created by lwf on 2017/8/10.
@@ -30,23 +32,62 @@ import org.elasticsearch.search.aggregations.metrics.percentiles.Percentiles;
 public class AggregationSearchDemo {
 
     public static void main(String[] args) throws Exception {
-        //testFilterThree();
-        getMapping();
+        testTopHit();
     }
 
-
-    private static void testFilterThree() throws Exception {
+    /**
+     * top-hit索引
+     *
+     * @throws Exception
+     */
+    private static void testTopHit() throws Exception {
         TransportClient client = ConfigService.getClient();
-
         SearchResponse sr = client.prepareSearch()
                 .setIndices("test01")
                 .setTypes("peopleThree")
                 .setQuery(QueryBuilders.matchAllQuery())
                 .addAggregation(
                         AggregationBuilders
-                                .geoBounds("agg")
-                                .field("age")
-                                .wrapLongitude(true))
+                                .terms("agg").field("age")
+                                .subAggregation(
+                                        AggregationBuilders.topHits("top")
+                                                .explain(true)
+                                                .size(100)
+                                                .from(1)
+                                ))
+                .setSize(100)
+                .execute().actionGet();
+        SearchHits hits = sr.getHits();
+        log.info("size:【{}】", hits.getTotalHits());
+        Terms agg = sr.getAggregations().get("agg");
+        log.info("result:【{}】", JackJsonUtil.objToStr(agg));
+        for (Terms.Bucket entry : agg.getBuckets()) {
+            String key = (String) entry.getKey();
+            long docCount = entry.getDocCount();
+            log.info("key [{}], doc_count [{}]", key, docCount);
+            TopHits topHits = entry.getAggregations().get("top");
+            for (SearchHit hit : topHits.getHits().getHits()) {
+                log.info(" -> id [{}], _source [{}]", hit.getId(), hit.getSourceAsString());
+            }
+        }
+
+    }
+
+    /**
+     * 边界索引,字段类型必须为：geo-point
+     *
+     * @throws Exception
+     */
+    private static void testFilterThree() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        SearchResponse sr = client.prepareSearch()
+                .setIndices("test01")
+                .setTypes("peopleThree")
+                .setQuery(QueryBuilders.matchAllQuery())
+                .addAggregation(
+                        AggregationBuilders
+                                .geoCentroid("age")
+                                .field("age"))
                 .setSize(100)
                 .execute().actionGet();
         SearchHits hits = sr.getHits();
