@@ -38,7 +38,6 @@ public class BulkDemo {
             product.setProductName("测试批量更新" + i);
             product.setUser("system");
             product.setCreateTime(new Date());
-            product.setModifyTime(new Date());
             String str = JackJsonUtil.objToStr(product);
             requestBuilder.setSource(str);
             bulkRequest.add(requestBuilder);

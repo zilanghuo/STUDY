@@ -64,7 +64,6 @@ public class BulkProcessorDemo {
         product.setProductName("bulkProcessor");
         product.setUser("system");
         product.setCreateTime(new Date());
-        product.setModifyTime(new Date());
         String str = JackJsonUtil.objToStr(product);
 
         bulkProcessor.add(new IndexRequest("twitter", "dev").source(str));

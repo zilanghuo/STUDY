@@ -2,14 +2,12 @@ package com.mouse.study.test.es.model;
 
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * Created by lwf on 2017/8/10.
  * use to do:测试模型
  */
 @Data
-public class Product {
+public class ProductTest02 {
 
     private String productNo;
 
@@ -19,10 +17,10 @@ public class Product {
 
     private String color;
 
-    private Integer price;
+    private Integer price; //integer
 
     private Boolean flag;
 
-    private Date createTime;
+    private String createTime; //Date类型
 
 }

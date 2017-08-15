@@ -3,6 +3,7 @@ package com.mouse.study.test.es.mapping;
 import com.mouse.study.api.utils.DateUtils;
 import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.test.es.model.People;
+import com.mouse.study.test.es.model.ProductTest02;
 import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
@@ -21,7 +22,42 @@ public class MappingDemo {
 
     public static void main(String[] args) throws Exception {
         //log.info(JackJsonUtil.objToStr(PeopleMapping.getMapping()));
-        testOne();
+        testOne02Init();
+    }
+
+    /**
+     * test02 索引初始化数据
+     *
+     * @throws Exception
+     */
+    private static void testOne02Init() throws Exception {
+
+        TransportClient client = ConfigService.getClient();
+        for (int i = 0; i < 50; i++) {
+            ProductTest02 test02 = new ProductTest02();
+            test02.setFlag(false);
+            if (i % 3 == 1){
+                test02.setColor("red");
+                test02.setProductName("红色" + i + "号");
+                test02.setProductNo("red01");
+            }else if (i %3 == 2){
+                test02.setColor("yellow");
+                test02.setProductName("黄色" + i + "号");
+                test02.setProductNo("yellow01");
+            }else{
+                test02.setColor("gray");
+                test02.setProductName("灰色" + i + "号");
+                test02.setProductNo("gray01");
+                test02.setFlag(true);
+            }
+            test02.setCreateTime(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
+            test02.setPrice(i * 20 + i);
+            test02.setUser("system");
+            String str = JackJsonUtil.objToStr(test02);
+            IndexResponse response = client.prepareIndex("test02", "product")
+                    .setSource(str).get();
+            System.out.println(JackJsonUtil.objToStr(response.getResult()));
+        }
     }
 
     private static void testOne() throws Exception {
@@ -51,7 +87,7 @@ public class MappingDemo {
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("test01").type("peopleThree").source(PeopleMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("test02").type("product").source(ProductMapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

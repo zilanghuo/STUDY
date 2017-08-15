@@ -35,7 +35,6 @@ public class AddApiDemo {
 
             product.setUser("system");
             product.setCreateTime(new Date());
-            product.setModifyTime(new Date());
             TransportClient client = ConfigService.getClient();
             String str = JackJsonUtil.objToStr(product);
             IndexResponse response = client.prepareIndex("test01", "product").setSource(str).get();

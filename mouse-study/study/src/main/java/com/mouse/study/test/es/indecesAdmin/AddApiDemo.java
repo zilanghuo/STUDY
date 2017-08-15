@@ -5,11 +5,17 @@ import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
 import org.elasticsearch.action.admin.indices.get.GetIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
@@ -20,31 +26,52 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 @Slf4j
 public class AddApiDemo {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         testGetIndex();
     }
 
 
     /**
      * 获取所有的索引
+     *
      * @throws Exception
      */
-    private static void testGetIndex() throws Exception{
+    private static void testGetIndex() throws Exception {
         TransportClient client = ConfigService.getClient();
         GetIndexRequest request = new GetIndexRequest();
         ActionFuture<GetIndexResponse> index = client.admin().indices().getIndex(request);
         GetIndexResponse response = index.actionGet();
-        log.info("{}",JackJsonUtil.objToStr(index.actionGet().getIndices()));
+        log.info("{}", JackJsonUtil.objToStr(index.actionGet().getIndices()));
     }
 
     /**
-     * 创建索引
+     * 删除索引
+     *
      * @throws Exception
      */
-    private static void testCreateIndex() throws Exception{
+    private static void testDeleteIndex() throws Exception {
         TransportClient client = ConfigService.getClient();
-        CreateIndexRequest request = new CreateIndexRequest("test01");
-        client.admin().indices().create(request);
+        DeleteIndexRequest deleteIndex = new DeleteIndexRequest("test02");
+        DeleteIndexResponse response = client.admin().indices().delete(deleteIndex).actionGet();
+        log.info("response:{}", JackJsonUtil.objToStr(response));
+
+    }
+
+
+    /**
+     * 创建索引
+     *
+     * @throws Exception
+     */
+    private static void testCreateIndex() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        Map<String, String> maps = new HashMap();
+        maps.put("number_of_shards", "5"); //5个分片
+        maps.put("number_of_replicas", "2"); //2个备份
+        CreateIndexRequest request = new CreateIndexRequest("test02")
+                .settings(maps);
+        CreateIndexResponse response = client.admin().indices().create(request).actionGet();
+        log.info("response:{}", JackJsonUtil.objToStr(response));
 
     }
 
