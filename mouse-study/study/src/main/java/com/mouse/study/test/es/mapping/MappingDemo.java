@@ -7,9 +7,12 @@ import com.mouse.study.test.es.model.ProductTest02;
 import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
+import org.elasticsearch.action.bulk.byscroll.BulkByScrollResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.DeleteByQueryAction;
 
 import java.util.Date;
 
@@ -25,6 +28,17 @@ public class MappingDemo {
         testOne02Init();
     }
 
+    private static void testOne02DeleteAll()throws Exception{
+        TransportClient client = ConfigService.getClient();
+        BulkByScrollResponse response =
+                DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
+                        .filter(QueryBuilders.matchAllQuery())
+                        .source("test02")
+                        .get();
+        log.info("delete size:{}",response.getDeleted());
+
+    }
+
     /**
      * test02 索引初始化数据
      *
@@ -37,15 +51,15 @@ public class MappingDemo {
             ProductTest02 test02 = new ProductTest02();
             test02.setFlag(false);
             if (i % 3 == 1){
-                test02.setColor("red");
+                test02.setColor("10");
                 test02.setProductName("红色" + i + "号");
                 test02.setProductNo("red01");
             }else if (i %3 == 2){
-                test02.setColor("yellow");
+                test02.setColor("20");
                 test02.setProductName("黄色" + i + "号");
                 test02.setProductNo("yellow01");
             }else{
-                test02.setColor("gray");
+                test02.setColor("30");
                 test02.setProductName("灰色" + i + "号");
                 test02.setProductNo("gray01");
                 test02.setFlag(true);

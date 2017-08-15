@@ -32,7 +32,7 @@ import org.elasticsearch.search.aggregations.metrics.tophits.TopHits;
 public class AggregationSearchDemo {
 
     public static void main(String[] args) throws Exception {
-        testTopHit();
+        getMapping();
     }
 
     /**
@@ -103,7 +103,7 @@ public class AggregationSearchDemo {
     private static void getMapping() throws Exception {
         TransportClient client = ConfigService.getClient();
         ImmutableOpenMap<String, MappingMetaData> mappings = client.admin().cluster().prepareState().execute()
-                .actionGet().getState().getMetaData().getIndices().get("test01").getMappings();
+                .actionGet().getState().getMetaData().getIndices().get("test02").getMappings();
         for (ObjectObjectCursor<String, MappingMetaData> cursor : mappings) {
             System.out.println(cursor.key); // 索引下的每个type
             System.out.println(cursor.value.getSourceAsMap()); // 每个type的mapping

@@ -33,6 +33,7 @@ public class ProductMapping {
 
                     .startObject("color")
                     .field("type", "string")
+                    .field("fielddata","true")
                     .endObject()
 
                     .startObject("price")
