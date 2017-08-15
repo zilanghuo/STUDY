@@ -19,31 +19,32 @@ public class PeopleMapping {
                     .startObject()
                     .startObject("properties")
 
-                    .startObject("peopleId")
+                    .startObject("peopleIdOne")
                     .field("type", "integer")
                     .endObject()
 
-                    .startObject("age")
+                    .startObject("ageOne")
                     .field("type", "integer")
                     .endObject()
 
-                    .startObject("name")
+                    .startObject("nameOne")
                     .field("type", "string")
                     .endObject()
 
-                    .startObject("use")
+                    .startObject("useOne")
                     .field("type", "boolean")
                     .endObject()
 
-                    .startObject("startTime")
+                    .startObject("startTimeOne")
                     .field("type", "date")
-                    .field("format","YYYY-MM-DD HH:mm:ss.SSS")
+                    .field("format","yyyy-MM-dd HH:mm:ss.SSS")
                     .endObject()
 
-                    .startObject("endTime")
+                    .startObject("endTimeOne")
                     .field("type", "date")
-                    .field("format","YYYY-MM-DD HH:mm:ss.SSS")
+                    .field("format","yyyy-MM-dd HH:mm:ss.SSS")
                     .endObject()
+
                     //关联数据
                     .endObject()
                     .endObject();

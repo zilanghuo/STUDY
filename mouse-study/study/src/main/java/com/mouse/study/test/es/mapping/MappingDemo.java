@@ -29,17 +29,17 @@ public class MappingDemo {
         TransportClient client = ConfigService.getClient();
         for (int i = 0; i < 10; i++) {
             People people = new People();
-            people.setPeopleId(i);
-            people.setAge(i +10);
-            people.setName("name"+i);
-            people.setStartTime(DateUtils.format(new Date(),"YYYY-MM-DD HH:mm:ss.SSS"));
-            people.setEndTime(DateUtils.format(new Date(),"YYYY-MM-DD HH:mm:ss.SSS"));
-            people.setUse("true");
-            if (i /2 == 0){
-                people.setUse("false");
+            people.setPeopleIdOne(i);
+            people.setAgeOne(i + 10);
+            people.setNameOne("hello" + i);
+            people.setStartTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
+            people.setEndTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
+            people.setUseOne("true");
+            if (i / 2 == 0) {
+                people.setUseOne("false");
             }
             String str = JackJsonUtil.objToStr(people);
-            IndexResponse response = client.prepareIndex("test01", "people")
+            IndexResponse response = client.prepareIndex("test01", "peopleThree")
                     .setSource(str).get();
             System.out.println(JackJsonUtil.objToStr(response.getResult()));
         }
@@ -47,10 +47,11 @@ public class MappingDemo {
 
     /**
      * 新建映射文件
+     *
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("test01").type("people").source(PeopleMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("test01").type("peopleThree").source(PeopleMapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

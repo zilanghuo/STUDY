@@ -9,15 +9,15 @@ import lombok.Data;
 @Data
 public class People {
 
-    private Integer peopleId;
+    private Integer peopleIdOne;
 
-    private Integer age;
+    private Integer ageOne;
 
-    private String name;
+    private String nameOne;
 
-    private String startTime;
+    private String startTimeOne;
 
-    private String endTime;
+    private String endTimeOne;
 
-    private String use;
+    private String useOne;
 }

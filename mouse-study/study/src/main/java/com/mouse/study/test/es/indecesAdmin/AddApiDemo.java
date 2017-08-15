@@ -3,7 +3,10 @@ package com.mouse.study.test.es.indecesAdmin;
 import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -18,14 +21,26 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception{
-        testCreateIndex();
+        testGetIndex();
     }
 
-    private static void testStatIndex() throws Exception {
 
-
+    /**
+     * 获取所有的索引
+     * @throws Exception
+     */
+    private static void testGetIndex() throws Exception{
+        TransportClient client = ConfigService.getClient();
+        GetIndexRequest request = new GetIndexRequest();
+        ActionFuture<GetIndexResponse> index = client.admin().indices().getIndex(request);
+        GetIndexResponse response = index.actionGet();
+        log.info("{}",JackJsonUtil.objToStr(index.actionGet().getIndices()));
     }
 
+    /**
+     * 创建索引
+     * @throws Exception
+     */
     private static void testCreateIndex() throws Exception{
         TransportClient client = ConfigService.getClient();
         CreateIndexRequest request = new CreateIndexRequest("test01");

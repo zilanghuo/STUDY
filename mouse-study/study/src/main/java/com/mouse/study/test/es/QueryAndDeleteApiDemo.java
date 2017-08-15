@@ -3,7 +3,6 @@ package com.mouse.study.test.es;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.reindex.BulkIndexByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 
 /**
@@ -14,12 +13,7 @@ import org.elasticsearch.index.reindex.DeleteByQueryAction;
 public class QueryAndDeleteApiDemo {
 
     public static void main(String[] args) throws Exception {
-        TransportClient client = ConfigService.getClient();
-        BulkIndexByScrollResponse response = DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
-                .filter(QueryBuilders.matchQuery("user", "kimchy"))
-                .source("dev112")
-                .get();
-        log.info(response.getDeleted()+"");
+
 
     }
 }
