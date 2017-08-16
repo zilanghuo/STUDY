@@ -2,6 +2,7 @@ package com.mouse.study.test.es.mapping;
 
 import com.mouse.study.api.utils.DateUtils;
 import com.mouse.study.test.es.ConfigService;
+import com.mouse.study.test.es.model.Geo;
 import com.mouse.study.test.es.model.People;
 import com.mouse.study.test.es.model.ProductTest02;
 import com.mouse.study.utils.JackJsonUtil;
@@ -25,17 +26,38 @@ public class MappingDemo {
 
     public static void main(String[] args) throws Exception {
         //log.info(JackJsonUtil.objToStr(PeopleMapping.getMapping()));
-        testOne02Init();
+        testGeo();
     }
 
-    private static void testOne02DeleteAll()throws Exception{
+    /**
+     * 初始化geo字段类型
+     *
+     * @throws Exception
+     */
+    private static void testGeo() throws Exception {
+
+        TransportClient client = ConfigService.getClient();
+        for (int i = 0; i < 10; i++) {
+            Geo geo = new Geo();
+            geo.setName("name" + i);
+            Geo.GeoApoin location = new Geo.GeoApoin((10 + i * 3) + "", "" + (20 + i * 2));
+            geo.setLocation(location);
+
+            String str = JackJsonUtil.objToStr(geo);
+            IndexResponse response = client.prepareIndex("test03", "geo01")
+                    .setSource(str).get();
+            System.out.println(JackJsonUtil.objToStr(response.getResult()));
+        }
+    }
+
+    private static void testOne02DeleteAll() throws Exception {
         TransportClient client = ConfigService.getClient();
         BulkByScrollResponse response =
                 DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
                         .filter(QueryBuilders.matchAllQuery())
-                        .source("test02")
+                        .source("test03")
                         .get();
-        log.info("delete size:{}",response.getDeleted());
+        log.info("delete size:{}", response.getDeleted());
 
     }
 
@@ -50,15 +72,15 @@ public class MappingDemo {
         for (int i = 0; i < 50; i++) {
             ProductTest02 test02 = new ProductTest02();
             test02.setFlag(false);
-            if (i % 3 == 1){
+            if (i % 3 == 1) {
                 test02.setColor("10");
                 test02.setProductName("红色" + i + "号");
                 test02.setProductNo("red01");
-            }else if (i %3 == 2){
+            } else if (i % 3 == 2) {
                 test02.setColor("20");
                 test02.setProductName("黄色" + i + "号");
                 test02.setProductNo("yellow01");
-            }else{
+            } else {
                 test02.setColor("30");
                 test02.setProductName("灰色" + i + "号");
                 test02.setProductNo("gray01");
@@ -101,7 +123,7 @@ public class MappingDemo {
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("test02").type("product").source(ProductMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("test03").type("geo01").source(GeoMapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

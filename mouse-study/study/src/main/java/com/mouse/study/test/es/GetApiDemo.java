@@ -17,7 +17,7 @@ public class GetApiDemo {
 
     public static void main(String[] args) throws Exception {
         TransportClient client = ConfigService.getClient();
-        GetResponse response = client.prepareGet("dev112", "dev", "3").get();
+        GetResponse response = client.prepareGet("test03", "geo01", "AV3o6ge0DeQIl-pxDb6j").get();
         logger.info(response.getId());
         logger.info("-----" + response.getSource());
         logger.info(response.getId());

@@ -42,7 +42,7 @@ public class BulkDemo {
             requestBuilder.setSource(str);
             bulkRequest.add(requestBuilder);
         }
-        BulkResponse response = bulkRequest.get();
+        BulkResponse response = bulkRequest.execute().get();
         BulkItemResponse[] items = response.getItems();
         log.info("size:" + items.length);
         log.info("耗时:" + response.getTook());

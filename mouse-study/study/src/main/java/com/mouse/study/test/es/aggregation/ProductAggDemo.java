@@ -10,6 +10,8 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
+import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
 import org.elasticsearch.search.aggregations.bucket.range.Range;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
@@ -23,9 +25,62 @@ import org.joda.time.DateTime;
 public class ProductAggDemo {
 
     public static void main(String[] args) throws Exception {
-        testFive();
+        testSix();
     }
 
+
+    /**
+     * 正常直方图
+     * @throws Exception
+     */
+    private static void testSeven() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        SearchResponse sr = client.prepareSearch()
+                .setIndices("test03")
+                .setTypes("product01")
+                .setQuery(QueryBuilders.matchAllQuery())
+                .addAggregation(
+                        AggregationBuilders
+                                .histogram("agg").field("price").interval(1000f)
+                )
+                .setSize(10000)
+                .execute().actionGet();
+        Histogram agg = sr.getAggregations().get("agg");
+        for (Histogram.Bucket entry : agg.getBuckets()) {
+            Number key = (Number) entry.getKey();   // Key
+            long docCount = entry.getDocCount();    // Doc count
+            log.info("key [{}], doc_count [{}]", key, docCount);
+        }
+    }
+
+    /**
+     * 时间直方图
+     *
+     * @throws Exception
+     */
+    private static void testSix() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        SearchResponse sr = client.prepareSearch()
+                .setIndices("test03")
+                .setTypes("product01")
+                .setQuery(QueryBuilders.matchAllQuery())
+                .addAggregation(
+                        AggregationBuilders
+                                .dateHistogram("agg")
+                                .field("createTime")
+                                .dateHistogramInterval(DateHistogramInterval.DAY)
+                )
+                .setSize(10000)
+                .execute().actionGet();
+        Histogram agg = sr.getAggregations().get("agg");
+// For each entry
+        for (Histogram.Bucket entry : agg.getBuckets()) {
+            DateTime key = (DateTime) entry.getKey();    // Key
+            String keyAsString = entry.getKeyAsString(); // Key as String
+            long docCount = entry.getDocCount();         // Doc count
+            log.info("key [{}], date [{}], doc_count [{}]", keyAsString, key.getYear(), docCount);
+        }
+    }
 
     /**
      * 时间范围排序
@@ -201,7 +256,7 @@ public class ProductAggDemo {
         SearchHit[] hits = sr.getHits().getHits();
         for (SearchHit searchHit : hits) {
             log.info(JackJsonUtil.objToStr(searchHit.getSource()));
-            ProductTest02 tset = (ProductTest02)JackJsonUtil.strToObj(searchHit.getSourceAsString(), ProductTest02.class);
+            ProductTest02 tset = (ProductTest02) JackJsonUtil.strToObj(searchHit.getSourceAsString(), ProductTest02.class);
             log.info(tset.getCreateTime());
         }
     }
