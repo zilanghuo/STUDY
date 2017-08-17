@@ -18,6 +18,7 @@ public class Geo {
     @AllArgsConstructor
     @Data
     public static class GeoApoin {
+
         private String lat;
 
         private String lon;

@@ -17,9 +17,15 @@
 
     <properties>
         <springloaded.version>1.2.0.RELEASE</springloaded.version>
+        <flume.version>1.7.0</flume.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.flume</groupId>
+            <artifactId>flume-ng-core</artifactId>
+            <version>${flume.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>

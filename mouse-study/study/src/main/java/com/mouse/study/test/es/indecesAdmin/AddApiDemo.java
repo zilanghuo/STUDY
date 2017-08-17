@@ -27,7 +27,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception {
-        testDeleteIndex();
+        testGetIndex();
     }
 
 

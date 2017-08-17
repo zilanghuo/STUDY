@@ -1,5 +1,6 @@
 package com.mouse.study.test.es.mapping;
 
+import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
 import com.mouse.study.api.utils.DateUtils;
 import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.test.es.model.Geo;
@@ -12,10 +13,15 @@ import org.elasticsearch.action.bulk.byscroll.BulkByScrollResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.cluster.metadata.MappingMetaData;
+import org.elasticsearch.common.collect.ImmutableOpenMap;
+import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 
 import java.util.Date;
+
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
  * Created by lwf on 2017/8/14.
@@ -26,7 +32,51 @@ public class MappingDemo {
 
     public static void main(String[] args) throws Exception {
         //log.info(JackJsonUtil.objToStr(PeopleMapping.getMapping()));
-        testGeo();
+        testGeoTow();
+    }
+
+
+    private static void getMapping() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        ImmutableOpenMap<String, MappingMetaData> mappings = client.admin().cluster().prepareState().execute()
+                .actionGet().getState().getMetaData().getIndices().get("test03").getMappings();
+        for (ObjectObjectCursor<String, MappingMetaData> cursor : mappings) {
+            System.out.println(cursor.key); // 索引下的每个type
+            System.out.println(cursor.value.getSourceAsMap()); // 每个type的mapping
+        }
+
+    }
+
+    private static void testGeoTow() throws Exception {
+        TransportClient client = ConfigService.getClient();
+
+        TestModel testModel = new TestModel();
+        testModel.setName("name1");
+        testModel.setAgeOne(34);
+        Geo.GeoApoin location = new Geo.GeoApoin("32", "32");
+        testModel.setLocation(location);
+        testModel.setStartTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
+        testModel.setUseOne(true);
+
+        String str = JackJsonUtil.objToStr(testModel);
+
+        XContentBuilder builder = jsonBuilder()
+                .startObject()
+                .field("name", testModel.getName())
+                .field("ageOne", testModel.getAgeOne())
+                .field("useOne", testModel.getUseOne())
+                .field("startTimeOne", testModel.getStartTimeOne())
+                .startObject("location")
+                .field("lat","10")
+                .field("lon","10")
+                .endObject()
+                .endObject();
+
+        log.info("==" + builder.toString());
+
+        IndexResponse response = client.prepareIndex("test03", "geo02")
+                .setSource(builder).get();
+        System.out.println(JackJsonUtil.objToStr(response.getResult()));
     }
 
     /**
@@ -123,7 +173,7 @@ public class MappingDemo {
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("test03").type("geo01").source(GeoMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("test03").type("geo02").source(GeoMapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

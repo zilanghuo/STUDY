@@ -23,8 +23,25 @@ public class GeoMapping {
                     .field("type", "string")
                     .endObject()
 
+                    .startObject("name")
+                    .field("type", "string")
+                    .endObject()
+
                     .startObject("location")
                     .field("type", "geo_point")
+                    .endObject()
+
+                    .startObject("ageOne")
+                    .field("type", "integer")
+                    .endObject()
+
+                    .startObject("useOne")
+                    .field("type", "boolean")
+                    .endObject()
+
+                    .startObject("startTimeOne")
+                    .field("type", "date")
+                    .field("format", "yyyy-MM-dd HH:mm:ss.SSS")
                     .endObject()
 
                     //关联数据
