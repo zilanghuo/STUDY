@@ -21,7 +21,7 @@
     </script>
 </head>
 <body>
-<div id="wrap">
+<%--<div id="wrap">
     <div id="logo">
         <a href="#" target="_blank"><img class="png" src="${path}/images/logo.png" border="0" /></a>
     </div>
@@ -36,6 +36,12 @@
                 </div> </li>
         </ul>
     </div>
-</div>
+</div>--%>
+index
+
+    <form action="https://www.growingio.com/auth/token">
+
+    </form>
+
 </body>
 </html>
