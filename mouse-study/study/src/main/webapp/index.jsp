@@ -39,8 +39,13 @@
 </div>--%>
 index
 
-    <form action="https://www.growingio.com/auth/token">
+    <form action="https://www.growingio.com/auth/token" method="get" >
 
+        <input type="text" name="project" value="1P6VAXPd" />
+        <input type="text" name="ai" id="b93a6913b8d3edb9" />
+        <input type="text" name="tm" id="1503049938050" />
+        <input type="text" name="auth" id="17bde4522a25ff50b95050cffb81ecf5a8587913c4efc3da1eb8d9b3508e0681" />
+        <input type="submit" value="发送" />
     </form>
 
 </body>
