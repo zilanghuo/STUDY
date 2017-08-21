@@ -1,14 +1,17 @@
 package com.mouse.study.test.growing;
 
-import com.mouse.study.utils.HttpsClientUtils;
-import com.mouse.study.utils.ZipUtils;
+import com.mouse.study.api.utils.DateUtils;
+import com.mouse.study.utils.*;
 import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,13 +39,36 @@ public class Test {
 
     public static String url_get_data = "https://www.growingio.com/insights";
 
-    public static void main(String[] args) throws Exception {
-        unGzipFile();
-    }
+    public static String fileUrl = "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_page_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T072258Z&X-Amz-Expires=6000&X-Amz-SignedHeaders=host&X-Amz-Signature=41aa8bcd93bff497d5cd55fe47ef41f1e1a0a9029e8a64f639cd755c5f21152b";
 
-    public static void unGzipFile() throws Exception{
-        String sourcedir = "F:\\part-00000.gz";
-        ZipUtils.decompressNewFile(sourcedir);
+    public static String id = "b93a6913b8d3edb9";
+
+    public static String BASE_DIR = "f://growing//";
+
+    public static void main(String[] args) throws Exception {
+     //   String result = getData();
+        String date = DateUtils.format(new Date(), DateUtils.YYYY_FORMAT);
+   /*     DataResult dateResult = (DataResult) JackJsonUtil.strToObj(result, DataResult.class);
+        for (String url : dateResult.getDownlinks()) {
+            String[] split = url.split(id);
+            String fileName = split[1].substring(1, split[1].indexOf("?"));
+            //对应的地址，按时间下载
+            FileUtil.saveUrlFile("f://growing//" + date + "//" + fileName, url);
+        }*/
+        //遍历当前时间点的文件，解压，然后解读
+
+        //获取gz地址
+        String currentDir = BASE_DIR + date;
+        ArrayList<String> gzFiles = new ArrayList();
+        FileUtils.traverseFolder(currentDir,gzFiles);
+        //解压
+        for (String file : gzFiles){
+            System.out.println(file);
+            ZipUtils.decompress(new File(file),false);
+            //读取
+            System.out.println("----------------------------------------------------------");
+            readDate(file.substring(0,file.length()-3));
+        }
 
     }
 
@@ -53,7 +79,7 @@ public class Test {
      * @throws Exception
      */
     public static void readForGZ() throws Exception {
-        String fileName = "F:\\part-00000\\part-00000";
+        String fileName = "F:\\part-remote";
         String FileContent = "";
         FileInputStream fis = new FileInputStream(fileName);
         InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
@@ -69,8 +95,7 @@ public class Test {
     /**
      * 读取远程数据接口
      */
-    public static void readDate() {
-        String fileName = "F:\\part-00000\\part-00000";
+    public static void readDate(String fileName) {
         String FileContent = ""; // 文件很长的话建议使用StringBuffer
         try {
             FileInputStream fis = new FileInputStream(fileName);
@@ -90,30 +115,31 @@ public class Test {
 
     /**
      * 获取数据接口
-     * "downlinks":[
-     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_page_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T035629Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=e19223db09e87cb1b260fd3924428de59d92ffc3b0e451618ee683e33ccf4d91",
-     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_visit_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T035629Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=a7852e3f9bc1169aa0d435594e0eee42483e8481b428b291695576a52b283d68",
-     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_action_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T035629Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=96375167b2a78e50e131ed752046c73b1469ea591a6d27ed0457342948bf192a",
-     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_action_tag_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T035629Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=0af590db0ed20083922995b4f22be40a1c0bd7f94b43d8fa708afa3fcbd1b724"]}
+     * 获取的结果为：{"status":"FINISHED","downlinks":[
+     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_page_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T072258Z&X-Amz-Expires=6000&X-Amz-SignedHeaders=host&X-Amz-Signature=41aa8bcd93bff497d5cd55fe47ef41f1e1a0a9029e8a64f639cd755c5f21152b",
+     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_visit_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T072258Z&X-Amz-Expires=6000&X-Amz-SignedHeaders=host&X-Amz-Signature=e7b9a91f654488f8774244aba53f5fc7ca989d17c693df6252ddc128c387f78d",
+     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_action_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T072258Z&X-Amz-Expires=6000&X-Amz-SignedHeaders=host&X-Amz-Signature=bf6b8adbe5329ee9c46420f18043d6e1073e468b396eae204a6704ef975e037c",
+     * "https://growing-insights.s3.cn-north-1.amazonaws.com.cn/ddbf_b93a6913b8d3edb9_action_tag_201708210000/part-00000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAP2ISDXVVNV53ECSQ/20170821/cn-north-1/s3/aws4_request&X-Amz-Date=20170821T072258Z&X-Amz-Expires=6000&X-Amz-SignedHeaders=host&X-Amz-Signature=4665aa05d8961f008776adab294207c2a64ec149bae120caa9e89cb833b75ced"]}
      */
-    public static void getData() {
+    public static String getData() {
 
         String ai = "b93a6913b8d3edb9";
         String date = "2017082108";
         String url_data = url_get_data + "/" + ai + "/" + date + ".json";
         Map<String, String> valueMap = new HashMap();
 
-        valueMap.put("expire", "10");
+        valueMap.put("expire", "100");
         Map<String, String> headMap = new HashMap();
         headMap.put("X-Client-Id", "b8t77weRaMeDruMAtrAhUPU8AjaphaVe");
         headMap.put("Authorization", "WNKGA8tpdS7KD2CxwboaBrGxKzOSCd15YkWMcZW84l8qhlYHV2qbHaKsLjcqiSXL");
 
         HttpsClientUtils clientUtils = new HttpsClientUtils();
         try {
-            clientUtils.get(url_data, valueMap, headMap);
+            return clientUtils.get(url_data, valueMap, headMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "";
     }
 
 

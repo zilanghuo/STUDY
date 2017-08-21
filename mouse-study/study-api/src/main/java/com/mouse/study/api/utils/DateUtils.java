@@ -22,6 +22,8 @@ public class DateUtils {
      */
     public static final String DEFAULT_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
+    public static final String YYYY_FORMAT = "yyyyMMddHH";
+
     public static final int DAY_SECOND = 3600;
 
     public static final int MUNITE_SECOND = 60;

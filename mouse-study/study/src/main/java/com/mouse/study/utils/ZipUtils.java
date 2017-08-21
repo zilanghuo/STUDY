@@ -106,6 +106,7 @@ public class ZipUtils {
         compress(file, delete);
     }
 
+
     /**
      * 数据解压缩
      *
@@ -113,11 +114,11 @@ public class ZipUtils {
      * @return
      * @throws Exception
      */
-    public static byte[] decompressNewFile(byte[] data) throws Exception {
+    public static byte[] decompress(byte[] data) throws Exception {
         ByteArrayInputStream bais = new ByteArrayInputStream(data);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // 解压缩
-        decompressNewFile(bais, baos);
+        decompress(bais, baos);
         data = baos.toByteArray();
         baos.flush();
         baos.close();
@@ -131,28 +132,8 @@ public class ZipUtils {
      * @param file
      * @throws Exception
      */
-    public static void decompressNewFile(File file) throws Exception {
-        decompressNewFile(file, true);
-    }
-
-    /**
-     * 文件解压缩,解压到当前文件夹
-     *
-     * @param file
-     * @param delete 是否删除原始文件
-     * @throws Exception
-     */
-    private static void decompress(File file, boolean delete) throws Exception {
-        FileInputStream fis = new FileInputStream(file);
-        FileOutputStream fos = new FileOutputStream(
-                file.getPath().replace(EXT, ""));
-        decompressNewFile(fis, fos);
-        fis.close();
-        fos.flush();
-        fos.close();
-        if (delete) {
-            file.delete();
-        }
+    public static void decompress(File file) throws Exception {
+        decompress(file, true);
     }
 
     /**
@@ -174,7 +155,27 @@ public class ZipUtils {
         FileInputStream fis = new FileInputStream(file);
         FileOutputStream fos = new FileOutputStream(
                 outDir + "/" + file.getName().replace(EXT, ""));
-        decompressNewFile(fis, fos);
+        decompress(fis, fos);
+        fis.close();
+        fos.flush();
+        fos.close();
+        if (delete) {
+            file.delete();
+        }
+    }
+
+    /**
+     * 文件解压缩,解压到对应的新文件加
+     *
+     * @param file
+     * @param delete 是否删除原始文件
+     * @throws Exception
+     */
+    public static void decompress(File file, boolean delete) throws Exception {
+        FileInputStream fis = new FileInputStream(file);
+        FileOutputStream fos = new FileOutputStream(
+                file.getAbsolutePath().replace(EXT, ""));
+        decompress(fis, fos);
         fis.close();
         fos.flush();
         fos.close();
@@ -190,7 +191,7 @@ public class ZipUtils {
      * @param os
      * @throws Exception
      */
-    private static void decompressNewFile(InputStream is, OutputStream os)
+    private static void decompress(InputStream is, OutputStream os)
             throws Exception {
         GZIPInputStream gis = new GZIPInputStream(is);
         int count;
@@ -201,14 +202,24 @@ public class ZipUtils {
         gis.close();
     }
 
+  /*  *//**
+     * 解压到当前路径
+     * @param path
+     * @throws Exception
+     *//*
+    public static void decompresse(String path) throws Exception {
+        File file = new File(path);
+        decompress(file, false);
+    }*/
+
     /**
      * 文件解压缩
      *
      * @param path
      * @throws Exception
      */
-    public static void decompressNewFile(String path) throws Exception {
-        decompressNewFile(path, false);
+    public static void decompresse(String path) throws Exception {
+        decompress(path, false);
     }
 
     /**
@@ -218,8 +229,8 @@ public class ZipUtils {
      * @param delete 是否删除原始文件
      * @throws Exception
      */
-    private static void decompressNewFile(String path, boolean delete) throws Exception {
+    private static void decompress(String path, boolean delete) throws Exception {
         File file = new File(path);
-        decompressNewFile(file, delete);
+        decompress(file, delete);
     }
 }

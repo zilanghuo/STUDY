@@ -25,7 +25,7 @@ public class HttpsClientUtils {
      * @param headMap
      * @throws Exception
      */
-    public static void get(String url, Map<String, String> valueMap, Map<String, String> headMap) throws Exception {
+    public static String get(String url, Map<String, String> valueMap, Map<String, String> headMap) throws Exception {
         StringBuilder st = new StringBuilder("");
         Iterator<Map.Entry<String, String>> iterator = valueMap.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -67,12 +67,13 @@ public class HttpsClientUtils {
                 result += line;
             }
             System.out.println("获取的结果为：" + result);
+            in.close();
+            return result;
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
             throw e;
         }
         // 使用finally块来关闭输入流
-        in.close();
 
     }
 
@@ -125,8 +126,10 @@ public class HttpsClientUtils {
     private static class TrustAnyTrustManager implements X509TrustManager {
         public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
+
         public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
+
         public X509Certificate[] getAcceptedIssuers() {
             return new X509Certificate[]{};
         }
