@@ -9,9 +9,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--读取配置文件-local-->
-<!--
     <context:property-placeholder location="classpath:config/study.properties"/>
--->
 
     <!--通过注解自动获取配置值-->
     <context:annotation-config/>
@@ -33,6 +31,6 @@
     <!-- motan -->
     <import resource="spring/appContext_motan.xml"/>
     <!-- hessian-->
-    <!--<import resource="spring/appContext_hessian_provider.xml"/>-->
+    <import resource="spring/appContext_hessian_provider.xml"/>
 
 </beans>

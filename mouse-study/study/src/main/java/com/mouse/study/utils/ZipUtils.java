@@ -79,13 +79,12 @@ public class ZipUtils {
         }
 
         gos.finish();
-
         gos.flush();
         gos.close();
     }
 
     /**
-     * 文件压缩
+     * 文件压缩,删除文件
      *
      * @param path
      * @throws Exception
