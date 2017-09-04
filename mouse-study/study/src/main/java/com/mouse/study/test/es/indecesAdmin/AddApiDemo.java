@@ -27,7 +27,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception {
-        testGetIndex();
+        testDeleteIndex();
     }
 
 
@@ -51,7 +51,7 @@ public class AddApiDemo {
      */
     private static void testDeleteIndex() throws Exception {
         TransportClient client = ConfigService.getClient();
-        DeleteIndexRequest deleteIndex = new DeleteIndexRequest("test04");
+        DeleteIndexRequest deleteIndex = new DeleteIndexRequest("dmp");
         DeleteIndexResponse response = client.admin().indices().delete(deleteIndex).actionGet();
         log.info("response:{}", JackJsonUtil.objToStr(response));
 

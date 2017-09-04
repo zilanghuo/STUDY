@@ -65,7 +65,6 @@
                         <div class="oauth_login_submit">
                             <p class="oauth_formbtn"><a onclick="return login();" node-type="submit" tabindex="4" action-type="submit"  href="javascript:void(0)" class="WB_btn_login formbtn_01"></a><a node-type="cancel" tabindex="5" href="javascript:;" action-type="cancel" class="WB_btn_cancel"></a></p>
                         </div>
-                        <!-- todo 添加appkey 白名单判断 -->
                     </div>
                     <!-- /登录 -->
                 </div>

@@ -24,7 +24,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception {
-        testBatch();
+        testOne();
     }
 
     /**
@@ -100,12 +100,12 @@ public class AddApiDemo {
         XContentBuilder builder = jsonBuilder()
                 .startObject()
                 // .field("postDate", DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"))
-                .field("endTime", "2017-04-12 02:02:03.919")
+               // .field("endTime", "2017-04-12 02:02:03.919")
                 .endObject();
-
         TransportClient client = ConfigService.getClient();
-        IndexResponse response = client.prepareIndex("test01", "dateTest")
+        IndexResponse response = client.prepareIndex("test111","testlog")
+                .setId("AV0rRzvVZWCH5NmYlLjc")
                 .setSource(builder).get();
-        System.out.println(JackJsonUtil.objToStr(response.getResult()));
+        System.out.println(response.toString());
     }
 }

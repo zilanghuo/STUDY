@@ -1,5 +1,9 @@
 package com.mouse.study.test.java8;
 
+import com.mouse.study.model.MsgMessage;
+
+import java.lang.reflect.Field;
+
 /**
  * Created by lwf on 2017/8/18.
  * use to do:
@@ -21,6 +25,15 @@ public class TestStatic {
     }
 
     public static void main(String[] args) {
-        TestStatic.getInsatnce();
+        new TestStatic().testFiled();
+    }
+
+
+    public void testFiled() {
+        Field[] declaredFields = MsgMessage.class.getDeclaredFields();
+        for (Field field : declaredFields) {
+            System.out.println(field.getName());
+        }
+
     }
 }

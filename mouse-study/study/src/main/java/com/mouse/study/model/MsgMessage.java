@@ -26,4 +26,5 @@ public class MsgMessage extends BaseEntity {
     //内容
     private String content;
 
+
 }

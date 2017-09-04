@@ -32,14 +32,14 @@ public class MappingDemo {
 
     public static void main(String[] args) throws Exception {
         //log.info(JackJsonUtil.objToStr(PeopleMapping.getMapping()));
-        testGeoTow();
+        getMapping();
     }
 
 
     private static void getMapping() throws Exception {
         TransportClient client = ConfigService.getClient();
         ImmutableOpenMap<String, MappingMetaData> mappings = client.admin().cluster().prepareState().execute()
-                .actionGet().getState().getMetaData().getIndices().get("test03").getMappings();
+                .actionGet().getState().getMetaData().getIndices().get("test111").getMappings();
         for (ObjectObjectCursor<String, MappingMetaData> cursor : mappings) {
             System.out.println(cursor.key); // 索引下的每个type
             System.out.println(cursor.value.getSourceAsMap()); // 每个type的mapping
@@ -173,7 +173,7 @@ public class MappingDemo {
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("test03").type("geo02").source(GeoMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("test111").type("testlog").source(GeoMapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

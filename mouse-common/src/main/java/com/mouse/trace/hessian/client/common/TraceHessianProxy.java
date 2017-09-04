@@ -9,9 +9,6 @@ import com.caucho.services.server.AbstractSkeleton;
 import com.mouse.trace.common.Constant;
 import com.mouse.trace.utils.JsonUtils;
 import com.mouse.trace.utils.TraceGenerator;
-import com.mouse.trace.common.Constant;
-import com.mouse.trace.utils.JsonUtils;
-import com.mouse.trace.utils.TraceGenerator;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -243,9 +240,8 @@ public class TraceHessianProxy extends HessianProxy {
 
         conn = _factory.getConnectionFactory().open(_url);
         boolean isValid = false;
-        //TODO token 改成 transid
         conn.addHeader(Constant.TRACE_ID, traceId);
-        logger.info("HessianClient request transId[{}] clz[{}] method[{}] arguments[{}] ", new Object[]{traceId, _type.getSimpleName(),
+        logger.info("HessianClient request traceId[{}] clz[{}] method[{}] arguments[{}] ", new Object[]{traceId, _type.getSimpleName(),
                 methodName, JsonUtils.toJson(args)});
 
         try {
