@@ -17,7 +17,7 @@ public class DeleteApiDemo {
 
     public static void main(String[] args) throws Exception {
         TransportClient client = ConfigService.getClient();
-        DeleteIndexResponse response = client.admin().indices().prepareDelete("twitter").execute().get();
+        DeleteIndexResponse response = client.admin().indices().prepareDelete("dmp").execute().get();
         System.out.println(JackJsonUtil.objToStr(response));
 
     }

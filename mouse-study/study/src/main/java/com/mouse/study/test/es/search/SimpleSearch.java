@@ -73,7 +73,6 @@ public class SimpleSearch {
                 .add(srb1)
                 .add(srb2)
                 .get();
-
         long nbHits = 0;
         for (MultiSearchResponse.Item item : sr.getResponses()) {
             log.info("index:" + JackJsonUtil.objToStr(item.getResponse().getHits()));
