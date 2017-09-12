@@ -19,6 +19,5 @@ public class DeleteApiDemo {
         TransportClient client = ConfigService.getClient();
         DeleteIndexResponse response = client.admin().indices().prepareDelete("dmp").execute().get();
         System.out.println(JackJsonUtil.objToStr(response));
-
     }
 }
