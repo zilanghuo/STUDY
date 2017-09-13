@@ -39,7 +39,7 @@ public class MappingDemo {
     private static void getMapping() throws Exception {
         TransportClient client = ConfigService.getClient();
         ImmutableOpenMap<String, MappingMetaData> mappings = client.admin().cluster().prepareState().execute()
-                .actionGet().getState().getMetaData().getIndices().get("dmp").getMappings();
+                .actionGet().getState().getMetaData().getIndices().get("dmp_dev").getMappings();
         for (ObjectObjectCursor<String, MappingMetaData> cursor : mappings) {
             System.out.println(cursor.key); // 索引下的每个type
             System.out.println(cursor.value.getSourceAsMap()); // 每个type的mapping
@@ -173,7 +173,7 @@ public class MappingDemo {
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("test111").type("testlog").source(GeoMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("dmp_dev").type("test01").source(GeoMapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 
