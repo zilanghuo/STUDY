@@ -13,6 +13,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -31,7 +32,7 @@ import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 public class SimpleSearch {
 
     public static void main(String[] args) throws Exception {
-        multiSearch();
+        testMulit();
     }
 
 
@@ -55,7 +56,7 @@ public class SimpleSearch {
                 .get();
 
         Terms agg1 = sr.getAggregations().get("user");
-        log.info("----"+JackJsonUtil.objToStr(agg1));
+        log.info("----" + JackJsonUtil.objToStr(agg1));
     }
 
     /**
@@ -115,16 +116,21 @@ public class SimpleSearch {
      */
     private static void testThree() throws Exception {
         TransportClient client = ConfigService.getClient();
-        SearchResponse response = client.prepareSearch("twitter") //索引条件，可以为空，多个索引值
-                .setTypes("dev") //type:可以为空
+        SearchRequestBuilder requestBuilder = client.prepareSearch("dmp") //索引条件，可以为空，多个索引值
+                .setTypes("businessReportMapping") //type:可以为空
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-                .setQuery(termQuery("user", "system")) // 字段属性
-                .setQuery(termQuery("productNo", "0003")) // 字段属性
-                .setPostFilter(QueryBuilders.matchAllQuery())     // Filter
+                //.setQuery(QueryBuilders.matchQuery("status", "业务失败")) // 字段属性
+                //.setQuery(QueryBuilders.matchQuery("notifyContent", "数据")) // 字段属性
+                // .setQuery(termQuery("productNo", "0003")) // 字段属性
+                //  .setPostFilter(QueryBuilders.matchAllQuery())     // Filter
+
+                ;
+        log.info("str:【{}】", requestBuilder.toString());
+        SearchResponse response = requestBuilder
                 .setFrom(0).setSize(60).setExplain(true)
                 .get();
 
-        log.info("size:" + response.getHits().getHits().length);
+        log.info("size:" + response.getHits().getTotalHits());
 
     }
 
@@ -167,4 +173,22 @@ public class SimpleSearch {
         log.info("result【{}】", JackJsonUtil.objToStr(response.getSource()));
     }
 
+
+    public static void testMulit() throws Exception {
+        TransportClient client = ConfigService.getClient();
+        BoolQueryBuilder query =
+                QueryBuilders.boolQuery()
+                        .must(QueryBuilders.matchQuery("status", "业务失败"));
+        QueryBuilder re = query.must(QueryBuilders.queryStringQuery("数据"));
+
+
+        SearchResponse response =
+                client.prepareSearch("dmp")// 索引名称
+                        .setTypes("businessReportMapping")// type名称
+                      //  .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)// 设置查询类型，精确查询
+                        .setQuery(re)// 设置查询关键词
+                        .execute().actionGet();
+        log.info("size:{}",response.getHits().getTotalHits());
+
+    }
 }
