@@ -17,10 +17,12 @@ public class QueryAndDeleteApiDemo {
         TransportClient client = ConfigService.getClient();
         BulkByScrollResponse response =
                 DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
-                        .filter(QueryBuilders.matchPhrasePrefixQuery("notifyContent", "测试体012345"))
-                        .source("dmp")
+                        .filter(QueryBuilders.matchPhrasePrefixQuery("errorMsg", "erro"))
+                        .source("safe_dev")
                         .get();
         long deleted = response.getDeleted();
         System.out.println(deleted);
+        System.out.println(response.getStatus());
     }
+
 }
