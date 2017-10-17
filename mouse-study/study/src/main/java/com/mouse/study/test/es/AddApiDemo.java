@@ -79,9 +79,9 @@ public class AddApiDemo {
                 product.setProductNo("0001");
             } else if (i % 7 == 0) {
                 product.setProductNo("0002");
-            } else
+            } else {
                 product.setProductNo("0003");
-
+            }
             product.setUser("system");
             product.setCreateTime(new Date());
             TransportClient client = ConfigService.getClient();

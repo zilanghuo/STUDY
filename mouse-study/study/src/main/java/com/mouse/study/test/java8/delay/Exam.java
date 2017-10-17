@@ -55,8 +55,8 @@ class Student implements Runnable, Delayed {
     @Override
     public int compareTo(Delayed o) {
         // 按照作答时长正序排序（队头放的是你认为最先需要处理的元素，在这里体现为需要最先交卷，所以是正序）
-        if (o == null || !(o instanceof Student)) return 1;
-        if (o == this) return 0;
+        if (o == null || !(o instanceof Student)) {return 1;}
+        if (o == this) {return 0;}
         Student s = (Student) o;
         if (this.workTime > s.workTime) {
             return 1;

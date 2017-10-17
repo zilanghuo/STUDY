@@ -19,8 +19,12 @@ public class DemoDelay<T> implements Delayed {
 
     @Override
     public int compareTo(Delayed o) {
-        if (o == null) return 1;
-        if (o == this) return 0;
+        if (o == null) {
+            return 1;
+        }
+        if (o == this) {
+            return 0;
+        }
         if (o instanceof DemoDelay) {
             DemoDelay<T> tmpDelayedItem = (DemoDelay<T>) o;
             if (liveTime > tmpDelayedItem.liveTime) {

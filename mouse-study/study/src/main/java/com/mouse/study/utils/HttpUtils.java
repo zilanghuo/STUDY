@@ -25,8 +25,8 @@ public class HttpUtils {
         URL url = new URL(strTotalURL);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestProperty(Constant.TRACE_ID, TraceGenerator.generatorId());
-        con.setRequestProperty("X-Client-Id","b8t77weRaMeDruMAtrAhUPU8AjaphaVe");
-        con.setRequestProperty("Authorization","17bde4522a25ff50b95050cffb81ecf5a8587913c4efc3da1eb8d9b3508e0681");
+        con.setRequestProperty("X-Client-Id", "b8t77weRaMeDruMAtrAhUPU8AjaphaVe");
+        con.setRequestProperty("Authorization", "17bde4522a25ff50b95050cffb81ecf5a8587913c4efc3da1eb8d9b3508e0681");
         con.setUseCaches(false);
         con.setConnectTimeout(connTimeOut);
         con.setReadTimeout(readTimeOut);
@@ -69,14 +69,16 @@ public class HttpUtils {
     }
 
     private static String getContentURL(Map parameterMap) {
-        if ((parameterMap == null) || (parameterMap.keySet().size() == 0))
+        if ((parameterMap == null) || (parameterMap.keySet().size() == 0)) {
             return "";
+        }
         StringBuffer url = new StringBuffer();
         Set keys = parameterMap.keySet();
         for (Iterator i = keys.iterator(); i.hasNext(); ) {
             String key = String.valueOf(i.next());
-            if (!(parameterMap.containsKey(key)))
+            if (!(parameterMap.containsKey(key))) {
                 break;
+            }
             Object val = parameterMap.get(key);
             String str = (val != null) ? val.toString() : "";
             try {
@@ -101,10 +103,11 @@ public class HttpUtils {
 
     public static String getTotalURL(String strUrl, String content) {
         String totalURL = strUrl;
-        if (totalURL.indexOf("?") == -1)
+        if (totalURL.indexOf("?") == -1) {
             totalURL = totalURL + "?";
-        else
+        } else {
             totalURL = totalURL + "&";
+        }
 
         totalURL = totalURL + content;
         return totalURL;

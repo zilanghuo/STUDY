@@ -115,8 +115,9 @@ public class HttpsClientUtils {
         output.close();
 
         DataInputStream input = new DataInputStream(con.getInputStream());
-        for (int c = input.read(); c != -1; c = input.read())
+        for (int c = input.read(); c != -1; c = input.read()) {
             System.out.print((char) c);
+        }
         input.close();
         System.out.println("Resp Code:" + con.getResponseCode());
         System.out.println("Resp Message:" + con.getResponseMessage());
