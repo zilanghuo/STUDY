@@ -51,6 +51,20 @@
             <groupId>org.apache.flume</groupId>
             <artifactId>flume-ng-core</artifactId>
             <version>${flume.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -82,6 +96,30 @@
             <version>1.7.25</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-client</artifactId>
+            <version>5.6.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+
+        </dependency>
 
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
@@ -407,6 +445,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -665,6 +709,39 @@
                     </webResources>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>shade</goal></goals>
+                        <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.apache.http</pattern>
+                                    <shadedPattern>hidden.org.apache.http</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.logging</pattern>
+                                    <shadedPattern>hidden.org.apache.logging</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.commons.codec</pattern>
+                                    <shadedPattern>hidden.org.apache.commons.codec</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.commons.logging</pattern>
+                                    <shadedPattern>hidden.org.apache.commons.logging</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
