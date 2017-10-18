@@ -59,6 +59,21 @@ public class AnalyzeDemo {
     }
 
     /**
+     * 测试分词器：ik_max_word
+     * @throws Exception
+     */
+    @org.junit.Test
+    public void testIkMaxWord() throws Exception{
+        RestClient restClient = EsRestClient.getLowClient();
+        Map<String, String> params = Collections.emptyMap();
+        String jsonString = "{\"text\":\"这里是好记性不如烂笔头感叹号的博客园you are word\"}";
+        HttpEntity entity = new NStringEntity(jsonString, ContentType.APPLICATION_JSON);
+        Response response = restClient.performRequest("GET", "/dev_01/_analyze?analyzer=ik_max_word&pretty=true", params, entity);
+        String responseBody = EntityUtils.toString(response.getEntity());
+        System.out.println(responseBody);
+    }
+
+    /**
      * 测试默认的分词器：这里是好记性不如烂笔头感叹号的博客园
      * @throws Exception
      */
@@ -68,7 +83,7 @@ public class AnalyzeDemo {
         Map<String, String> params = Collections.emptyMap();
         String jsonString = "{\"text\":\"这里是好记性不如烂笔头感叹号的博客园\"}";
         HttpEntity entity = new NStringEntity(jsonString, ContentType.APPLICATION_JSON);
-        Response response = restClient.performRequest("GET", "/dev_01/_analyze", params, entity);
+        Response response = restClient.performRequest("GET", "/dev_01/_analyze?pretty=true", params, entity);
         String responseBody = EntityUtils.toString(response.getEntity());
         System.out.println(responseBody);
     }
