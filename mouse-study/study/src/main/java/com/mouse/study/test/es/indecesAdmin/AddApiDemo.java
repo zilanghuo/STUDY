@@ -27,7 +27,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class AddApiDemo {
 
     public static void main(String[] args) throws Exception {
-        testDeleteIndex();
+        testCreateIndex();
     }
 
 
@@ -67,8 +67,8 @@ public class AddApiDemo {
         TransportClient client = ConfigService.getClient();
         Map<String, String> maps = new HashMap();
         maps.put("number_of_shards", "5"); //5个分片
-        maps.put("number_of_replicas", "3"); //2个备份
-        CreateIndexRequest request = new CreateIndexRequest("test04")
+        maps.put("number_of_replicas", "2"); //2个备份
+        CreateIndexRequest request = new CreateIndexRequest("dev_01")
                 .settings(maps);
         CreateIndexResponse response = client.admin().indices().create(request).actionGet();
         log.info("response:{}", JackJsonUtil.objToStr(response));

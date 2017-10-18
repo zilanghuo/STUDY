@@ -11,9 +11,12 @@ import org.elasticsearch.client.RestHighLevelClient;
  */
 public class HighDemo {
 
-    // 查询
+    /**
+     * 查询
+     */
     @org.junit.Test
     public void testOne() throws Exception {
+        Thread.currentThread().setName("test-one");
         RestHighLevelClient client = EsRestClient.getHighClient();
         GetRequest request = new GetRequest(
                 "bc_dev",
