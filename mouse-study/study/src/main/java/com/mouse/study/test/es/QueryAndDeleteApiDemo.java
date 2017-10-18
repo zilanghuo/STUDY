@@ -1,9 +1,9 @@
 package com.mouse.study.test.es;
 
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.bulk.byscroll.BulkByScrollResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 
 /**

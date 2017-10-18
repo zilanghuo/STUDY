@@ -9,7 +9,6 @@ import com.mouse.study.test.es.model.ProductTest02;
 import com.mouse.study.utils.JackJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
-import org.elasticsearch.action.bulk.byscroll.BulkByScrollResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
@@ -17,6 +16,7 @@ import org.elasticsearch.cluster.metadata.MappingMetaData;
 import org.elasticsearch.common.collect.ImmutableOpenMap;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 
 import java.util.Date;
