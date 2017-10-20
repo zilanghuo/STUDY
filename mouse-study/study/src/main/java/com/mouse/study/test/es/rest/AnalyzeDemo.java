@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class AnalyzeDemo {
 
-    public final String JSON_STRING = "{\"text\":\"这里是 好记性不如烂笔头感叹号的博客园\"}";;
+    public final String JSON_STRING = "{\"text\":\"这里是 好记性不如烂笔头感叹号的博客园\"}";
 
     @org.junit.Test
     public void testOfficial() throws Exception{
