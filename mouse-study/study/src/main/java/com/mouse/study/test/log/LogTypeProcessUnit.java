@@ -17,6 +17,7 @@ public class LogTypeProcessUnit {
 
     /**
      * 获取所使用的日志类型:logback\log4j\log4j2,以及使用到的log
+     * 获取配置文件的所有内存实例
      */
     private Map<String, Object> getLogBind() {
         String type = StaticLoggerBinder.getSingleton().getLoggerFactoryClassStr();
