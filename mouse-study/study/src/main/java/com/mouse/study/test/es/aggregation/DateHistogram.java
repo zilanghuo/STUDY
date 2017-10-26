@@ -10,7 +10,7 @@ import org.elasticsearch.search.aggregations.bucket.histogram.InternalDateHistog
 /**
  * @author lwf
  * @date 2017/10/26
- * use:
+ * use: 时间柱形图
  */
 public class DateHistogram {
 
