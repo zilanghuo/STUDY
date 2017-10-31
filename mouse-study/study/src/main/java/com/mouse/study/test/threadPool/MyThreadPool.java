@@ -22,6 +22,8 @@ public class MyThreadPool {
     public void init() throws Exception {
 
         final ExecutorService executorService = Executors.newFixedThreadPool(2);
+        final ExecutorService singleService = Executors.newSingleThreadExecutor();
+
         for (int i = 0; i < 100; i++) {
             final int finalI = i;
             Future future = executorService.submit(new Runnable() {
