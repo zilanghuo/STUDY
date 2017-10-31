@@ -19,12 +19,12 @@ public class UpdateApiDemo {
         TransportClient client = ConfigService.getClient();
 
         UpdateRequest updateRequest = new UpdateRequest();
-        updateRequest.index("bc_dev");
+        updateRequest.index("bc");
         updateRequest.type("businessFeature");
-        updateRequest.id("S00001_001");
+        updateRequest.id("S00001_002");
         updateRequest.doc(jsonBuilder()
                 .startObject()
-                .field("id", "S00001_001")
+                .field("id", "S00001_002")
                 .endObject());
         UpdateResponse response = client.update(updateRequest).get();
         log.info(JackJsonUtil.objToStr(response.getResult()));
