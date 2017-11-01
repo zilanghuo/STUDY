@@ -23,13 +23,13 @@ public class CountryHisDemo {
     public static void main(String[] args) throws Exception {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery()
                 // 排除非空限制
-                .must(QueryBuilders.existsQuery("country"));
-        CardinalityAggregationBuilder aggregationBuilders = AggregationBuilders.cardinality("agg").field("country");
+                .must(QueryBuilders.existsQuery("nameOne"));
+        CardinalityAggregationBuilder aggregationBuilders = AggregationBuilders.cardinality("agg").field("nameOne");
 
 
         TransportClient client = ConfigService.getClient();
-        SearchRequestBuilder requestBuilder = client.prepareSearch().setIndices("safe1234")
-                .setTypes("customerVisitRecord")
+        SearchRequestBuilder requestBuilder = client.prepareSearch().setIndices("safe222")
+                .setTypes("people")
                 .setQuery(queryBuilder)
                 .addAggregation(aggregationBuilders);
         SearchResponse sr = requestBuilder

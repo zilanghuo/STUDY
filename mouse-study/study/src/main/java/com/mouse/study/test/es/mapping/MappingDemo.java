@@ -19,6 +19,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
@@ -32,7 +33,7 @@ public class MappingDemo {
 
     public static void main(String[] args) throws Exception {
         //log.info(JackJsonUtil.objToStr(PeopleMapping.getMapping()));
-        getMapping();
+        testOne();
     }
 
 
@@ -148,20 +149,24 @@ public class MappingDemo {
 
     private static void testOne() throws Exception {
 
+        Calendar instance = Calendar.getInstance();
+        instance.set(2017,11,01,12,6,00);
+        Date start = instance.getTime();
+
         TransportClient client = ConfigService.getClient();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             People people = new People();
             people.setPeopleIdOne(i);
             people.setAgeOne(i + 20);
-            people.setNameOne("tes" + i);
-            people.setStartTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
-            people.setEndTimeOne(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS"));
+            people.setNameOne("北京");
+            people.setStartTimeOne(DateUtils.format(start, "yyyy-MM-dd HH:mm:ss.SSS"));
+            people.setEndTimeOne(DateUtils.format(start, "yyyy-MM-dd HH:mm:ss.SSS"));
             people.setUseOne("true");
             if (i / 2 == 0) {
                 people.setUseOne("false");
             }
             String str = JackJsonUtil.objToStr(people);
-            IndexResponse response = client.prepareIndex("test01", "peopleThree")
+            IndexResponse response = client.prepareIndex("test01", "people2")
                     .setSource(str).get();
             System.out.println(JackJsonUtil.objToStr(response.getResult()));
         }
@@ -173,7 +178,7 @@ public class MappingDemo {
      * @throws Exception
      */
     public static void createBangMapping() throws Exception {
-        PutMappingRequest mapping = Requests.putMappingRequest("dmp_dev").type("test01").source(GeoMapping.getMapping());
+        PutMappingRequest mapping = Requests.putMappingRequest("test01").type("people2").source(People2Mapping.getMapping());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

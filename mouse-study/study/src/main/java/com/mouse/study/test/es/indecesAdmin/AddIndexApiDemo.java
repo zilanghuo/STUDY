@@ -19,7 +19,7 @@ public class AddIndexApiDemo {
 
         TransportClient client = ConfigService.getClient();
         IndicesAdminClient adminClient = client.admin().indices();
-        CreateIndexResponse response = adminClient.prepareCreate("twitter").setSettings(Settings.builder()
+        CreateIndexResponse response = adminClient.prepareCreate("test01").setSettings(Settings.builder()
                 .put("index.number_of_shards", 3)
                 .put("index.number_of_replicas", 2))
                 .get();

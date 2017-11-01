@@ -10,7 +10,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
  * Created by lwf on 2017/8/14.
  * use to do:
  */
-public class PeopleMapping {
+public class People2Mapping {
 
     public static XContentBuilder getMapping() {
         XContentBuilder mapping = null;
@@ -38,11 +38,6 @@ public class PeopleMapping {
                     .endObject()
 
                     .startObject("startTimeOne")
-                    .field("type", "date")
-                    .field("format","yyyy-MM-dd HH:mm:ss.SSS")
-                    .endObject()
-
-                    .startObject("endTimeOne")
                     .field("type", "date")
                     .field("format","yyyy-MM-dd HH:mm:ss.SSS")
                     .endObject()

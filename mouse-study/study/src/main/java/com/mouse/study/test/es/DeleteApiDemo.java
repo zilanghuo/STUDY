@@ -12,7 +12,7 @@ public class DeleteApiDemo {
 
     public static void main(String[] args) throws Exception {
         TransportClient client = ConfigService.getClient();
-        DeleteIndexResponse response = client.admin().indices().prepareDelete("dev_01").execute().get();
+        DeleteIndexResponse response = client.admin().indices().prepareDelete("test01").execute().get();
         System.out.println(JackJsonUtil.objToStr(response));
     }
 }

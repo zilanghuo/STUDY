@@ -34,7 +34,7 @@ public class DateHistogram {
                 QueryBuilders.rangeQuery("createTime")
                         .gte("2017-10-25T10:00:00.000+0000")
                         .lte("2017-10-25T10:59:00.000+0000"));
-
+        System.out.println(queryBuilder.toString());
         //聚合
         //用于控制非0 的输出，固定此时间点
         ExtendedBounds extendedBounds = new ExtendedBounds("2017-10-25 10:00", "2017-10-25 10:59");
