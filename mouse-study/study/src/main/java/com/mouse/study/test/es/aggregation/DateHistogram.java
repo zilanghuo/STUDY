@@ -20,11 +20,47 @@ public class DateHistogram {
 
     public static void main(String[] args) throws Exception {
         TransportClient client = ConfigService.getClient();
-        hourHistogram(client);
+        minHistogram(client);
     }
 
     /**
-     * 根据时间来分析数据
+     * 根据分钟晒选数据
+     * @param client
+     */
+    private static void minHistogram(TransportClient client) {
+
+        //过滤时间点,注意时间格式与ES相同
+        QueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(
+                QueryBuilders.rangeQuery("createTime")
+                        .gte("2017-10-25T10:00:00.000+0000")
+                        .lte("2017-10-25T10:59:00.000+0000"));
+
+        //聚合
+        //用于控制非0 的输出，固定此时间点
+        ExtendedBounds extendedBounds = new ExtendedBounds("2017-10-25 10:00", "2017-10-25 10:59");
+        DateHistogramAggregationBuilder aggregationBuilder = AggregationBuilders.dateHistogram("dataTime")
+                .field("createTime")
+                .format("yyyy-MM-dd HH:mm")
+                .dateHistogramInterval(DateHistogramInterval.minutes(1))
+                .minDocCount(0)
+                .extendedBounds(extendedBounds);
+
+        System.out.println(aggregationBuilder.toString());
+        SearchResponse sr = client.prepareSearch().setIndices("safe222")
+                .setTypes("customerVisitRecord")
+                .setQuery(queryBuilder)
+                .addAggregation(aggregationBuilder)
+                .execute().actionGet();
+        InternalDateHistogram agg = sr.getAggregations().get("dataTime");
+        System.out.println("数量：" + agg.getBuckets().size());
+        for (InternalDateHistogram.Bucket bucket : agg.getBuckets()) {
+            System.out.println("key:" + bucket.getKeyAsString() + ",count:" + bucket.getDocCount());
+        }
+    }
+
+
+    /**
+     * 根据小时来分析数据
      *
      * @param client
      */
