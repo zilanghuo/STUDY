@@ -28,9 +28,7 @@ public class People2Mapping {
                     .endObject()
 
                     .startObject("nameOne")
-                    .field("type", "string")
-                    .field("fielddata",true)
-                    .field("analyzer","stop")
+                     .field("type", "keyword")
                     .endObject()
 
                     .startObject("useOne")

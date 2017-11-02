@@ -29,7 +29,7 @@ public class CountryDemo {
         //过滤时间点,注意时间格式与ES相同
         QueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(
                 QueryBuilders.rangeQuery("startTimeOne")
-                        .gte("2017-11-30 10:00:00.000"));
+                        .gte("2017-10-30 10:00:00.000"));
 
         //terms ：字段，需要修改字段属性为fielddata为true
         AggregationBuilder aggregationBuilder = AggregationBuilders.terms("agg").field("nameOne");

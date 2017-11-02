@@ -33,6 +33,7 @@ public class MappingDemo {
 
     public static void main(String[] args) throws Exception {
         //log.info(JackJsonUtil.objToStr(PeopleMapping.getMapping()));
+        //createBangMapping();
         testOne();
     }
 
@@ -68,8 +69,8 @@ public class MappingDemo {
                 .field("useOne", testModel.getUseOne())
                 .field("startTimeOne", testModel.getStartTimeOne())
                 .startObject("location")
-                .field("lat","10")
-                .field("lon","10")
+                .field("lat", "10")
+                .field("lon", "10")
                 .endObject()
                 .endObject();
 
@@ -150,7 +151,7 @@ public class MappingDemo {
     private static void testOne() throws Exception {
 
         Calendar instance = Calendar.getInstance();
-        instance.set(2017,11,01,12,6,00);
+        instance.set(2017, 11, 01, 12, 6, 00);
         Date start = instance.getTime();
 
         TransportClient client = ConfigService.getClient();
@@ -158,7 +159,7 @@ public class MappingDemo {
             People people = new People();
             people.setPeopleIdOne(i);
             people.setAgeOne(i + 20);
-            people.setNameOne("北京");
+            people.setNameOne("webservice");
             people.setStartTimeOne(DateUtils.format(start, "yyyy-MM-dd HH:mm:ss.SSS"));
             people.setEndTimeOne(DateUtils.format(start, "yyyy-MM-dd HH:mm:ss.SSS"));
             people.setUseOne("true");
@@ -179,6 +180,7 @@ public class MappingDemo {
      */
     public static void createBangMapping() throws Exception {
         PutMappingRequest mapping = Requests.putMappingRequest("test01").type("people2").source(People2Mapping.getMapping());
+        System.out.println(mapping.source());
         TransportClient client = ConfigService.getClient();
         client.admin().indices().putMapping(mapping).actionGet();
 

@@ -178,15 +178,16 @@ public class SimpleSearch {
         TransportClient client = ConfigService.getClient();
         BoolQueryBuilder query =
                 QueryBuilders.boolQuery()
-                        .must(QueryBuilders.matchQuery("status", "业务失败"));
-        QueryBuilder re = query.must(QueryBuilders.queryStringQuery("数据"));
+                        .must(QueryBuilders.prefixQuery("nameOne", "we"));
 
+        QueryBuilder queryBuilder = QueryBuilders.fuzzyQuery("nameOne", "北京");
+
+      //  QueryBuilder re = query.must(QueryBuilders.queryStringQuery("数据"));
 
         SearchResponse response =
-                client.prepareSearch("dmp")// 索引名称
-                        .setTypes("businessReportMapping")// type名称
-                      //  .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)// 设置查询类型，精确查询
-                        .setQuery(re)// 设置查询关键词
+                client.prepareSearch("test01")// 索引名称
+                        .setTypes("people2")// type名称
+                        .setQuery(query)// 设置查询关键词
                         .execute().actionGet();
         log.info("size:{}",response.getHits().getTotalHits());
 
