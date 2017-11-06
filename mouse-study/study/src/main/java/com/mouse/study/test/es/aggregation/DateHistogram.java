@@ -10,6 +10,7 @@ import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramAggre
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.ExtendedBounds;
 import org.elasticsearch.search.aggregations.bucket.histogram.InternalDateHistogram;
+import org.joda.time.DateTimeZone;
 
 /**
  * @author lwf
@@ -32,27 +33,30 @@ public class DateHistogram {
         //过滤时间点,注意时间格式与ES相同
         QueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(
                 QueryBuilders.rangeQuery("createTime")
-                        .gte("2017-10-25T10:00:00.000+0000")
-                        .lte("2017-10-25T10:59:00.000+0000"));
+                        .gte("2017-11-06T00:00:00.000+0000")
+                        .lte("2017-11-06T12:00:00.000+0000"));
         System.out.println(queryBuilder.toString());
         //聚合
         //用于控制非0 的输出，固定此时间点
-        ExtendedBounds extendedBounds = new ExtendedBounds("2017-10-25 10:00", "2017-10-25 10:59");
+        ExtendedBounds extendedBounds = new ExtendedBounds("2017-11-06 00", "2017-11-06 12");
+
         DateHistogramAggregationBuilder aggregationBuilder = AggregationBuilders.dateHistogram("dataTime")
                 .field("createTime")
-                .format("yyyy-MM-dd HH:mm")
-                .dateHistogramInterval(DateHistogramInterval.minutes(1))
+                .format("yyyy-MM-dd HH")
+                .dateHistogramInterval(DateHistogramInterval.hours(1))
+                .timeZone(DateTimeZone.forOffsetHours(8))
                 .minDocCount(0)
                 .extendedBounds(extendedBounds);
 
         System.out.println(aggregationBuilder.toString());
-        SearchResponse sr = client.prepareSearch().setIndices("safe222")
+        SearchResponse sr = client.prepareSearch().setIndices("safe_dev")
                 .setTypes("customerVisitRecord")
                 .setQuery(queryBuilder)
                 .addAggregation(aggregationBuilder)
                 .execute().actionGet();
         InternalDateHistogram agg = sr.getAggregations().get("dataTime");
         System.out.println("数量：" + agg.getBuckets().size());
+
         for (InternalDateHistogram.Bucket bucket : agg.getBuckets()) {
             System.out.println("key:" + bucket.getKeyAsString() + ",count:" + bucket.getDocCount());
         }
