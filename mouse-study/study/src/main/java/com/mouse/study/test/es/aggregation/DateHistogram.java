@@ -10,6 +10,8 @@ import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramAggre
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.ExtendedBounds;
 import org.elasticsearch.search.aggregations.bucket.histogram.InternalDateHistogram;
+import org.elasticsearch.search.aggregations.bucket.range.Range;
+import org.elasticsearch.search.aggregations.bucket.range.date.DateRangeAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.cardinality.Cardinality;
 import org.elasticsearch.search.aggregations.metrics.cardinality.CardinalityAggregationBuilder;
 import org.joda.time.DateTimeZone;
@@ -23,7 +25,118 @@ public class DateHistogram {
 
     public static void main(String[] args) throws Exception {
         TransportClient client = ConfigService.getClient();
-        minHistogram(client);
+        aggQuarterByRangeHistogram(client);
+    }
+
+    /**
+     * 季度查询
+     * @param client
+     */
+    private static void aggQuarterByRangeHistogram(TransportClient client){
+
+        DateRangeAggregationBuilder rangeBuilder = AggregationBuilders.dateRange("range")
+                .field("requestTime")
+                .format("yyyy-MM")
+                .addRange("2017-05", "2018-02");
+
+        ExtendedBounds extendedBounds = new ExtendedBounds("2017-05", "2018-01");
+
+        DateHistogramAggregationBuilder aggregationBuilder = AggregationBuilders.dateHistogram("dataTime")
+                .field("requestTime")
+                .format("yyyy-MM")
+                .dateHistogramInterval(DateHistogramInterval.QUARTER)
+                .timeZone(DateTimeZone.forOffsetHours(8))
+                .extendedBounds(extendedBounds)
+                .minDocCount(0);
+
+        System.out.println(aggregationBuilder.toString());
+        SearchResponse sr = client.prepareSearch().setIndices("safe_local")
+                .setTypes("customerVisitRecord")
+                .addAggregation(rangeBuilder.subAggregation(aggregationBuilder))
+                .execute().actionGet();
+
+        Range range = sr.getAggregations().get("range");
+        System.out.println("数据："+range.getBuckets().size());
+        for (Range.Bucket entry : range.getBuckets()) {
+            InternalDateHistogram agg = entry.getAggregations().get("dataTime");
+
+            for (InternalDateHistogram.Bucket bucket : agg.getBuckets()) {
+                System.out.println("key:" + bucket.getKeyAsString() + ",count:" + bucket.getDocCount());
+            }
+        }
+
+    }
+
+    /**
+     * 季度查询
+     * @param client
+     */
+    private static void aggQuarterHistogram(TransportClient client){
+        //过滤时间点,注意时间格式与ES相同
+        QueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(
+                QueryBuilders.rangeQuery("requestTime")
+                        .gte("2017-05-01T00:00:00.000+0000")
+                        .lte("2018-01-31T23:59:59.000+0000"));
+
+         ExtendedBounds extendedBounds = new ExtendedBounds("2017-05", "2018-01");
+
+        DateHistogramAggregationBuilder aggregationBuilder = AggregationBuilders.dateHistogram("dataTime")
+                .field("requestTime")
+                .format("yyyy-MM")
+                .dateHistogramInterval(DateHistogramInterval.QUARTER)
+                .timeZone(DateTimeZone.forOffsetHours(8))
+                .extendedBounds(extendedBounds)
+                .minDocCount(0);
+
+        System.out.println(aggregationBuilder.toString());
+        SearchResponse sr = client.prepareSearch().setIndices("safe_local")
+                .setTypes("customerVisitRecord")
+                .setQuery(queryBuilder)
+                .addAggregation(aggregationBuilder)
+                .execute().actionGet();
+        InternalDateHistogram agg = sr.getAggregations().get("dataTime");
+        System.out.println("数量：" + agg.getBuckets().size());
+
+        for (InternalDateHistogram.Bucket bucket : agg.getBuckets()) {
+            System.out.println("key:" + bucket.getKeyAsString() + ",count:" + bucket.getDocCount());
+        }
+
+    }
+
+    /**
+     * 周分析
+     * @param client
+     */
+    private static void aggWeekHistogram(TransportClient client){
+        //过滤时间点,注意时间格式与ES相同
+        QueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(
+                QueryBuilders.rangeQuery("requestTime")
+                        .gte("2016-12-27T00:00:00.000+0000")
+                        .lte("2017-12-31T23:59:59.000+0000"));
+
+        ExtendedBounds extendedBounds = new ExtendedBounds("2016-12-27", "2017-12-31");
+
+        DateHistogramAggregationBuilder aggregationBuilder = AggregationBuilders.dateHistogram("dataTime")
+                .field("requestTime")
+                .format("yyyy-MM-dd")
+                .dateHistogramInterval(DateHistogramInterval.weeks(1))
+                .timeZone(DateTimeZone.forOffsetHours(8))
+                .extendedBounds(extendedBounds)
+                .minDocCount(0);
+
+        System.out.println(aggregationBuilder.toString());
+        SearchResponse sr = client.prepareSearch().setIndices("safe_local")
+                .setTypes("customerVisitRecord")
+                .setQuery(queryBuilder)
+                .addAggregation(aggregationBuilder)
+                .execute().actionGet();
+        InternalDateHistogram agg = sr.getAggregations().get("dataTime");
+        System.out.println("数量：" + agg.getBuckets().size());
+
+        for (InternalDateHistogram.Bucket bucket : agg.getBuckets()) {
+            System.out.println("key:" + bucket.getKeyAsString() + ",count:" + bucket.getDocCount());
+        }
+
     }
 
     /**
@@ -35,19 +148,20 @@ public class DateHistogram {
         //过滤时间点,注意时间格式与ES相同
         QueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(
                 QueryBuilders.rangeQuery("createTime")
-                        .gte("2017-10-05T00:00:00.000+0000")
-                        .lte("2017-11-06T12:00:00.000+0000"));
+                        .gte("2017-01-01T00:00:00.000+0000")
+                        .lte("2017-12-31T23:59:59.000+0000"));
 
         //用于控制非0 的输出，固定此时间点
         ExtendedBounds extendedBounds = new ExtendedBounds("2017-11-00 00", "2017-11-06 12");
 
         DateHistogramAggregationBuilder aggregationBuilder = AggregationBuilders.dateHistogram("dataTime")
                 .field("requestTime")
-                .format("yyyy-MM-dd HH")
+                .format("w")
                 .dateHistogramInterval(DateHistogramInterval.hours(3))
                 .timeZone(DateTimeZone.forOffsetHours(8))
-                .minDocCount(0)
-                .extendedBounds(extendedBounds);
+                .extendedBounds(extendedBounds)
+                .minDocCount(0);
+
 
         CardinalityAggregationBuilder ipAddress = AggregationBuilders.cardinality("cardinalityAgg").field("ipAddress");
 
