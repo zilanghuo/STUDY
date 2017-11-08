@@ -20,7 +20,6 @@ public class CountryDemo {
     public static void main(String[] args) throws Exception {
 
         TransportClient client = ConfigService.getClient();
-
         /**
          * 1、过滤时间点
          * 2、过滤非空数据
