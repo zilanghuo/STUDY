@@ -1,4 +1,4 @@
-package com.mouse.study.test.mode.templet;
+package com.mouse.study.test.mode.templete;
 
 /**
  * Created by lwf on 2017/8/4.
