@@ -179,6 +179,13 @@ public class SimpleSearch {
         BoolQueryBuilder query =
                 QueryBuilders.boolQuery()
                         .must(QueryBuilders.prefixQuery("nameOne", "we"));
+            QueryBuilders.matchQuery("fieldName","queryStr");
+            QueryBuilders.termQuery("fieldName","queryStr");
+            QueryBuilders.prefixQuery("fieldName","queryStr");
+            QueryBuilders.existsQuery("fieldName");
+            QueryBuilders.fuzzyQuery("fieldName","queryStr");
+            QueryBuilders.queryStringQuery("queryStr");
+
 
         QueryBuilder queryBuilder = QueryBuilders.fuzzyQuery("nameOne", "北京");
 
