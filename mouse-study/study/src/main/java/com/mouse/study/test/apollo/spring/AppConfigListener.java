@@ -31,7 +31,6 @@ public class AppConfigListener {
             logger.info("Change - key: {}, oldValue: {}, newValue: {}, changeType: {}",
                     change.getPropertyName(), change.getOldValue(), change.getNewValue(),
                     change.getChangeType());
-            configBean.setTest(change.getNewValue());
             // refreshScope.refresh("configBean");
         }
     }

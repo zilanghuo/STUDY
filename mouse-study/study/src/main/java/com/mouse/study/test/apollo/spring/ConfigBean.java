@@ -22,12 +22,4 @@ public class ConfigBean {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigBean.class);
 
-    @Value("${initialSize}")
-    private String test;
-
-    @PostConstruct
-    void initialize() {
-        logger.info("test is initialized as {}", test);
-    }
-
 }
