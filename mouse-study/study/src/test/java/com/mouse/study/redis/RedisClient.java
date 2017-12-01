@@ -137,9 +137,6 @@ public class RedisClient {
         };
         jedis.subscribe(jedisPubSub, "channel1");
 
-		/*输出
-		channel1
-		test publish substribe*/
     }
 
     //发布
