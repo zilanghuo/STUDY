@@ -1,8 +1,12 @@
 package com.mouse.study.test;
 
+import com.mouse.study.api.utils.DateUtils;
 import com.mouse.study.test.es.model.People;
 import com.mouse.study.utils.JackJsonUtil;
 import net.sf.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author lwf
@@ -10,6 +14,20 @@ import net.sf.json.JSONObject;
  * use:
  */
 public class Test {
+
+    @org.junit.Test
+    public void testDate(){
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DAY_OF_MONTH,-1);
+        now.set(Calendar.HOUR, 1);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        now.set(Calendar.MILLISECOND, 1);
+        Date startDate = now.getTime();
+        System.out.println(DateUtils.format(startDate));
+
+    }
+
 
     public static void main(String[] args) {
         People people = new People();

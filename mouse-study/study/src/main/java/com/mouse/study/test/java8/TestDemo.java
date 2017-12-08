@@ -8,6 +8,41 @@ package com.mouse.study.test.java8;
 public class TestDemo {
 
     @org.junit.Test
+    public void testNight(){
+        int num = 2147483647 ;
+        long temp = num + 2L ;
+        System.out.println(num) ;
+        System.out.println(temp) ;
+    }
+
+    @org.junit.Test
+    public void testEight(){
+        int num = 100 ;
+        long x = num + 2 ;
+        System.out.println(x) ;
+    }
+
+    @org.junit.Test
+    public void testSeven(){
+        char c = 'A' ;
+        int num = 10 ;
+        switch(c) {
+            case 'B' :
+                num ++ ;
+            case 'A' :
+                num ++ ;
+            case 'C' :
+                num ++ ;
+            case 'Y' :
+                num ++ ;
+                break ;
+            default :
+                num -- ;
+        }
+        System.out.println(num) ;
+    }
+
+    @org.junit.Test
     public void testSix() {
         int num = 68;
         char c = (char) num;
@@ -19,10 +54,9 @@ public class TestDemo {
 
     @org.junit.Test
     public void testFive() {
-        int num = 2147483647;
-        long temp = num + 2L;
+        int num = 2147483647 ;
+        num += 2L ;
         System.out.println(num);
-        System.out.println(temp);
         System.out.println('a');
         /**
          * 　01111111 11111111 11111111 11111111
@@ -67,11 +101,6 @@ public class TestDemo {
             i += j;
         }
         System.out.println("i = " + i);
-        /**
-         * j = 1,i = 2
-         * 1、j =2 ; i = 3;
-         *
-         */
     }
 
 

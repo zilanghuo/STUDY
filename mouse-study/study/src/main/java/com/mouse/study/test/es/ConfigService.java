@@ -19,7 +19,7 @@ public class ConfigService {
                 .put("client.transport.sniff", true).build();
 
         TransportClient client = new PreBuiltTransportClient(settings)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("172.17.34.121"), 9300));
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("172.17.34.122"), 9300));
 
         return client;
     }

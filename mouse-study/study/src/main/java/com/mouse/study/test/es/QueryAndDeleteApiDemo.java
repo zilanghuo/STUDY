@@ -17,8 +17,8 @@ public class QueryAndDeleteApiDemo {
         TransportClient client = ConfigService.getClient();
         BulkByScrollResponse response =
                 DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
-                        .filter(QueryBuilders.matchPhrasePrefixQuery("errorMsg", "erro"))
-                        .source("safe_dev")
+                        .filter(QueryBuilders.matchAllQuery())
+                        .source("governance")
                         .get();
         long deleted = response.getDeleted();
         System.out.println(deleted);
