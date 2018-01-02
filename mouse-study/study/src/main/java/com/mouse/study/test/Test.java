@@ -7,6 +7,8 @@ import net.sf.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author lwf
@@ -14,6 +16,17 @@ import java.util.Date;
  * use:
  */
 public class Test {
+
+    @org.junit.Test
+    public void testReg(){
+        String reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+        Pattern pattern = Pattern.compile(reg);
+        Matcher m=pattern.matcher("543gjhgXER");
+        Matcher m2=pattern.matcher("5gjXER");
+        boolean matches = m.matches();
+        System.out.println(matches);
+
+    }
 
     @org.junit.Test
     public void testDate(){

@@ -7,6 +7,4 @@ import lombok.AllArgsConstructor;
  */
 @AllArgsConstructor
 public enum MessageDirection {
-
-
 }
