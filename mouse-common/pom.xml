@@ -258,7 +258,7 @@
         <repository>
             <id>nexus</id>
             <name>Team Nexus Repository</name>
-            <url>http://47.93.227.137:8081/nexus/content/groups/public</url>
+            <url>http://127.0.0.1:8051/repository/maven-central/</url>
         </repository>
     </repositories>
 

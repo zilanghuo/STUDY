@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
  */
 public class Test {
 
+
+
     @org.junit.Test
     public void testReg(){
         String reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
