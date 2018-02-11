@@ -125,6 +125,7 @@ public class SimpleSearch {
                 //  .setPostFilter(QueryBuilders.matchAllQuery())     // Filter
 
                 ;
+
         log.info("str:【{}】", requestBuilder.toString());
         SearchResponse response = requestBuilder
                 .setFrom(0).setSize(60).setExplain(true)

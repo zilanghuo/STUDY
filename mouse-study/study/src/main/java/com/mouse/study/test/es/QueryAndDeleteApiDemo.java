@@ -18,7 +18,7 @@ public class QueryAndDeleteApiDemo {
         BulkByScrollResponse response =
                 DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
                         .filter(QueryBuilders.matchAllQuery())
-                        .source("governance")
+                        .source("user_dev")
                         .get();
         long deleted = response.getDeleted();
         System.out.println(deleted);

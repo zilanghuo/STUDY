@@ -50,7 +50,7 @@ public class PeopleArrayMapping {
     public void searchArray() throws Exception{
         TransportClient client = ConfigService.getClient();
         SearchRequestBuilder requestBuilder = client.prepareSearch("bc_dev").setTypes("peopleArray2")
-                .setQuery(QueryBuilders.termQuery("arrayName2", "iii"));
+                .setQuery(QueryBuilders.termsQuery("arrayName2", "ii"));
         System.out.println(requestBuilder.toString());
 
         SearchResponse response = requestBuilder.execute().actionGet();
