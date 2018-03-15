@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * use to do:订阅消息示例代码
  */
 @Data
-public class OrderedConsumer {
+public class OrderedConsumer_2 {
 
 
     public static void main(String[] args) throws Exception {
