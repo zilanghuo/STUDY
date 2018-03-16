@@ -19,6 +19,8 @@ public class TestMain {
         //主动触发事件监视机制
         context.publishEvent(emailEvent);
 
+
+
     }
 
 
