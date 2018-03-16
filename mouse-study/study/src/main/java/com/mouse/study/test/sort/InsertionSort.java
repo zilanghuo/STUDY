@@ -7,7 +7,7 @@ import com.mouse.study.utils.JackJsonUtil;
  * @date 2018/3/12
  * use: 插入排序
  */
-public class insertionSort {
+public class InsertionSort {
 
 
     public static void main(String[] args) {
