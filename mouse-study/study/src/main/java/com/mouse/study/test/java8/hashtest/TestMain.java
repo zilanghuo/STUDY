@@ -18,7 +18,7 @@ public class TestMain {
         ch.printServerNodes();
 
         //看看下面的客户端节点会被路由到哪个服务器节点
-        String[] nodes = {"127.0.0.1:1111", "221.226.0.1:2222", "10.211.0.1:3333"};
+        String[] nodes = {"127.0.0.1:1111", "221.226.0.1:2222","221.226.5.7:2222", "10.211.0.1:3333"};
         System.out.println("此时，各个客户端的路由情况如下：");
         for(String node:nodes){
             ServerNode serverNode = ch.getServerNode(node);

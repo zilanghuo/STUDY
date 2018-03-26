@@ -7,7 +7,7 @@ package com.mouse.study.test.zookeeper;
  */
 public class Const {
 
-    public static final String ZK_URL = "47.93.227.137:2181";
+    public static final String ZK_URL = "172.17.34.121:2181";
 
     public static final String GROUP_NAME = "test";
 

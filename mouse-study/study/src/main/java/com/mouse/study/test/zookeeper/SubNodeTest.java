@@ -11,7 +11,7 @@ import org.I0Itec.zkclient.ZkClient;
 public class SubNodeTest {
 
     public static void main(String[] args) {
-        ZkClient zkClient = new ZkClient("172.17.34.3:2181");
+        ZkClient zkClient = new ZkClient(Const.ZK_URL);
         zkClient.subscribeDataChanges("/testNode", new IZkDataListener() {
 
             @Override
