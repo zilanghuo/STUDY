@@ -3,7 +3,8 @@ package com.mouse.study.test.mode.observer;
 /**
  * @author lwf
  * @date 2018/3/26
- * use:
+ * 发布-订阅模式
+ * 广播模式
  */
 public class TestMain {
 
