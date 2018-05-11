@@ -4,6 +4,7 @@ import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.utils.JackJsonUtil;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -17,6 +18,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
@@ -52,7 +54,7 @@ public class TestMain {
                 QueryBuilders.boolQuery();
         QueryBuilder qb = nestedQuery(
                 "couponList",
-                boolQuery().must(QueryBuilders.matchAllQuery()),
+                boolQuery().must(QueryBuilders.rangeQuery("couponList.amount").gt(2)),
                 ScoreMode.Avg
         );
         boolQueryBuilder.must(qb);
@@ -100,7 +102,7 @@ public class TestMain {
         String indexName = "test-0508";
         TransportClient client = ConfigService.getClient();
         try {
-           // DeleteIndexResponse deleteIndexResponse = client.admin().indices().prepareDelete(indexName).get();
+            DeleteIndexResponse deleteIndexResponse = client.admin().indices().prepareDelete(indexName).get();
         }catch (Exception e){
         }
         CreateIndexResponse response = client.admin().indices().prepareCreate(indexName).get();
@@ -117,11 +119,13 @@ public class TestMain {
         Coupon couponOne = new Coupon();
         couponOne.setCouponNo("c001");
         couponOne.setAmount(BigDecimal.ONE);
+        couponOne.setUserTime(new Date());
         couponList.add(couponOne);
 
         Coupon couponTwo = new Coupon();
         couponTwo.setCouponNo("c002");
         couponTwo.setAmount(BigDecimal.TEN);
+        couponTwo.setUserTime(new Date());
         couponList.add(couponTwo);
         repayInfo.setCouponList(couponList);
         System.out.println(repayInfo.gainBuilder().string());
