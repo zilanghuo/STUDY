@@ -2,16 +2,25 @@ package com.mouse.study.test.es.join;
 
 import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.utils.JackJsonUtil;
+import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
+import static org.elasticsearch.index.query.QueryBuilders.nestedQuery;
 
 /**
  * @author lwf
@@ -19,6 +28,8 @@ import java.util.List;
  * use:
  */
 public class TestMain {
+
+    public final static String indexName = "test-0508";
 
     public static void main(String[] args) throws Exception{
         RepayInfo repayInfo = new RepayInfo();
@@ -32,6 +43,29 @@ public class TestMain {
         couponList.add(couponOne);
         repayInfo.setCouponList(couponList);
         System.out.println(JackJsonUtil.objToStr(repayInfo));
+    }
+
+    @org.junit.Test
+    public void searchCoupon() throws Exception{
+        TransportClient client = ConfigService.getClient();
+        BoolQueryBuilder boolQueryBuilder =
+                QueryBuilders.boolQuery();
+        QueryBuilder qb = nestedQuery(
+                "couponList",
+                boolQuery().must(QueryBuilders.matchAllQuery()),
+                ScoreMode.Avg
+        );
+        boolQueryBuilder.must(qb);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
+                .setQuery(qb);
+        SearchResponse response = requestBuilder.execute().actionGet();
+        System.out.println(response.status());
+        System.out.println(response.getHits().getTotalHits());
+        System.out.println(response.getHits().getHits()[0].getSourceAsString());
+        String resource = response.getHits().getHits()[0].getSourceAsString();
+        RepayInfo info = (RepayInfo) JackJsonUtil.strToObj(resource,RepayInfo.class);
+        System.out.println(info.getCouponList().get(0).getCouponNo());
     }
 
     @org.junit.Test
