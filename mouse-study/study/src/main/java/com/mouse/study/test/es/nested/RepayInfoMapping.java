@@ -1,5 +1,6 @@
-package com.mouse.study.test.es.join;
+package com.mouse.study.test.es.nested;
 
+import com.mouse.study.utils.DateUtils;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 
 import java.io.IOException;
@@ -34,6 +35,21 @@ public class RepayInfoMapping {
 
                     .startObject("couponList")
                     .field("type", "nested")
+                    .startObject("properties")
+                        .startObject("couponNo")
+                        .field("type", "keyword")
+                        .endObject()
+
+                        .startObject("amount")
+                        .field("type", "double")
+                        .endObject()
+
+                        .startObject("userTime")
+                        .field("type", "date")
+                        .field("format", DateUtils.ES_FORMAT)
+                        .field("index", "not_analyzed")
+                        .endObject()
+                    .endObject()
                     .endObject()
 
                     //关联数据

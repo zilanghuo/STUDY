@@ -1,7 +1,6 @@
-package com.mouse.study.test.es.join;
+package com.mouse.study.test.es.nested;
 
 import lombok.Data;
-import net.sf.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,11 +18,5 @@ public class Coupon {
     private BigDecimal amount;
 
     private Date userTime;
-
-    @Override
-    public String toString(){
-        JSONObject json = JSONObject.fromObject(this);
-        return json.toString();
-    }
 
 }

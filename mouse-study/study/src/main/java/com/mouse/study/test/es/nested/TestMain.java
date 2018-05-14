@@ -1,4 +1,4 @@
-package com.mouse.study.test.es.join;
+package com.mouse.study.test.es.nested;
 
 import com.mouse.study.test.es.ConfigService;
 import com.mouse.study.utils.JackJsonUtil;
@@ -42,6 +42,7 @@ public class TestMain {
         Coupon couponOne = new Coupon();
         couponOne.setCouponNo("c001");
         couponOne.setAmount(BigDecimal.ONE);
+        couponOne.setUserTime(new Date());
         couponList.add(couponOne);
         repayInfo.setCouponList(couponList);
         System.out.println(JackJsonUtil.objToStr(repayInfo));
@@ -75,24 +76,26 @@ public class TestMain {
         TransportClient client = ConfigService.getClient();
         String indexName = "test-0508";
         RepayInfo repayInfo = new RepayInfo();
-        repayInfo.setUserId("0002");
-        repayInfo.setId("0002");
+        repayInfo.setUserId("0004");
+        repayInfo.setId("0004");
         repayInfo.setRepayAmount(BigDecimal.TEN);
         List<Coupon> couponList = new ArrayList();
         Coupon couponOne = new Coupon();
         couponOne.setCouponNo("c001");
         couponOne.setAmount(BigDecimal.ONE);
+        couponOne.setUserTime(new Date());
         couponList.add(couponOne);
 
         Coupon couponTwo = new Coupon();
         couponTwo.setCouponNo("c002");
         couponTwo.setAmount(BigDecimal.TEN);
+        couponTwo.setUserTime(new Date());
         couponList.add(couponTwo);
         repayInfo.setCouponList(couponList);
         System.out.println(repayInfo.gainBuilder().string());
 
         IndexResponse insertResponse = client.prepareIndex(indexName, RepayInfoMapping.getMapperName())
-                .setSource(JackJsonUtil.objToStr(repayInfo)).get();
+                .setSource(repayInfo.gainBuilder()).get();
         System.out.println(JackJsonUtil.objToStr(insertResponse));
 
     }
@@ -132,7 +135,7 @@ public class TestMain {
 
 
         IndexResponse insertResponse = client.prepareIndex(indexName, RepayInfoMapping.getMapperName())
-                .setSource(JackJsonUtil.objToStr(repayInfo)).get();
+                .setSource(repayInfo.gainBuilder()).get();
         System.out.println(JackJsonUtil.objToStr(insertResponse));
     }
 
