@@ -44,6 +44,11 @@ public class DateUtils {
         return date;
     }
 
+    public static Date plusDays(Date date, int days) {
+        return new DateTime(date.getTime()).plusDays(days).toDate();
+    }
+
+
     public static Date formatForString(String string) {
         try {
             return DateFormat.getDateInstance().parse(string);
@@ -97,4 +102,6 @@ public class DateUtils {
         System.out.println(format(date, "yyyy-MM-dd HH:mm:ss"));
 
     }
+
+
 }
