@@ -114,7 +114,65 @@ public class TestMain {
             Range dateRange = nested.getAggregations().get("dataRange");
             for (Range.Bucket range : dateRange.getBuckets()) {
                 System.out.println(range.getKeyAsString() + ",size:" + range.getDocCount());
+                //需要加层判断，range会为null
                 Sum sum = range.getAggregations().get("sumTwo");
+                // 获取到符合条件的红包总金额
+                System.out.println("userId:" + bucket.getKeyAsString() + ",totalAmount:" + sum.getValue() / bucket.getDocCount());
+            }
+        }
+
+    }
+
+    @org.junit.Test
+    public void reverseNestedTwo()throws Exception{
+        TransportClient client = ConfigService.getClient();
+        BoolQueryBuilder boolQueryBuilder =
+                QueryBuilders.boolQuery();
+
+        Calendar now = Calendar.getInstance();
+        now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 22);
+        Date startTime = DateUtils.plusDays(new Date(), 45);
+
+        now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 26);
+        Date endTime = DateUtils.plusDays(new Date(), 55);
+
+        QueryBuilder qb = nestedQuery(
+                "couponList",
+                QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("couponList.userTime").gte(DateUtils.formatByEsForDate(startTime)).lte(DateUtils.formatByEsForDate(endTime))),
+                ScoreMode.Avg);
+        boolQueryBuilder.must(qb);
+
+        AggregationBuilder userBuilder = AggregationBuilders.terms("userTerm").field("userId")
+                .subAggregation(AggregationBuilders.nested("nestedTwo", "couponList")
+                        .subAggregation(AggregationBuilders.dateRange("dataRange").field("couponList.userTime").addRange(DateUtils.formatByEsForDate(startTime), DateUtils.formatByEsForDate(endTime))
+                                .subAggregation(AggregationBuilders.sum("sumTwo").field("couponList.amount"))
+                        .subAggregation(AggregationBuilders.reverseNested("reverseAgg")))
+                );
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
+                .setQuery(qb)
+                .addAggregation(userBuilder)
+                .setSize(100);
+        System.out.println(requestBuilder.toString());
+
+        SearchResponse response = requestBuilder.execute().actionGet();
+        SearchHit[] hits = response.getHits().getHits();
+        // 记录数
+        for (int i = 0; i < hits.length; i++) {
+            SearchHit hit = hits[i];
+            RepayInfo info = (RepayInfo) JackJsonUtil.strToObj(hit.getSourceAsString(), RepayInfo.class);
+            System.out.println(JackJsonUtil.objToStr(info));
+        }
+        Terms userTerm = response.getAggregations().get("userTerm");
+        for (Terms.Bucket bucket : userTerm.getBuckets()) {
+            Nested nested = bucket.getAggregations().get("nestedTwo");
+            Range dateRange = nested.getAggregations().get("dataRange");
+            for (Range.Bucket range : dateRange.getBuckets()) {
+                System.out.println(range.getKeyAsString() + ",size:" + range.getDocCount());
+                //需要加层判断，range会为null
+                Sum sum = range.getAggregations().get("sumTwo");
+                ReverseNested reverseNested =  range.getAggregations().get("reverseAgg");
+                System.out.println(reverseNested.getDocCount());
                 // 获取到符合条件的红包总金额
                 System.out.println("userId:" + bucket.getKeyAsString() + ",totalAmount:" + sum.getValue() / bucket.getDocCount());
             }
@@ -134,9 +192,10 @@ public class TestMain {
                 ScoreMode.Avg);
         boolQueryBuilder.must(qb);
 
-        AggregationBuilder aggBuilder = AggregationBuilders.nested("nestedAgg", "couponList")
-                .subAggregation(AggregationBuilders.terms("couponTerm").field("couponList.couponNo")
-                        .subAggregation(AggregationBuilders.reverseNested("reverseAgg")));
+        AggregationBuilder aggBuilder =
+                        AggregationBuilders.nested("nestedAgg", "couponList")
+                                .subAggregation(AggregationBuilders.terms("couponTerm").field("couponList.couponNo")
+                                        .subAggregation(AggregationBuilders.reverseNested("reverseAgg")));
 
         SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
                 .setQuery(qb)
@@ -152,36 +211,6 @@ public class TestMain {
             ReverseNested resellerToProduct = bucket.getAggregations().get("reverseAgg");
             System.out.println("红包编号：" + bucket.getKeyAsString() + "，出现了" + resellerToProduct.getDocCount() + "次");
         }
-
-    }
-
-    @org.junit.Test
-    public void searchCoupon() throws Exception {
-        TransportClient client = ConfigService.getClient();
-        BoolQueryBuilder boolQueryBuilder =
-                QueryBuilders.boolQuery();
-        BoolQueryBuilder nestedBoolQuery =
-                QueryBuilders.boolQuery();
-        QueryBuilder qb = nestedQuery(
-                "couponList",
-                nestedBoolQuery.must(QueryBuilders.matchAllQuery()),
-                ScoreMode.Avg);
-        boolQueryBuilder.must(qb);
-
-        SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
-                .setQuery(qb)
-                .setCollapse(new CollapseBuilder("userId"))
-                .addAggregation(AggregationBuilders.terms("userId").field("userId").subAggregation(AggregationBuilders.nested("nested", "couponList").subAggregation(AggregationBuilders.sum("amount"))));
-        SearchResponse response = requestBuilder.execute().actionGet();
-        SearchHit[] hits = response.getHits().getHits();
-        for (int i = 0; i < hits.length; i++) {
-            System.out.println(JackJsonUtil.objToStr(hits[i].getSourceAsString()));
-        }
-        Terms termUserId = response.getAggregations().get("userId");
-
-        String resource = response.getHits().getHits()[0].getSourceAsString();
-        RepayInfo info = (RepayInfo) JackJsonUtil.strToObj(resource, RepayInfo.class);
-        System.out.println(info.getCouponList().get(0).getCouponNo());
     }
 
     @org.junit.Test
@@ -189,8 +218,8 @@ public class TestMain {
         TransportClient client = ConfigService.getClient();
         String indexName = "test-0508";
         RepayInfo repayInfo = new RepayInfo();
-        repayInfo.setUserId("20180515004");
-        repayInfo.setId("20180515004");
+        repayInfo.setUserId("20180515005");
+        repayInfo.setId("20180515005");
         repayInfo.setRepayAmount(BigDecimal.TEN);
         List<Coupon> couponList = new ArrayList();
         Coupon couponOne = new Coupon();
@@ -204,7 +233,7 @@ public class TestMain {
         couponTwo.setAmount(new BigDecimal(15));
         couponTwo.setUserTime(DateUtils.plusDays(new Date(), 50));
         couponList.add(couponTwo);
-        repayInfo.setCouponList(couponList);
+        //repayInfo.setCouponList(couponList);
         System.out.println(repayInfo.gainBuilder().string());
 
         IndexResponse insertResponse = client.prepareIndex(indexName, RepayInfoMapping.getMapperName())
@@ -245,8 +274,6 @@ public class TestMain {
         couponList.add(couponTwo);
         repayInfo.setCouponList(couponList);
         System.out.println(repayInfo.gainBuilder().string());
-
-
         IndexResponse insertResponse = client.prepareIndex(indexName, RepayInfoMapping.getMapperName())
                 .setSource(repayInfo.gainBuilder()).get();
         System.out.println(JackJsonUtil.objToStr(insertResponse));

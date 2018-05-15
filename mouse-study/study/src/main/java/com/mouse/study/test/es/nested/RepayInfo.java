@@ -7,7 +7,6 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
@@ -26,7 +25,7 @@ public class RepayInfo implements Serializable {
 
     private BigDecimal repayAmount;
 
-    private List<Coupon> couponList = new ArrayList();
+    private List<Coupon> couponList ;
 
     public  XContentBuilder gainBuilder() {
         try {
