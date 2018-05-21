@@ -14,9 +14,11 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.InnerHitBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.nested.Nested;
@@ -27,10 +29,7 @@ import org.elasticsearch.search.aggregations.metrics.sum.Sum;
 import org.elasticsearch.search.collapse.CollapseBuilder;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.elasticsearch.index.query.QueryBuilders.nestedQuery;
 
@@ -70,7 +69,7 @@ public class TestMain {
     @org.junit.Test
     public void sumNested() throws Exception {
         Date startTime = DateUtils.plusDays(new Date(), 25);
-        Date endTime = DateUtils.plusDays(new Date(), 27);
+        Date endTime = DateUtils.plusDays(new Date(), 29);
 
         TransportClient client = ConfigService.getClient();
         BoolQueryBuilder boolQueryBuilder =
@@ -96,13 +95,13 @@ public class TestMain {
                 .should(QueryBuilders.rangeQuery("couponList.ValidEndTime").gte(DateUtils.formatByEsForDate(startTime)).lte(DateUtils.formatByEsForDate(endTime)))
                 .should(subRangeBuilderTwo);
 
-        // 针对内部查询，符合内部条件
-        QueryBuilder qb = nestedQuery(
-                "couponList", nestedQueryBuilder, ScoreMode.Avg);
+        // 针对内部查询，符合内部条件，添加：innerHit，response 体包含内嵌的命中数据体
+        QueryBuilder qb = QueryBuilders.nestedQuery("couponList", nestedQueryBuilder, ScoreMode.Avg).innerHit(new InnerHitBuilder("couponNo"));
+
         boolQueryBuilder.must(qb);
         AggregationBuilder userBuilder = AggregationBuilders.terms("userTerm").field("userId")
                 .subAggregation(AggregationBuilders.nested("nestedTwo", "couponList")
-                        .subAggregation(AggregationBuilders.sum("sumTwo").field("couponList.amount")));
+                        .subAggregation(AggregationBuilders.terms("couponNo").field("couponList.couponNo").subAggregation(AggregationBuilders.sum("sumTwo").field("couponList.amount"))));
 
         SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
                 .setQuery(qb)
@@ -110,12 +109,23 @@ public class TestMain {
         System.out.println(requestBuilder.toString());
         SearchResponse response = requestBuilder.execute().actionGet();
         System.out.println(response.getHits().getTotalHits());
+
+        //获取nested 查询命中的记录
+        Map<String, SearchHits> innerHits = response.getHits().getHits()[0].getInnerHits();
+        Iterator<Map.Entry<String, SearchHits>> iterator = innerHits.entrySet().iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().getValue().getHits()[0].getSourceAsString());
+        }
+
         // 记录数
         Terms userTerm = response.getAggregations().get("userTerm");
         for (Terms.Bucket bucket : userTerm.getBuckets()) {
             Nested nested = bucket.getAggregations().get("nestedTwo");
-            Sum sum = nested.getAggregations().get("sumTwo");
-            System.out.println("userId:" + bucket.getKeyAsString() + ",sumAmount:" + sum.getValue());
+            Terms couponTerm = nested.getAggregations().get("couponNo");
+            for (Terms.Bucket bucket1 : couponTerm.getBuckets()){
+                Sum sum = bucket1.getAggregations().get("sumTwo");
+                System.out.println("userId:" + bucket.getKeyAsString() + ",sumAmount:" + sum.getValue());
+            }
         }
     }
 
@@ -254,48 +264,29 @@ public class TestMain {
         List<Coupon> couponList = new ArrayList();
         Coupon couponOne = new Coupon();
         couponOne.setCouponNo(repayInfo.getUserId() + "c001");
-        couponOne.setAmount(BigDecimal.ONE);
-        couponOne.setValidStartTime(DateUtils.plusDays(new Date(), -5));
-        couponOne.setValidEndTime(DateUtils.plusDays(new Date(), 5));
+        couponOne.setAmount(new BigDecimal(5));
+        couponOne.setValidStartTime(DateUtils.plusDays(new Date(), 18));
+        couponOne.setValidEndTime(DateUtils.plusDays(new Date(), 22));
         couponList.add(couponOne);
+
         Coupon couponTwo = new Coupon();
         couponTwo.setCouponNo(repayInfo.getUserId() + "c002");
-        couponTwo.setAmount(BigDecimal.TEN);
-        couponTwo.setValidStartTime(DateUtils.plusDays(new Date(), -6));
-        couponTwo.setValidEndTime(DateUtils.plusDays(new Date(), 6));
+        couponTwo.setAmount(new BigDecimal(22));
+        couponTwo.setValidStartTime(DateUtils.plusDays(new Date(), 20));
+        couponTwo.setValidEndTime(DateUtils.plusDays(new Date(), 23));
         couponList.add(couponTwo);
+
+        Coupon couponTwo3 = new Coupon();
+        couponTwo3.setCouponNo(repayInfo.getUserId() + "c003");
+        couponTwo3.setAmount(BigDecimal.TEN);
+        couponTwo3.setValidStartTime(DateUtils.plusDays(new Date(), 22));
+        couponTwo3.setValidEndTime(DateUtils.plusDays(new Date(), 26));
+        couponList.add(couponTwo3);
         repayInfo.setCouponList(couponList);
-
-        RepayInfo repayInfo2 = new RepayInfo();
-        repayInfo2.setUserId("0003");
-        repayInfo2.setId("0003");
-        repayInfo2.setRepayAmount(BigDecimal.TEN);
-        List<Coupon> couponList2 = new ArrayList();
-        Coupon couponOne2 = new Coupon();
-        couponOne2.setCouponNo(repayInfo.getUserId() + "c001");
-        couponOne2.setAmount(BigDecimal.ONE);
-        couponOne2.setValidStartTime(DateUtils.plusDays(new Date(), -7));
-        couponOne2.setValidEndTime(DateUtils.plusDays(new Date(), 7));
-        couponList2.add(couponOne2);
-        Coupon couponTwo2 = new Coupon();
-        couponTwo2.setCouponNo(repayInfo.getUserId() + "c002");
-        couponTwo2.setAmount(BigDecimal.TEN);
-        couponTwo2.setValidStartTime(DateUtils.plusDays(new Date(), -8));
-        couponTwo2.setValidEndTime(DateUtils.plusDays(new Date(), 8));
-        couponList2.add(couponTwo2);
-        repayInfo2.setCouponList(couponList2);
-
 
         System.out.println(repayInfo.gainBuilder().string());
         IndexResponse insertResponse = client.prepareIndex(indexName, RepayInfoMapping.getMapperName())
                 .setSource(repayInfo.gainBuilder()).get();
         System.out.println(JackJsonUtil.objToStr(insertResponse));
-
-        System.out.println(repayInfo2.gainBuilder().string());
-        IndexResponse insertResponse2 = client.prepareIndex(indexName, RepayInfoMapping.getMapperName())
-                .setSource(repayInfo2.gainBuilder()).get();
-        System.out.println(JackJsonUtil.objToStr(insertResponse2));
     }
-
-
 }
