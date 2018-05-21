@@ -1,5 +1,6 @@
 package com.mouse.study.test.es.rest;
 
+import lombok.Data;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.nio.entity.NStringEntity;
@@ -7,6 +8,7 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 
@@ -15,9 +17,33 @@ import java.util.Map;
  * @date 2017/10/18
  * use: 分析器
  */
-public class AnalyzeDemo {
+@Data
+public class AnalyzeDemo implements Serializable{
 
-    public final String JSON_STRING = "{\"text\":\"这里是 好记性不如烂笔头感叹号的博客园\"}";
+    private static final long serialVersionUID = -6534497747237819945L;
+
+ public final String JSON_STRING = "{\"text\":\"这里是 好记性不如烂笔头感叹号的博客园\"}";
+
+
+    public String age;
+    public Integer count;
+
+    public AnalyzeDemo(){
+        System.out.println("无参构造器");
+    }
+
+    public AnalyzeDemo(String age){
+        this.age = age;
+    }
+
+    public AnalyzeDemo(int count){
+        this.count = count;
+    }
+
+    public AnalyzeDemo(String age,int count){
+        this.age = age;
+        this.count = count;
+    }
 
     @org.junit.Test
     public void testOfficial() throws Exception{

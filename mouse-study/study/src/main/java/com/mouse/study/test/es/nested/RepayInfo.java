@@ -19,6 +19,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 @Data
 public class RepayInfo implements Serializable {
 
+
     private String id;
 
     private String userId;
