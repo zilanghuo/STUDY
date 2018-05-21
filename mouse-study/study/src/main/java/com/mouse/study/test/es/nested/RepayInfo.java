@@ -40,7 +40,8 @@ public class RepayInfo implements Serializable {
                 builder.startObject();
                     builder.field("couponNo",couponList.get(i).getCouponNo());
                     builder.field("amount",couponList.get(i).getAmount());
-                    builder.field("userTime", DateUtils.formatByEsForDate(couponList.get(i).getUserTime()));
+                    builder.field("validStartTime",  DateUtils.formatByEsForDate(couponList.get(i).getValidStartTime()));
+                    builder.field("ValidEndTime", DateUtils.formatByEsForDate(couponList.get(i).getValidEndTime()));
                 builder.endObject();
             }
             builder.endArray();

@@ -17,6 +17,8 @@ public class Coupon {
 
     private BigDecimal amount;
 
-    private Date userTime;
+    private Date validStartTime;
+
+    private Date ValidEndTime;
 
 }
