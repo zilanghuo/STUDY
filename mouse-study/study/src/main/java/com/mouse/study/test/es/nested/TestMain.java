@@ -97,7 +97,8 @@ public class TestMain {
         AggregationBuilder userBuilder = AggregationBuilders.terms("userTerm").field("userId")
                 .subAggregation(AggregationBuilders.nested("nestedTwo", "couponList")
                         .subAggregation(AggregationBuilders.filter("filterOne", nestedQueryBuilder)
-                                .subAggregation(AggregationBuilders.sum("sumTwo").field("couponList.amount"))));
+                                .subAggregation(AggregationBuilders.sum("sumTwo").field("couponList.amount")
+                                )));
 
         SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
                 .setQuery(qb)
