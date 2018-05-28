@@ -1,4 +1,4 @@
-package com.mouse.study.test.threadPool;
+package com.mouse.study.test.thread;
 
 /**
  * Created by lwf on 2017/8/1.

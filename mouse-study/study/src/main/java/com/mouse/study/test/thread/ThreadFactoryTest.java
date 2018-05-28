@@ -1,4 +1,4 @@
-package com.mouse.study.test.threadPool;
+package com.mouse.study.test.thread;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
