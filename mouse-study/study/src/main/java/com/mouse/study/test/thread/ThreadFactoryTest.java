@@ -23,6 +23,7 @@ public class ThreadFactoryTest implements ThreadFactory {
     public Thread newThread(Runnable r) {
         Thread thread = new Thread(r);
         thread.setName("自定义-" + size.incrementAndGet());
+        System.out.println(thread.isDaemon());
         return thread;
     }
 }
