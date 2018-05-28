@@ -9,6 +9,7 @@ import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -18,6 +19,7 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.InnerHitBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.script.Script;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
@@ -28,6 +30,8 @@ import org.elasticsearch.search.aggregations.bucket.nested.ReverseNested;
 import org.elasticsearch.search.aggregations.bucket.range.Range;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.sum.Sum;
+import org.elasticsearch.search.aggregations.metrics.sum.SumAggregationBuilder;
+import org.elasticsearch.search.aggregations.pipeline.bucketselector.BucketSelectorPipelineAggregationBuilder;
 import org.elasticsearch.search.collapse.CollapseBuilder;
 
 import java.math.BigDecimal;
@@ -55,6 +59,91 @@ public class TestMain {
         Terms terms = response.getAggregations().get("userNo");
     }
 
+    @org.junit.Test
+    public void nestedForAggSumAndScript() throws Exception {
+        Date startTime = DateUtils.plusDays(new Date(), 10);
+        Date endTime = DateUtils.plusDays(new Date(), 29);
+
+        TransportClient client = ConfigService.getClient();
+        //1、 start <= validStart <= end
+        QueryBuilders.rangeQuery("couponList.validStartTime").gte(DateUtils.formatByEsForDate(startTime)).lte(DateUtils.formatByEsForDate(endTime));
+
+        //2、start <= validStart <= validEnd <= end
+        BoolQueryBuilder subRangeBuilder = QueryBuilders.boolQuery();
+        subRangeBuilder.must(QueryBuilders.rangeQuery("couponList.validStartTime").gte(DateUtils.formatByEsForDate(startTime)));
+        subRangeBuilder.must(QueryBuilders.rangeQuery("couponList.ValidEndTime").lte(DateUtils.formatByEsForDate(endTime)));
+
+        //3、 start <= validEnd <= end
+        QueryBuilders.rangeQuery("couponList.ValidEndTime").gte(DateUtils.formatByEsForDate(startTime)).lte(DateUtils.formatByEsForDate(endTime));
+
+        //4、 validStart <= start <= end <= validEnd
+        BoolQueryBuilder subRangeBuilderTwo = QueryBuilders.boolQuery();
+        subRangeBuilderTwo.must(QueryBuilders.rangeQuery("couponList.validStartTime").lte(DateUtils.formatByEsForDate(startTime)));
+        subRangeBuilderTwo.must(QueryBuilders.rangeQuery("couponList.ValidEndTime").gte(DateUtils.formatByEsForDate(endTime)));
+
+        BoolQueryBuilder nestedQueryBuilder = QueryBuilders.boolQuery();
+        nestedQueryBuilder.should(QueryBuilders.rangeQuery("couponList.validStartTime").gte(DateUtils.formatByEsForDate(startTime)).lte(DateUtils.formatByEsForDate(endTime)))
+                .should(subRangeBuilder)
+                .should(QueryBuilders.rangeQuery("couponList.ValidEndTime").gte(DateUtils.formatByEsForDate(startTime)).lte(DateUtils.formatByEsForDate(endTime)))
+                .should(subRangeBuilderTwo);
+
+        // 针对内部查询，符合内部条件，添加：innerHit，response 体包含内嵌的命中数据体
+        QueryBuilder qb = QueryBuilders.nestedQuery("couponList", nestedQueryBuilder, ScoreMode.Avg).innerHit(new InnerHitBuilder("couponNo"));
+
+        Map<String, String> bucketsPathsMap = new HashMap(2);
+        bucketsPathsMap.put("bucketAmount", "sumTwo");
+        //script 条件
+        Script script = new Script("params.bucketAmount >= 2 ");
+
+        BucketSelectorPipelineAggregationBuilder bucket = new BucketSelectorPipelineAggregationBuilder("bucket_filter", bucketsPathsMap, script);
+
+        // 涉及到nested 查询，聚合的时候，需要再重新过滤一次
+        AggregationBuilder userBuilder = AggregationBuilders.terms("userTerm").field("userId").subAggregation(
+                AggregationBuilders.nested("nestedTwo", "couponList")
+                        .subAggregation(AggregationBuilders.terms("couponNo").field("couponNo")
+                                .subAggregation(AggregationBuilders.sum("sumTwo").field("couponList.amount"))
+                                .subAggregation(bucket)
+                        ));
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
+                .setQuery(qb)
+                .setQuery(QueryBuilders.matchAllQuery())
+                .addAggregation(userBuilder);
+        System.out.println(requestBuilder.toString());
+        SearchResponse response = requestBuilder.execute().actionGet();
+
+        Terms userTerm = response.getAggregations().get("userTerm");
+        for (Terms.Bucket userBucket : userTerm.getBuckets()) {
+            System.out.println("userId:" + userBucket.getKeyAsString());
+        }
+
+    }
+
+
+    @org.junit.Test
+    public void bucketSelector() throws Exception {
+        TransportClient client = ConfigService.getClient();
+
+        AggregationBuilder aggBuilder = AggregationBuilders.terms("repayUserId").field("userId");
+        Map<String, String> bucketsPathsMap = new HashMap(2);
+        bucketsPathsMap.put("bucketAmount", "repayAmount");
+        //script 条件
+        Script script = new Script("params.bucketAmount >= 15 ");
+        BucketSelectorPipelineAggregationBuilder bucket = new BucketSelectorPipelineAggregationBuilder("sales_bucket_filter", bucketsPathsMap, script);
+        SumAggregationBuilder sumAgg = AggregationBuilders.sum("repayAmount").field("repayAmount");
+
+        aggBuilder.subAggregation(sumAgg);
+        aggBuilder.subAggregation(bucket);
+        SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setTypes(RepayInfoMapping.getMapperName())
+                .addAggregation(aggBuilder);
+        System.out.println(requestBuilder.toString());
+        SearchResponse response = requestBuilder.execute().get();
+        Terms termUser = response.getAggregations().get("repayUserId");
+        for (Terms.Bucket termBucket : termUser.getBuckets()) {
+            Sum sum = termBucket.getAggregations().get("repayAmount");
+            System.out.println(termBucket.getKeyAsString() + ":" + sum.getValue());
+        }
+    }
 
     /**
      * 1、userId 去重
@@ -284,37 +373,24 @@ public class TestMain {
         String indexName = "test-0508";
         BulkRequestBuilder bulkRequest = client.prepareBulk();
 
-        for (int i = 0; i < 12000; i++) {
+        for (int i = 0; i < 10; i++) {
             RepayInfo repayInfo = new RepayInfo();
-            repayInfo.setUserId("0003" + i);
-            repayInfo.setId("0002" + i);
-            repayInfo.setRepayAmount(BigDecimal.TEN);
+            repayInfo.setUserId("0004" + i);
+            repayInfo.setId("0004" + i);
+            repayInfo.setRepayAmount(new BigDecimal(new Random().nextInt(20)));
             List<Coupon> couponList = new ArrayList();
             Coupon couponOne = new Coupon();
             couponOne.setCouponNo(repayInfo.getUserId() + "c001");
-            couponOne.setAmount(new BigDecimal(5));
-            couponOne.setValidStartTime(DateUtils.plusDays(new Date(), 18));
-            couponOne.setValidEndTime(DateUtils.plusDays(new Date(), 22));
+            couponOne.setAmount(new BigDecimal(new Random().nextInt(20)));
+            couponOne.setValidStartTime(DateUtils.plusDays(new Date(), 18 - new Random().nextInt(5)));
+            couponOne.setValidEndTime(DateUtils.plusDays(new Date(), 22 - new Random().nextInt(5)));
             couponList.add(couponOne);
 
-            Coupon couponTwo = new Coupon();
-            couponTwo.setCouponNo(repayInfo.getUserId() + "c002");
-            couponTwo.setAmount(new BigDecimal(22));
-            couponTwo.setValidStartTime(DateUtils.plusDays(new Date(), 20));
-            couponTwo.setValidEndTime(DateUtils.plusDays(new Date(), 23));
-            couponList.add(couponTwo);
-
-            Coupon couponTwo3 = new Coupon();
-            couponTwo3.setCouponNo(repayInfo.getUserId() + "c003");
-            couponTwo3.setAmount(BigDecimal.TEN);
-            couponTwo3.setValidStartTime(DateUtils.plusDays(new Date(), 22));
-            couponTwo3.setValidEndTime(DateUtils.plusDays(new Date(), 26));
-            couponList.add(couponTwo3);
             repayInfo.setCouponList(couponList);
-           /* bulkRequest.add(esClient.getClient().prepareIndex(indexName, RepayInfoMapping.getMapperName(), indexDataList.get(i).gainId())
-                    .setSource(repayInfo.));*/
+            bulkRequest.add(client.prepareIndex(indexName, RepayInfoMapping.getMapperName(), repayInfo.getId())
+                    .setSource(repayInfo.gainBuilder()));
         }
-
+        BulkResponse bulkResponse = bulkRequest.execute().actionGet();
 
     }
 
