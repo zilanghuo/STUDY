@@ -1,5 +1,6 @@
 package com.mouse.study.test.java8.reflect;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
@@ -21,11 +22,16 @@ public class ReflectUtilTest {
         for (Method method : methods) {
             System.out.println(method);
             //执行方法
-            if (method.getName().equals("privateMethod")){
+            if (method.getName().equals("privateMethod")) {
                 method.setAccessible(true);
+            }
+            Annotation[] annotations = method.getAnnotations();
+            for (Annotation annotation : annotations) {
+                System.out.println("annotation:" + annotation.toString());
             }
             Object returnValue = method.invoke(object, "小明");
             System.out.println("返回值：" + returnValue);
+            System.out.println("----------------------------------");
         }
     }
 }

@@ -7,6 +7,7 @@ package com.mouse.study.test.java8.reflect;
  */
 public class CollUtils {
 
+    @Deprecated
     public String sayHello(String user) {
         return "hello," + user;
     }
