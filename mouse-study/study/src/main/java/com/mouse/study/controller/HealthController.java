@@ -1,7 +1,6 @@
 package com.mouse.study.controller;
 
 import com.mouse.study.service.IHealthService;
-import com.mouse.study.test.apollo.spring.ConfigBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,9 +22,6 @@ public class HealthController {
 
     @Autowired
     private IHealthService healthService;
-
-    @Autowired
-    private ConfigBean configBean;
 
     @RequestMapping(value = "/check")
     public String checkHealth() throws IOException {

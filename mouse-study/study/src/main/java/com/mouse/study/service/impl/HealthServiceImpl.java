@@ -1,10 +1,8 @@
 package com.mouse.study.service.impl;
 
-import com.mouse.study.dao.HealthDao;
 import com.mouse.study.model.MsgMessage;
 import com.mouse.study.service.IHealthService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -16,18 +14,16 @@ import java.util.Map;
 @Slf4j
 public class HealthServiceImpl implements IHealthService {
 
-    @Autowired
-    private HealthDao healthDao;
 
     @Override
     public Integer checkHealth(Map map) {
         log.info("initialSize:{}","23432");
-        return healthDao.checkHealth(map);
+        return 1;
     }
 
     @Override
     public void insert(MsgMessage msgMessage) {
-        healthDao.insert(msgMessage);
+        return;
     }
 
     @Override
@@ -37,7 +33,6 @@ public class HealthServiceImpl implements IHealthService {
 
     @Override
     public MsgMessage get() {
-        //return healthDao.get();
         return null;
     }
 }
