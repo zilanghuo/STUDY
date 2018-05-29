@@ -12,4 +12,6 @@ public class Constants {
     public static final String API_MCHNT_CD = "0002900F0096235";
 
     public static final String CHECK_ID_REQ_URL = "http://www-1.fuiou.com:18670/mobile_pay/checkInfo/checkIdentity.pay" ;
+
+    public static final String ORDER_URL = "http://www-1.fuiou.com:18670/mobile_pay/h5pay/payAction.pay" ;
 }
