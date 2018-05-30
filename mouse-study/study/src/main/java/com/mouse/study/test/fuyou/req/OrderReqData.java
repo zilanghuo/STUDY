@@ -1,8 +1,10 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.fuiou.util.MD5;
+import com.mouse.study.test.fuyou.Constants;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
+import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,6 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 2018/5/29
  * use:
  */
+@Slf4j
 @Setter
 @XmlRootElement(name = "ORDER")
 public class OrderReqData {
@@ -150,7 +153,7 @@ public class OrderReqData {
         return homeUrl;
     }
 
-    public String buildXml(){
+    public String buildXml() {
         try {
             StringBuffer temp = new StringBuffer();
             temp.append(this.type).append("|")
@@ -167,10 +170,11 @@ public class OrderReqData {
                     .append(this.logoTp).append("|")
                     .append(this.homeUrl).append("|")
                     .append(this.reUrl).append("|")
-                    .append("5old71wihg2tqjug9kkpxnhx9hiujoqj");
-            this.sign = MD5.MD5Encode(temp.toString());
-            return XmlBeanUtils.convertBean2Xml(this, "UTF-8", true);
+                    .append(Constants.API_MCHNT_KEY);
+            this.sign = MD5Util.MD5Encode(temp.toString());
+            return XmlBeanUtils.convertBean2Xml(this, "UTF-8", false);
         } catch (JAXBException e) {
+            log.error("error", e);
         }
         return null;
     }
