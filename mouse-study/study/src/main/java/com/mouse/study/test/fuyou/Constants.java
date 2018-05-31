@@ -16,4 +16,9 @@ public class Constants {
     public static final String ORDER_URL = "http://www-1.fuiou.com:18670/mobile_pay/h5pay/payAction.pay" ;
 
     public static final String QUERY_ORDER_URL = "http://www-1.fuiou.com:18670/mobile_pay/checkInfo/checkResult.pay";
+
+    public static final String QUERY_CARD_URL = "http://www-1.fuiou.com:18670/mobile_pay/checkCard/checkCardDebit.pay";
+
+
+
 }

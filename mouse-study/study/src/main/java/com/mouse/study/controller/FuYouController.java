@@ -33,10 +33,10 @@ public class FuYouController {
         reqData.setBackUrl("www.baidu.com");
         reqData.setReUrl("www.baidu.com");
         reqData.setHomeUrl("www.baidu.com");
-        reqData.setName("赖武法");
+        reqData.setName("刘雨珍");
         reqData.setIdType("0");
         reqData.setSignTp("md5");
-        reqData.setIdNo("350322199112136814");
+        reqData.setIdNo("530122198505158369");
         params.put("FM", DESCoderUtil.desEncrypt(reqData.buildXml().toString(), DESCoderUtil.getKeyLength8(Constants.API_MCHNT_KEY)));
         params.put("ENCTP","1");
         params.put("VERSION","2.0");

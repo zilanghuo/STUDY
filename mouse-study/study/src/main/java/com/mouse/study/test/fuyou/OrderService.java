@@ -25,10 +25,10 @@ public class OrderService {
         reqData.setBackUrl("www.baidu.com");
         reqData.setReUrl("www.baidu.com");
         reqData.setHomeUrl("www.baidu.com");
-        reqData.setName("赖武法");
+        reqData.setName("刘雨珍");
         reqData.setIdType("0");
         reqData.setSignTp("md5");
-        reqData.setIdNo("350300199112136814");
+        reqData.setIdNo("530122198505158369");
         System.out.println(reqData.buildXml());
         Map<String, String> params = new HashMap(5);
         params.put("FM", reqData.buildXml());
