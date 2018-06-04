@@ -1,6 +1,8 @@
 package com.mouse.study.test.fuyou;
 
 import com.mouse.study.test.fuyou.req.LimitQueryReqData;
+import com.mouse.study.test.fuyou.res.LimitQueryRespData;
+import com.mouse.study.utils.JackJsonUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +22,8 @@ public class LimitQueryService {
         params.put("FM", reqData.buildXml());
         String respStr = HttpPostUtil.postForward(Constants.LIMIT_QUERY_URL, params);
         System.out.println(respStr);
+        LimitQueryRespData respData= XmlBeanUtils.convertXml2Bean(respStr, LimitQueryRespData.class);
+        System.out.println(JackJsonUtil.objToStr(respData));
     }
 
 }
