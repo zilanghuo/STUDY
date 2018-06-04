@@ -24,7 +24,6 @@ public class QueryCardService {
         reqData.setOCerTp("0");
         reqData.setOCerNo("530122198505158369");
         reqData.setSignTp("md5");
-        reqData.setSign(reqData.buildXml());
         Map<String, String> params = new HashMap();
         params.put("FM", reqData.buildXml());
         String respStr = HttpPostUtil.postForward(Constants.QUERY_CARD_URL, params);
