@@ -17,7 +17,7 @@ public class WithdrawService {
     public static void main(String[] args) throws Exception {
         WithdrawReqData reqData = new WithdrawReqData();
         reqData.setMerdt("20180605");
-        reqData.setOrderNo("2018060500001" + System.currentTimeMillis());
+        reqData.setOrderNo("2018060500001" + "0000002");
         reqData.setBankNo("0102");
         reqData.setCityNo("1000");
         reqData.setAccntNo("01160325000005544");

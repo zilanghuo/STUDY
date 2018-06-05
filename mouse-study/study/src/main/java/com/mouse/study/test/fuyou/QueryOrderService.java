@@ -16,8 +16,8 @@ public class QueryOrderService {
 
     public static void main(String[] args) throws Exception {
         QueryOrderReqData reqData = new QueryOrderReqData();
-        reqData.setMchntCd(Constants.API_MCHNT_CD);
-        reqData.setMchntOrderId("2018052900000002");
+        reqData.setMchntCd(Constants.API_MCHNT_CD_2);
+        reqData.setMchntOrderId("20180605000010000001");
         reqData.setVersion("2.0");
         reqData.setSign(reqData.buildXml());
         Map<String, String> params = new HashMap();

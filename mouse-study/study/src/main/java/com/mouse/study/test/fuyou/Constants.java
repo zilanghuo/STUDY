@@ -7,11 +7,12 @@ package com.mouse.study.test.fuyou;
  */
 public class Constants {
 
-    //public static final String API_MCHNT_KEY = "5old71wihg2tqjug9kkpxnhx9hiujoqj";
+    public static final String API_MCHNT_CD = "0002900F0345178";
     public static final String API_MCHNT_KEY = "123456";
 
-    //public static final String API_MCHNT_CD = "0002900F0096235";
-    public static final String API_MCHNT_CD = "0002900F0345178";
+    public static final String API_MCHNT_CD_2 = "0002900F0096235";
+    public static final String API_MCHNT_KEY_2 = "5old71wihg2tqjug9kkpxnhx9hiujoqj";
+
 
     public static final String CHECK_ID_REQ_URL = "http://www-1.fuiou.com:18670/mobile_pay/checkInfo/checkIdentity.pay" ;
 

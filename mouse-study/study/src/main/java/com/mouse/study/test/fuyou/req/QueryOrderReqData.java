@@ -73,7 +73,7 @@ public class QueryOrderReqData {
         temp.append(this.version).append("|")
                 .append(this.mchntCd).append("|")
                 .append(this.mchntOrderId).append("|")
-                .append(Constants.API_MCHNT_KEY);
+                .append(Constants.API_MCHNT_KEY_2);
         System.out.println("验签明文：" + temp.toString());
         this.sign = MD5.MD5Encode(temp.toString());
         System.out.println(MD5.MD5Encode(temp.toString()));
