@@ -28,4 +28,6 @@ public class Constants {
 
     public static final String WITHDRAW_URL = "https://fht-test.fuiou.com/fuMer/req.do";
 
+    public static final String VERIFY_CARD_URL = " http://www-1.fuiou.com:18670/mobile_pay/checkCard/checkCard01.pay";
+
 }

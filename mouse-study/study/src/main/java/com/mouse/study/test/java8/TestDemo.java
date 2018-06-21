@@ -8,6 +8,12 @@ package com.mouse.study.test.java8;
 public class TestDemo {
 
     @org.junit.Test
+    public void testTen(){
+        System.out.println("30".startsWith("3001"));
+        System.out.println("success".indexOf("success"));
+    }
+
+    @org.junit.Test
     public void testNight(){
         int num = 2147483647 ;
         long temp = num + 2L ;
