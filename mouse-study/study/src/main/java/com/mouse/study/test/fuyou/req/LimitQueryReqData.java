@@ -1,6 +1,5 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.mouse.study.test.fuyou.Constants;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
 import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
@@ -39,12 +38,12 @@ public class LimitQueryReqData {
         return sign;
     }
 
-    public String buildXml() {
+    public String buildXml(String key) {
         try {
             StringBuffer temp = new StringBuffer();
             temp.append(this.mchntCd).append("|")
                     .append(this.insCd).append("|")
-                    .append(Constants.API_MCHNT_KEY);
+                    .append(key);
             this.sign = MD5Util.MD5Encode(temp.toString());
             System.out.println("验签数据：" + this.sign);
             return XmlBeanUtils.convertBean2Xml(this, "UTF-8", false);

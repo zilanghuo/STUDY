@@ -30,4 +30,6 @@ public class Constants {
 
     public static final String VERIFY_CARD_URL = " http://www-1.fuiou.com:18670/mobile_pay/checkCard/checkCard01.pay";
 
+    public static final String QUERY_CARD_BIN_URL = "http://www-1.fuiou.com:18670/mobile_pay/findPay/cardBinQuery.pay";
+
 }
