@@ -1,7 +1,12 @@
 package com.mouse.study.test.java8.List;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mouse.study.utils.JackJsonUtil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Iterator;
+import java.util.TreeSet;
 
 /**
  * @author lwf
@@ -11,27 +16,43 @@ import java.util.List;
 public class TestMain {
 
     public static void main(String[] args) {
-        List<String> repayUser = new ArrayList();
-        repayUser.add("repay1");
-        repayUser.add("repay2");
-        //还款记录的返回结果
-        ResultList collectInfoPageResultDto = new ResultList();
-        collectInfoPageResultDto.setExtendList(repayUser);
+        User one = new User(3, "阿豪");
+        User two = new User(2, "特性");
+        User three = new User(1, "本来");
+        User four = new User(4, "购买");
+        User five = new User(0, "连连");
+        TreeSet<User> set = new TreeSet();
+        set.add(one);
+        set.add(two);
+        set.add(three);
+        set.add(four);
+        set.add(five);
 
-        // 还款计划的userId 结果集
-        List<String> preRepay = collectInfoPageResultDto.getExtendList();
+        Iterator<User> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            User next = iterator.next();
+            System.out.println(JackJsonUtil.objToStr(next));
+        }
 
-        //红包记录
-        List<String> couponUser = new ArrayList();
-        couponUser.add("coupon1");
-        couponUser.add("coupon2");
-        //还款记录的返回结果
-        ResultList couponPageResultDto = new ResultList();
-        couponPageResultDto.setExtendList(couponUser);
 
-        collectInfoPageResultDto = couponPageResultDto;
+    }
+}
 
-        System.out.println(preRepay.get(0));
-        System.out.println(collectInfoPageResultDto.getExtendList().get(0));
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+class User implements Comparable {
+
+    private static final long serialVersionUID = 1171110650373330115L;
+
+    private Integer id;
+
+    private String name;
+
+
+    @Override
+    public int compareTo(Object o) {
+        User user = (User) o;
+        return this.name.hashCode() - user.getName().hashCode();
     }
 }

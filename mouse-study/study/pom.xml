@@ -23,6 +23,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.53</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.kie.modules</groupId>
             <artifactId>org-apache-commons-httpclient</artifactId>
             <version>6.2.0.CR2</version>

@@ -16,11 +16,11 @@ public class WithdrawService {
 
     public static void main(String[] args) throws Exception {
         WithdrawReqData reqData = new WithdrawReqData();
-        reqData.setMerdt("20180605");
-        reqData.setOrderNo("2018060500001" + "0000002");
-        reqData.setBankNo("0102");
+        reqData.setMerdt("20180622");
+        reqData.setOrderNo("2018060500001" + "0000004");
+        reqData.setBankNo("0102"); //总行代码为4位
         reqData.setCityNo("1000");
-        reqData.setAccntNo("01160325000005544");
+        reqData.setAccntNo("6212261904006115311");
         reqData.setAccntNm("刘雨珍");
         reqData.setAmt(1000);
         reqData.setMobile("18650309360");

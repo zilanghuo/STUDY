@@ -6,6 +6,7 @@ import com.mouse.study.utils.JackJsonUtil;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author lwf
@@ -30,7 +31,16 @@ public class QueryCardService {
         QueryCardRespData respData= XmlBeanUtils.convertXml2Bean(respStr, QueryCardRespData.class);
         System.out.println(respData.sign());
         System.out.println(JackJsonUtil.objToStr(respData));
+    }
 
-
+    @org.junit.Test
+    public void testSuan() throws Exception{
+        Map<String, String> params = new TreeMap<>();
+        params.put("sorgcode", "30310115201701002");
+        params.put("name", "刘雨珍");
+        params.put("idCard", "530122198505158369");
+        params.put("hash", "4D869166CBBD647FA54D7D5661A0B9B3");
+        String respStr = HttpPostUtil.postForward("https://test.suanhua.org/cpcs/api/v2/channel/2000", params);
+        System.out.println(respStr);
     }
 }

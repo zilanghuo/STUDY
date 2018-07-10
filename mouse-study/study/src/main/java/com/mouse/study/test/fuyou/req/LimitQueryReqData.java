@@ -3,6 +3,7 @@ package com.mouse.study.test.fuyou.req;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
 import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
@@ -41,9 +42,11 @@ public class LimitQueryReqData {
     public String buildXml(String key) {
         try {
             StringBuffer temp = new StringBuffer();
-            temp.append(this.mchntCd).append("|")
-                    .append(this.insCd).append("|")
-                    .append(key);
+            temp.append(this.mchntCd).append("|");
+            if (!StringUtils.isEmpty(this.insCd)){
+                temp.append(this.insCd).append("|");
+            }
+            temp.append(key);
             this.sign = MD5Util.MD5Encode(temp.toString());
             System.out.println("验签数据：" + this.sign);
             return XmlBeanUtils.convertBean2Xml(this, "UTF-8", false);

@@ -1,5 +1,6 @@
 package com.mouse.study.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.util.Iterator;
 import java.util.TreeMap;
@@ -14,12 +15,20 @@ public class MD5UtilsTemp {
     private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     public static void main(String[] args) throws Exception {
-        TreeMap<String,String> treeMap = new TreeMap();
-        treeMap.put("accountNo","01170609000004255");
-        treeMap.put("merchantCode","888888");
-        treeMap.put("key","c33367701511b4f6020ec61ded352059");
-        System.out.println(getSign(treeMap));
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("6212261904006115311").append("|").append("820180531562");
+        System.out.println(genMac("f3e27828bc27db70", buffer.toString()));
+    }
 
+
+    public static String genMac(String key, String string) {
+        String signSrc = string + "|" + key;
+        try {
+            return Md5Algorithm.getInstance().md5Digest(signSrc.getBytes("utf-8"));
+        } catch (UnsupportedEncodingException e) {
+
+        }
+        return null;
     }
 
     /**
@@ -56,6 +65,7 @@ public class MD5UtilsTemp {
 
     /**
      * 根据编码加密
+     *
      * @param origin
      * @param charsetName
      * @return
