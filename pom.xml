@@ -9,10 +9,6 @@
 
     <modules>
         <module>mouse-study</module>
-        <module>mouse-mq-client</module>
-        <module>mouse-job</module>
-        <module>mouse-data</module>
-        <module>mouse-common</module>
     </modules>
 
     <reporting>
@@ -31,7 +27,6 @@
             <name>Team Nexus Repository</name>
             <url>http://127.0.0.1:8051/repository/maven-central/</url>
         </repository>
-
     </repositories>
 
     <distributionManagement>
