@@ -32,4 +32,6 @@ public class Constants {
 
     public static final String QUERY_CARD_BIN_URL = "http://www-1.fuiou.com:18670/mobile_pay/findPay/cardBinQuery.pay";
 
+    public static final String QUERY_DPAY_ORDER_URL = "https://fht-test.fuiou.com/fuMer/req.do";
+
 }

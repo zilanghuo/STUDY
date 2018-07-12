@@ -33,8 +33,8 @@ public class TestDemo {
 
         DpayNotifyReq notifyReq = new DpayNotifyReq();
         notifyReq.setIsSuccess(0);
-        notifyReq.setTradeNo("2018070213243221900");
-        notifyReq.setMemo("000");
+        notifyReq.setType(2);
+        notifyReq.setTradeNo("2018071100010");
 
         reqMain.put("reqParam", notifyReq);
         arg1 = JackJsonUtil.objToStr(reqMain);
@@ -60,6 +60,8 @@ public class TestDemo {
 class DpayNotifyReq {
 
     private String tradeNo;
+
+    private Integer type;
 
     private Integer isSuccess;
 
