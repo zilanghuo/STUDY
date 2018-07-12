@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class HuanXingDemo {
 
     public static void main(String[] args) throws Exception {
-        //10轮询一次
+        //10轮询一次订单
         Vector<Set<HuanDto>> setList = new Vector(10);
         for (int i = 0; i < 10; i++) {
             Set<HuanDto> dtos = new TreeSet();
