@@ -21,7 +21,7 @@ public class ListGroup extends ConnectionWatcher {
                 System.exit(1);
             }
             for (String child : children) {
-                System.out.println(child);
+                System.out.println("组列表：" + child);
             }
         } catch (KeeperException.NoNodeException e) {
             System.out.printf("Group %s does not exist\n", groupName);
