@@ -1,4 +1,4 @@
-package com.mouse.study.test.sort;
+package com.mouse.study.test.arithmetic.sort;
 
 import java.util.Arrays;
 
