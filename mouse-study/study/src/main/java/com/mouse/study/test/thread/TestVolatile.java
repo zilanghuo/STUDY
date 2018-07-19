@@ -14,6 +14,7 @@ public class TestVolatile implements Runnable {
         }
     }
 
+    @Override
     public void run() {
         if (flag) {
             System.out.println("我成功了！");

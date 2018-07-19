@@ -21,8 +21,8 @@ public class IpAddressUtils {
 
     public static void main(String[] args) {
         String ip = "116.228.62.38";
-        Pattern p = Pattern.compile("([1-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}");
-        Matcher m = p.matcher(ip);
+        Pattern pattern = Pattern.compile("([1-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}");
+        Matcher m = pattern.matcher(ip);
         System.out.println(m.find());
 
         /*  String v4IP = getV4IP();

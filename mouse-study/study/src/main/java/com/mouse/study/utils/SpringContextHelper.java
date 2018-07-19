@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContextAware;
 public class SpringContextHelper implements ApplicationContextAware {
     private static ApplicationContext context;
 
+    @Override
     public void setApplicationContext(ApplicationContext context)
             throws BeansException {
         // 在加载Spring时自动获得context

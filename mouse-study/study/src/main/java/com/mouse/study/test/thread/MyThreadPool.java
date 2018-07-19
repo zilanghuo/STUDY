@@ -1,13 +1,11 @@
 package com.mouse.study.test.thread;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *
  * @author lwf
  * @date 2017/7/25
  * use to do:
@@ -22,7 +20,9 @@ public class MyThreadPool {
 
     @org.junit.Test
     public void getCPU() throws Exception {
-        final ExecutorService executorService = new ThreadPoolExecutor(5, 5, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue());
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("testDemo-%d").build();
+
+        final ExecutorService executorService = new ThreadPoolExecutor(5, 5, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
         for (int i = 0; i < 100; i++) {
             executorService.execute(() -> System.out.println(Thread.currentThread().getName() + "---------"));
         }
