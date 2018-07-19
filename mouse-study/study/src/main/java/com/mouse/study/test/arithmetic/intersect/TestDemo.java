@@ -17,9 +17,7 @@ public class TestDemo {
     private static final String[] bSplit = bStr.split(" ");
 
     public static void main(String[] args) {
-
-
-
+        intersectByNotSort();
     }
 
     /**
