@@ -1,8 +1,8 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.Constants;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
+import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
 
 import javax.xml.bind.JAXBException;
@@ -98,7 +98,7 @@ public class QueryCardReqData {
                 .append(this.oCerNo).append("|")
                 .append(Constants.API_MCHNT_KEY);
         System.out.println("验签明文：" + temp.toString());
-        this.sign = MD5.MD5Encode(temp.toString());
+        this.sign = MD5Util.MD5Encode(temp.toString());
 
         return XmlBeanUtils.convertBean2Xml(this, "UTF-8", false);
     }

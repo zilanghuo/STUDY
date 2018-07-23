@@ -1,8 +1,8 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.Constants;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
+import com.mouse.study.utils.MD5Util;
 import com.mouse.study.utils.MD5UtilsTemp;
 import lombok.Setter;
 
@@ -75,8 +75,8 @@ public class QueryOrderReqData {
                 .append(this.mchntOrderId).append("|")
                 .append(Constants.API_MCHNT_KEY_2);
         System.out.println("验签明文：" + temp.toString());
-        this.sign = MD5.MD5Encode(temp.toString());
-        System.out.println(MD5.MD5Encode(temp.toString()));
+        this.sign = MD5Util.MD5Encode(temp.toString());
+        System.out.println(MD5Util.MD5Encode(temp.toString()));
         System.out.println(MD5UtilsTemp.encode(temp.toString(),"UTF-8"));
 
         return XmlBeanUtils.convertBean2Xml(this, "UTF-8", false);

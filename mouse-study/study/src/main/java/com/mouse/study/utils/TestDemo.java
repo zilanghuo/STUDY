@@ -1,7 +1,6 @@
 package com.mouse.study.utils;
 
 import cn.hutool.http.HttpUtil;
-import com.fuiou.util.MD5;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -39,7 +38,7 @@ public class TestDemo {
         reqMain.put("reqParam", notifyReq);
         arg1 = JackJsonUtil.objToStr(reqMain);
         //生成签名
-        arg2 = MD5.MD5Encode(arg0 + "|" + arg1 + "|" + key);
+        arg2 = MD5Util.MD5Encode(arg0 + "|" + arg1 + "|" + key);
         //组装参数
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("arg0", arg0);

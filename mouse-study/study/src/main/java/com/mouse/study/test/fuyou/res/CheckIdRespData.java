@@ -1,7 +1,7 @@
 package com.mouse.study.test.fuyou.res;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.Constants;
+import com.mouse.study.utils.MD5Util;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -108,7 +108,7 @@ public class CheckIdRespData
 		}
 		temp.append("|").append(Constants.API_MCHNT_KEY);
 		System.out.println("返回结果签名明文："+temp.toString());
-		if(!MD5.MD5Encode(temp.toString()).equals(this.sign))
+		if(!MD5Util.MD5Encode(temp.toString()).equals(this.sign))
 		{
 			throw new Exception("返回结果验签失败~");
 		}

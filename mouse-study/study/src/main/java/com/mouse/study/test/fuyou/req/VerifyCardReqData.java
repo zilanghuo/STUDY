@@ -1,8 +1,8 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.Constants;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
+import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
 
 import javax.xml.bind.JAXBException;
@@ -99,7 +99,7 @@ public class VerifyCardReqData {
         builder.append(this.cardType).append("|");
         builder.append(this.idCardNo).append("|");
         builder.append(Constants.API_MCHNT_KEY_2);
-        this.sign = MD5.MD5Encode(builder.toString());
+        this.sign = MD5Util.MD5Encode(builder.toString());
         return this.sign;
     }
 

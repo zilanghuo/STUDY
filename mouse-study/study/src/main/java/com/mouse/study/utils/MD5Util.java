@@ -1,6 +1,5 @@
 package com.mouse.study.utils;
 
-import com.fuiou.util.MD5;
 
 import java.security.MessageDigest;
 
@@ -95,8 +94,7 @@ public class MD5Util {
     public static void main(String[] args) {
         String s = "BF05CFC4B1475CA9DB8D5FE51F326EEB".toLowerCase();
         System.out.println(s);
-        String sr = MD5.MD5Encode("13910000003|15020616252200001920|4563517501013883117|钟凌霜|0|430221199008282318|13910000003|"+s);
-        System.out.println(sr);
+
 
     }
 }

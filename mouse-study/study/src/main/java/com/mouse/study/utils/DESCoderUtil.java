@@ -1,6 +1,5 @@
 package com.mouse.study.utils;
 
-import com.fuiou.util.MD5;
 import sun.misc.BASE64Decoder;
 
 import javax.crypto.Cipher;

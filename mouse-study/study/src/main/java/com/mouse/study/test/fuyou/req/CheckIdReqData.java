@@ -1,7 +1,7 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
+import com.mouse.study.utils.MD5Util;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
@@ -116,7 +116,7 @@ public class CheckIdReqData {
         temp.append(this.version).append("|").append(this.typeId).append("|").append(this.mchntCd).append("|").append(this.mchntOrderid).append("|")
                 .append(this.name).append("|").append(this.idNo).append("|").append("5old71wihg2tqjug9kkpxnhx9hiujoqj");
         System.out.println("验签明文：" + temp.toString());
-        this.sign = MD5.MD5Encode(temp.toString());
+        this.sign = MD5Util.MD5Encode(temp.toString());
         return XmlBeanUtils.convertBean2Xml(this, "UTF-8", true);
     }
 }

@@ -1,8 +1,8 @@
 package com.mouse.study.test.fuyou.req;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.Constants;
 import com.mouse.study.test.fuyou.XmlBeanUtils;
+import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
 
 import javax.xml.bind.JAXBException;
@@ -75,7 +75,7 @@ public class QueryDpayOrderReqData {
         builder.append(Constants.API_MCHNT_KEY).append("|");
         builder.append("qrytransreq").append("|");
         builder.append(buildXml());
-        return MD5.MD5Encode(builder.toString());
+        return MD5Util.MD5Encode(builder.toString());
     }
 
 }

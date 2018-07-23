@@ -1,7 +1,7 @@
 package com.mouse.study.test.fuyou.res;
 
-import com.fuiou.util.MD5;
 import com.mouse.study.test.fuyou.Constants;
+import com.mouse.study.utils.MD5Util;
 import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -87,6 +87,6 @@ public class VerifyCardRespData {
                 .append(this.mchntCd).append("|")
                 .append(this.ver).append("|")
                 .append(Constants.API_MCHNT_KEY_2);
-        return MD5.MD5Encode(buffer.toString());
+        return MD5Util.MD5Encode(buffer.toString());
     }
 }
