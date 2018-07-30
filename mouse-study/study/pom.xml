@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.kie.modules</groupId>
             <artifactId>org-apache-commons-httpclient</artifactId>
-            <version>6.2.0.CR2</version>
+            <version>6.1.0.Final</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-codec</artifactId>
@@ -674,13 +674,13 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>com.mouse</groupId>  <!--自定义-->
-            <artifactId>mouse-oracle</artifactId>    <!--自定义-->
-            <version>1.0</version> <!--自定义-->
-            <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
-            <systemPath>${basedir}/lib/ojdbc14.jar</systemPath> <!--项目根目录下的lib文件夹下-->
-        </dependency>
+        <!--<dependency>
+            <groupId>com.mouse</groupId>  &lt;!&ndash;自定义&ndash;&gt;
+            <artifactId>mouse-oracle</artifactId>    &lt;!&ndash;自定义&ndash;&gt;
+            <version>1.0</version> &lt;!&ndash;自定义&ndash;&gt;
+            <scope>system</scope> &lt;!&ndash;system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它&ndash;&gt;
+            <systemPath>${basedir}/lib/ojdbc14.jar</systemPath> &lt;!&ndash;项目根目录下的lib文件夹下&ndash;&gt;
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -1000,12 +1000,5 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>zd_repo</id>
-            <name>zd_repo</name>
-            <url>http://nexus.laocaibao.local/content/groups/public</url>
-        </repository>
-    </repositories>
 
 </project>
