@@ -6,13 +6,15 @@ import java.util.LinkedHashMap;
 
 /**
  * @author lwf
- * @date 2018/7/30
- * use:least recently user(LinkedHashMap的实现方式)
+ * @date 2018/8/1
+ * use:先入先出
+ * accessOrder:设置为false
+ * removeEldestEntry：重写方法，超过大小不允许添加，默认为false
  */
-public class LRULinkedHashMapDemo {
+public class FIFOLinkedHashMapDemo {
 
     public static void main(String[] args) {
-        LRULinkedHashMap hashMap = new LRULinkedHashMap(3);
+        FIFOLinkedHashMap hashMap = new FIFOLinkedHashMap(3);
         hashMap.put("1", "1");
         hashMap.put("2", "2");
         hashMap.put("3", "3");
@@ -21,18 +23,17 @@ public class LRULinkedHashMapDemo {
         System.out.println(JackJsonUtil.objToStr(hashMap));
     }
 
-
     /**
      * 实现LRU方法的功能,需要重写removeEldestEntry 方法
      */
-    static class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
+    static class FIFOLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 
         private static final long serialVersionUID = 4504158311663914052L;
 
         private int maxCacheSize;
 
-        public LRULinkedHashMap(int maxCacheSize) {
-            super(maxCacheSize, 0.75f, true);
+        public FIFOLinkedHashMap(int maxCacheSize) {
+            super(maxCacheSize, 0.75f, false);
             this.maxCacheSize = maxCacheSize;
         }
 
@@ -41,5 +42,6 @@ public class LRULinkedHashMapDemo {
             // 当达到预设缓存上限时删除最老元素
             return this.size() >= maxCacheSize + 1;
         }
+
     }
 }

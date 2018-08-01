@@ -1,105 +1,126 @@
 package com.mouse.study.test.arithmetic.lru;
 
-import lombok.Data;
-
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author lwf
- * @date 2018/7/30
- * use: 先不考虑并发问题
+ * @date 2018/7/31
+ * use:
  */
-@Data
-public class LRUCache<K, V> extends HashMap<K, V> {
+public class LRUCache<K,V> {
 
-    private final ReentrantReadWriteLock cacheLock = new ReentrantReadWriteLock();
-    private final ReentrantReadWriteLock.ReadLock readLock = cacheLock.readLock();
-    private final ReentrantReadWriteLock.WriteLock writeLock = cacheLock.writeLock();
+    private final int MAX_CACHE_SIZE;
+    private Entry first;
+    private Entry last;
 
-    private Map<K, CacheObject<K, V>> cacheMap;
+    private HashMap<K, Entry<K, V>> hashMap;
 
-    private Integer size;
-
-    public Integer capacity;
-
-    public LRUCache(Integer size) {
-        this.capacity = size;
-        this.size = 0;
-        cacheMap = new LinkedHashMap<K, CacheObject<K, V>>(size, 1.0f, true) {
-            private static final long serialVersionUID = -1806954614512571136L;
-
-            @Override
-            protected boolean removeEldestEntry(Map.Entry<K, CacheObject<K, V>> eldest) {
-                //当链表元素大于容量时，移除最老（最久未被使用）的元素
-                System.out.println(size() + ":" + capacity);
-                return size() >= capacity;
-            }
-        };
+    public LRUCache(int cacheSize) {
+        MAX_CACHE_SIZE = cacheSize;
+        hashMap = new HashMap<K, Entry<K, V>>();
     }
 
+    public void put(K key, V value) {
+        Entry entry = getEntry(key);
+        if (entry == null) {
+            if (hashMap.size() >= MAX_CACHE_SIZE) {
+                hashMap.remove(last.key);
+                removeLast();
+            }
+            entry = new Entry();
+            entry.key = key;
+        }
+        entry.value = value;
+        moveToFirst(entry);
+        hashMap.put(key, entry);
+    }
+
+    public V get(K key) {
+        Entry<K, V> entry = getEntry(key);
+        if (entry == null) {
+            return null;
+        }
+        moveToFirst(entry);
+        return entry.value;
+    }
+
+    public void remove(K key) {
+        Entry entry = getEntry(key);
+        if (entry != null) {
+            if (entry.pre != null) {
+                entry.pre.next = entry.next;
+            }
+            if (entry.next != null) {
+                entry.next.pre = entry.pre;
+            }
+            if (entry == first) {
+                first = entry.next;
+            }
+            if (entry == last) {
+                last = entry.pre;
+            }
+        }
+        hashMap.remove(key);
+    }
+
+    // 移到开头
+    private void moveToFirst(Entry entry) {
+        if (entry == first) {
+            return;
+        }
+        if (entry.pre != null) {
+            entry.pre.next = entry.next;
+        }
+        if (entry.next != null) {
+            entry.next.pre = entry.pre;
+        }
+        if (entry == last) {
+            last = last.pre;
+        }
+
+        //第一个用户
+        if ( null == first || null == last) {
+            first = last = entry;
+            return;
+        }
+
+        entry.next = first;
+        first.pre = entry;
+        first = entry;
+        entry.pre = null;
+    }
+
+    private void removeLast() {
+        if (last != null) {
+            last = last.pre;
+            if (last == null) {
+                first = null;
+            } else {
+                last.next = null;
+            }
+        }
+    }
+
+
+    private Entry<K, V> getEntry(K key) {
+        return hashMap.get(key);
+    }
 
     @Override
-    public V put(K key, V value) {
-        writeLock.lock();
-        if (isFull()) {
-            remove();
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Entry entry = first;
+        while (entry != null) {
+            sb.append(String.format("%s:%s ", entry.key, entry.value));
+            entry = entry.next;
         }
-        cacheMap.put(key, new CacheObject(key, value));
-        this.size++;
-        V put = super.put(key, value);
-        writeLock.unlock();
-        return put;
+        return sb.toString();
     }
 
-    @Override
-    public V get(Object key) {
-        readLock.lock();
-        V v = super.get(key);
-        readLock.unlock();
-        return v;
+    class Entry<K, V> {
+        public Entry pre;
+        public Entry next;
+        public K key;
+        public V value;
     }
-
-    /**
-     * 判断是否包含
-     *
-     * @return
-     */
-    public Boolean isFull() {
-        if (size >= capacity) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 删除最少使用的数据
-     */
-    public void remove() {
-        CacheObject<K, V> object = null;
-        //获取最小的访问数
-        Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
-        while (iterator.hasNext()) {
-            CacheObject<K, V> next = iterator.next();
-            if (object == null) {
-                object = next;
-            }
-            if (object.getAccessSize() > next.getAccessSize()) {
-                object = next;
-            }
-        }
-        //删除最小的访问数
-        Iterator<CacheObject<K, V>> cacheObjectIterator = cacheMap.values().iterator();
-        while (cacheObjectIterator.hasNext()) {
-            CacheObject<K, V> next = cacheObjectIterator.next();
-            if (next.getAccessSize() <= object.getAccessSize()) {
-                cacheObjectIterator.remove();
-                this.size--;
-            }
-        }
-    }
-
 }
