@@ -12,6 +12,7 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 @Slf4j
 public class HttpUtils {
@@ -112,4 +113,31 @@ public class HttpUtils {
         totalURL = totalURL + content;
         return totalURL;
     }
+
+    public static void main(String[] args) throws Exception {
+       String aa = "acct_name=xiaoming&bank_code=01050000&dt_order=20180108195053&id_no=320921198706292431&id_type=0&money_order=0.01&no_agree=2018010842980842&no_order=20170906180801600042155&oid_partner=201408071000001543&oid_paybill=2018010837031026&pay_type=D&result_pay=SUCCESS&settle_date=20180108&sign=O&sign_type=RSA";
+        Map map = (Map) JackJsonUtil.strToObj(aa, Map.class);
+
+
+        TreeMap<String, Object> treeMap = new TreeMap();
+        treeMap.put("acct_name", "xiaoming");
+        treeMap.put("bank_code", "01050000");
+        treeMap.put("dt_order", "20180108195053");
+        treeMap.put("id_no", "320921198706292431");
+        treeMap.put("id_type", "0");
+        treeMap.put("money_order", 0.01);
+        treeMap.put("no_agree", "2018010842980842");
+        treeMap.put("no_order", "20170906180801600042155");
+        treeMap.put("oid_partner", "201408071000001543");
+        treeMap.put("oid_paybill", "2018010837031026");
+        treeMap.put("pay_type", "D");
+        treeMap.put("result_pay", "SUCCESS");
+        treeMap.put("settle_date", "20180108");
+        treeMap.put("sign", "O");
+        treeMap.put("sign_type", "RSA");
+        StringBuffer buffer = URLPost("http://localhost:8080/cashier/callback/lianlianCallback", treeMap);
+        System.out.println(buffer.toString());
+
+    }
+
 }
