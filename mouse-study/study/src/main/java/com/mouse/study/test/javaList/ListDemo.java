@@ -1,9 +1,8 @@
 package com.mouse.study.test.javaList;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.Vector;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * @author laiwufa
@@ -11,6 +10,23 @@ import java.util.Vector;
  * use:
  */
 public class ListDemo {
+
+    @Test
+    public void testRead(){
+        add(new ArrayList());
+        add(new LinkedList());
+        add(new Vector());
+    }
+
+    public static void add(List<Integer> list) {
+        Long begin = System.currentTimeMillis();
+        for (int i = 0; i < 1000000; i++) {
+            list.add(i);
+        }
+        Long end = System.currentTimeMillis();
+        System.out.println("耗时：" + (end - begin));
+        System.out.println("size:"+list.size());
+    }
 
     @org.junit.Test
     public void testStack() {
