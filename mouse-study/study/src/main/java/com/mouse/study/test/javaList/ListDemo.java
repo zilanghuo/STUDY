@@ -12,7 +12,22 @@ import java.util.*;
 public class ListDemo {
 
     @Test
-    public void testRead(){
+    public void fastFail() {
+        HashMap<String, Integer> map = new HashMap(8);
+        for (int i = 0; i < 5; i++) {
+            map.put(i + "", i);
+        }
+        Iterator<Map.Entry<String, Integer>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Integer> next = iterator.next();
+            if (next.getValue() == 2){
+                map.put("10",10);
+            }
+        }
+    }
+
+    @Test
+    public void testRead() {
         add(new ArrayList());
         add(new LinkedList());
         add(new Vector());
@@ -25,7 +40,7 @@ public class ListDemo {
         }
         Long end = System.currentTimeMillis();
         System.out.println("耗时：" + (end - begin));
-        System.out.println("size:"+list.size());
+        System.out.println("size:" + list.size());
     }
 
     @org.junit.Test

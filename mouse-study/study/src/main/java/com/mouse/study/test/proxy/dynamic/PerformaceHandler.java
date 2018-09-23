@@ -1,4 +1,4 @@
-package com.mouse.study.test.proxy;
+package com.mouse.study.test.proxy.dynamic;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -9,22 +9,10 @@ import java.lang.reflect.Method;
  * use:
  */
 public class PerformaceHandler implements InvocationHandler {
-
     private Object target;
-
     public PerformaceHandler(Object target) {//①target为目标的业务类
         this.target = target;
     }
-
-    /**
-     * 拦截类
-     *
-     * @param proxy
-     * @param method
-     * @param args
-     * @return
-     * @throws Throwable
-     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         InterceptorService interceptorService = new InterceptorService();

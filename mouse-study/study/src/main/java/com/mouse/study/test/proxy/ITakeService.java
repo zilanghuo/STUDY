@@ -6,7 +6,6 @@ package com.mouse.study.test.proxy;
  * use:
  */
 public interface ITakeService {
-
     void sayHello();
-
+    void sayGoodBye();
 }

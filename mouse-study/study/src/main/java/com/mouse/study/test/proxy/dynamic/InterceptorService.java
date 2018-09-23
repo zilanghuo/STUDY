@@ -1,4 +1,4 @@
-package com.mouse.study.test.proxy;
+package com.mouse.study.test.proxy.dynamic;
 
 /**
  * @author laiwufa
@@ -6,9 +6,7 @@ package com.mouse.study.test.proxy;
  * use:
  */
 public class InterceptorService {
-
     public void monitor() {
         System.out.println("这是监控的方法");
     }
-
 }

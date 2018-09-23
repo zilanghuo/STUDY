@@ -10,4 +10,9 @@ public class TakeService implements ITakeService {
     public void sayHello() {
         System.out.println("这是真正的实现方法");
     }
+
+    @Override
+    public void sayGoodBye() {
+        System.out.println("这是真正的sayBye 方法");
+    }
 }

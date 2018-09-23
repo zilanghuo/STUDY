@@ -1,4 +1,7 @@
-package com.mouse.study.test.proxy;
+package com.mouse.study.test.proxy.dynamic;
+
+import com.mouse.study.test.proxy.ITakeService;
+import com.mouse.study.test.proxy.TakeService;
 
 import java.lang.reflect.Proxy;
 
@@ -8,7 +11,6 @@ import java.lang.reflect.Proxy;
  * use:
  */
 public class TestMain {
-
     public static void main(String[] args) {
         //①目标业务类
         ITakeService target = new TakeService();
@@ -21,6 +23,6 @@ public class TestMain {
                 handler);
         //④ 操作代理实例
         proxy.sayHello();
+        proxy.sayGoodBye();
     }
-
 }
