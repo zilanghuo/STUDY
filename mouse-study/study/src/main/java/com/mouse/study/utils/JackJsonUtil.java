@@ -28,6 +28,7 @@ public class JackJsonUtil {
 
     public static <T> List<T> strToList(String json, Class<T> cls) throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         JsonParser parser = mapper.getJsonFactory().createJsonParser(json);
         JsonNode nodes = parser.readValueAsTree();
         List<T> list = new ArrayList<T>(nodes.size());
