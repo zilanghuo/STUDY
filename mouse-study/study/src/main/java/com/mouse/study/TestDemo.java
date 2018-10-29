@@ -12,13 +12,11 @@ public class TestDemo {
 
 
     public static void main(String[] args) {
-        HashMap<String,String> map = new HashMap(3);
-        map.put("riskResult",null);
-        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()){
-            System.out.println(iterator.next().getValue());
-        }
+
     }
+
+
+
 
     /**
      * 分割字段
